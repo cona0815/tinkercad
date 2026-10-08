@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>雞蛋武士組裝教案</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#24232b;--sub:#5b5a66;--line:#d9d4c7;--paper:#fff;--bg:#f4f1ea;--o:#F57C00;--t:#00897B;--p:#7E57C2;--y:#FFC21A;--soft:#fbf8f1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",sans-serif;font-size:14px;line-height:1.65}
+.page{width:210mm;min-height:297mm;margin:16px auto;background:var(--paper);padding:16mm 15mm 14mm;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+h1{font-size:26px;font-weight:900;margin:0 0 2px;letter-spacing:.02em}
+h1 small{display:block;font-size:13px;font-weight:500;color:var(--sub);letter-spacing:0}
+h2{font-size:17px;margin:20px 0 8px;padding:4px 10px;border-left:6px solid var(--y);background:var(--soft)}
+h3{font-size:15px;margin:14px 0 6px}
+table{width:100%;border-collapse:collapse;margin:6px 0 10px}
+th,td{border:1px solid var(--line);padding:6px 8px;vertical-align:top;text-align:left}
+th{background:#f3efe4;font-weight:700;white-space:nowrap}
+.meta td:nth-child(odd){background:#f3efe4;font-weight:700;width:16%;white-space:nowrap}
+.lesson{margin-top:6px}
+.lesson caption{caption-side:top;text-align:left;font-weight:900;font-size:15px;padding:6px 10px;color:#fff;border-radius:6px 6px 0 0}
+.l1 caption{background:var(--o)}.l2 caption{background:var(--t)}.l3 caption{background:var(--p)}
+.lesson td:first-child{width:11%;white-space:nowrap;font-weight:700}
+.lesson td:nth-child(3){width:26%}
+.lesson td:nth-child(4){width:17%}
+.tag{display:inline-block;font-size:11.5px;padding:0 7px;border-radius:999px;background:#fff3cf;border:1px solid #f0d58a;margin:0 2px 2px 0;white-space:nowrap}
+kbd{font-family:inherit;font-size:12px;border:1px solid #bbb;border-bottom-width:2px;border-radius:4px;padding:0 5px;background:#fff;white-space:nowrap}
+ul,ol{margin:4px 0;padding-left:20px}
+li{margin:2px 0}
+.key{border:2px solid var(--y);background:#fffaf0;border-radius:10px;padding:10px 14px;margin:8px 0}
+.key b{color:#b26a00}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.box{border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.note{font-size:12px;color:var(--sub)}
+.ws h2{border-color:var(--t)}
+.blank{height:30px;border-bottom:1px dashed #bbb}
+.sketch{height:230px;border:2px dashed #c9c2b2;border-radius:10px;display:flex;align-items:flex-end;justify-content:flex-end;padding:6px 10px;color:#aaa;font-size:12px}
+.check td{height:30px}
+.check td:first-child{width:36px;text-align:center;font-size:18px}
+@media print{body{background:#fff}.page{margin:0;box-shadow:none;width:auto;min-height:auto;padding:12mm 12mm 10mm;page-break-after:always}.page:last-child{page-break-after:auto}h2,table,.key,.box{break-inside:avoid}}
+@media (max-width:820px){.page{width:auto;margin:0;padding:16px}.grid2{grid-template-columns:1fr}table{font-size:13px}}
+</style>
+</head>
+<body>
+
+<!-- ===== 第 1 頁 ===== -->
+<section class="page">
+<h1>Tinkercad 3D 組裝：雞蛋武士<small>國小高年級｜3 節課（135 分鐘）｜重點是「組裝」，不是從零做零件</small></h1>
+
+<table class="meta">
+<tr><td>單元名稱</td><td>雞蛋武士大集合：用現成零件組裝 3D 角色</td><td>適用對象</td><td>國小五、六年級（Tinkercad 新手）</td></tr>
+<tr><td>節數</td><td>3 節，每節 45 分鐘</td><td>教學設備</td><td>電腦（<b>一定要有滑鼠</b>）、投影、Tinkercad 班級</td></tr>
+<tr><td>零件來源</td><td colspan="3">形狀庫分類選單切到「<b>生物與人物</b>」（實測零件名）：Egg（蛋）、Chick Foot（雞腳）、Cartoon eye（卡通眼睛，自帶眉毛）、鬍鬚、Sword（劍）、Hand（白手套拳頭）。安全帽用「基本造型」的半圓球改黃色。整隻武士共 <b>11 個零件</b>。學生不用一個個從基本造型做起，力氣全部放在<b>挑零件、調大小、對位置、黏起來、上顏色</b>。斧頭、蝙蝠翅膀零件庫沒有，列為挑戰任務。</td></tr>
+</table>
+
+<h2>一、設計理念</h2>
+<p>新手做 3D 最容易卡在「做零件」，做了一節課還只有一顆蛋。這次把零件交給 Tinkercad 的「生物與人物」零件庫，學生的任務改成<b>組裝工程師</b>：零件都有了，要怎麼讓它們大小合適、方向正確、位置剛好、牢牢黏在一起，最後還能分開上色、拆開修改。</p>
+<p>組裝時會一直遇到三個真問題：「零件放不正」、「零件太小、貼不到臉上」、「劍沒拿在手上」。這三個問題剛好對應 Tinkercad 最重要的三組技巧：<b>對齊 L、等比例縮放＋對齊正面、握持</b>。學生在解決問題的過程中學會工具，而不是背按鈕。</p>
+
+<div class="key">
+<b>本單元的三大關鍵技巧</b>
+<ol>
+<li><b>對齊（L）＝ 戴正</b>：選兩個零件 → 按 <kbd>L</kbd> → <b>先點基準零件</b>（把它釘住）→ 點「左右中間」和「前後中間」的黑點。上下那排不要點。</li>
+<li><b>縮放＋貼正面 ＝ 合身</b>：點白點按 <kbd>Tab</kbd> 看原尺寸，三個數字乘同一倍數（眼睛 ×2）；<kbd>Ctrl</kbd>+<kbd>↑</kbd> 抬到臉的高度；對齊時點「左排<b>最前面</b>」的黑點，零件正面就貼齊蛋的正面。（實測：工作平面 W 用在這類現成零件會變小又歪，改列進階。）</li>
+<li><b>握持 ＝ 穿過去</b>：以「手」為基準對齊，劍柄穿過拳頭中心，再用 <kbd>Ctrl</kbd>+<kbd>↑</kbd> 調整到握住劍柄；可把拳頭暫時設成「透明」檢查。</li>
+</ol>
+</div>
+
+<h2>二、學習目標</h2>
+<ol>
+<li>能從「生物與人物」零件庫找到需要的零件，並說出每個零件屬於角色的哪個部位。</li>
+<li>能用控制點與 <kbd>Tab</kbd> 輸入數字調整零件大小，並用 <kbd>Shift</kbd> 拖曳角落做等比例縮放。</li>
+<li>能用旋轉、鏡射（<kbd>M</kbd>）、複製並重複（<kbd>Ctrl</kbd>+<kbd>D</kbd>）調整零件方向與數量。</li>
+<li>能用對齊（<kbd>L</kbd>，含「對齊正面」）、抬高（<kbd>Ctrl</kbd>+<kbd>↑</kbd>）、方向鍵把零件放到正確位置，並從「上」「前」視角檢查有沒有確實結合。</li>
+<li>能用群組（<kbd>Ctrl</kbd>+<kbd>G</kbd>）加「多色」保留顏色，並能用取消群組（<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd>）拆開修改。</li>
+<li>能替換或加入配件，做出有自己風格的武士，並說明設計想法。</li>
+</ol>
+
+<h2>三、課綱對應（請依貴校課程計畫核對）</h2>
+<table>
+<tr><th>資訊教育議題</th><td>資E2 使用資訊科技解決生活中簡單的問題<br>資E3 應用運算思維描述問題解決的方法（拆解角色→零件→組裝順序）<br>資E6 認識與使用資訊科技以表達想法</td></tr>
+<tr><th>藝術</th><td>視 1-III-3 能學習多元媒材與技法，表現創作主題（造型比例、色彩搭配）</td></tr>
+<tr><th>數學連結</th><td>長度單位 mm、比例縮放、角度（旋轉 35°、90°、180°）、對稱（鏡射）</td></tr>
+</table>
+
+<h2>四、課前準備</h2>
+<div class="grid2">
+<div class="box"><b>老師</b>
+<ul>
+<li>建立 Tinkercad 班級，學生用<b>班級代碼＋暱稱</b>登入，不需要 email。</li>
+<li>先自己組一隻示範武士，可以用來投影和展示爆炸圖。</li>
+<li>確認零件庫的「生物與人物」分類可以正常載入，學校網路可能擋特定網址。</li>
+<li>印學習單，一人一張。</li>
+</ul></div>
+<div class="box"><b>學生</b>
+<ul>
+<li>每人一台電腦加<b>滑鼠</b>。觸控板很難做「右鍵拖曳轉視角」。</li>
+<li>設計名稱統一為：<b>雞蛋武士-班級-座號</b>，方便老師收作品。</li>
+<li>座位兩兩一組，做「小老師互助」。</li>
+</ul></div>
+</div>
+</section>
+
+<!-- ===== 第 2 頁：教學流程 ===== -->
+<section class="page">
+<h2>五、教學流程</h2>
+
+<table class="lesson l1">
+<caption>第 1 節　認識零件庫，組出身體（蛋身＋雞腳）</caption>
+<tr><th>時間</th><th>教學活動</th><th>教學重點／提問</th><th>評量</th></tr>
+<tr><td>引起動機<br>5 分</td><td>投影完成的雞蛋武士，用 3D 轉一圈，再按「取消群組」把它拆開。<br>問：「這隻武士是幾個零件拼成的？哪些是現成的？」</td><td>角色＝零件的組合<br><span class="tag">運算思維：拆解</span></td><td>口頭回答</td></tr>
+<tr><td>拆解活動<br>5 分</td><td>學習單〈零件偵探〉：看成品圖，圈出各部位，猜它在零件庫的哪裡。</td><td>先想清楚「要什麼零件、放哪裡」再動手</td><td>學習單第一部分</td></tr>
+<tr><td>介面與操作<br>10 分</td><td>班級代碼登入 → 建立新設計 → 改名。<br>示範：左鍵選取／拖曳、<b>右鍵拖曳轉視角</b>、滾輪縮放、視角方塊「上」「前」。<br>示範：形狀庫下拉選單切到「<b>生物與人物</b>」，拖出一顆<b>蛋</b>。</td><td>新手卡關點：找不到零件時，用下拉選單切分類，或用放大鏡搜尋</td><td>能切換分類並拖出零件</td></tr>
+<tr><td>實作 1<br>12 分</td><td><b>蛋身</b>：點角落白點 → <kbd>Tab</kbd> → 輸入數字改大小；<kbd>Ctrl</kbd>+<kbd>↑</kbd> 抬高（每下 1 mm），留空間給腳。<br><b>雞腳</b>：從零件庫拖出雞腳，<kbd>Shift</kbd>+拖角落等比例縮小，放到蛋下方。<br><kbd>Ctrl</kbd>+<kbd>D</kbd> 複製第二隻 → <kbd>M</kbd> 鏡射（如果左右形狀不同）→ 方向鍵移到另一邊。</td><td><b>比例感</b>：腳比蛋大就不像了，要先縮放<br><b>插進去一點</b>：腳的上端要埋進蛋裡，從「前」視角檢查沒有縫</td><td>巡堂檢核：腳有沒有接到蛋</td></tr>
+<tr><td>實作 2<br>8 分</td><td><b>對齊 L 初體驗</b>：選蛋＋兩隻腳 → <kbd>L</kbd> → <b>先點蛋</b> → 點「前後中間」的黑點，讓腳在蛋的正下方。</td><td>關鍵技巧 A<br>「先點基準」的意思：誰不准動，就先點誰</td><td>能說出「先點的那個不會動」</td></tr>
+<tr><td>總結<br>5 分</td><td>自動存檔提醒。兩人互看，各說一個「我卡住後怎麼解決」。</td><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> 復原是好朋友</td><td>同儕互評</td></tr>
+</table>
+
+<table class="lesson l2">
+<caption>第 2 節　臉與帽子（等比例縮放、對齊正面、鏡射、上色）</caption>
+<tr><th>時間</th><th>教學活動</th><th>教學重點／提問</th><th>評量</th></tr>
+<tr><td>暖身<br>5 分</td><td>快捷鍵小搶答：<kbd>Ctrl</kbd>+<kbd>D</kbd>？<kbd>M</kbd>？<kbd>L</kbd>？<kbd>Tab</kbd> 在這裡有什麼用？</td><td>複習上一節</td><td>搶答</td></tr>
+<tr><td>問題情境<br>5 分</td><td>老師拖出 Cartoon eye：<b>好小！</b>問：「怎麼放大又不變形？」再問：「怎麼讓它剛好貼在臉的正面？」</td><td>引出等比例（數學：乘同一倍數）與對齊正面</td><td>口頭</td></tr>
+<tr><td>示範<br>7 分</td><td><b>等比例放大</b>：點白點 → <kbd>Tab</kbd> 讀原尺寸（6.04×4.16×10.33）→ 全部 ×2 輸入。<br><b>對齊正面</b>：<kbd>Ctrl</kbd>+<kbd>↑</kbd> 50 下 → 選蛋＋眼睛 → <kbd>L</kbd> → 先點蛋 → 下排中間 → <b>左排最前面</b>。<br><b>鏡射</b>：<kbd>Ctrl</kbd>+<kbd>D</kbd> → <kbd>M</kbd> → 左右箭頭。眉毛變「難過臉」時，兩隻各自再鏡射一次＝生氣臉。</td><td>關鍵技巧 A、B<br>⚠ 上下那排黑點不要點<br>⚠ 按 L 後等一兩秒再點</td><td>—</td></tr>
+<tr><td>實作<br>20 分</td><td>依序：<b>眼睛</b>（放大、對齊正面、複製鏡射）→ <b>鬍鬚</b>（抬高 40、對齊正面）→ <b>安全帽</b>（基本造型半圓球 50×50×24、改黃色、抬高、對齊置中；壓到眉毛就再抬高）。</td><td><b>檢查習慣</b>：每放一個零件，就切「前」視角看一次</td><td>巡堂：表情對稱、帽子正不正</td></tr>
+<tr><td>同儕互看<br>8 分</td><td>走動參觀，每人在便利貼寫一個「這隻武士最有表情的地方」。</td><td>欣賞與回饋</td><td>同儕回饋</td></tr>
+</table>
+
+<table class="lesson l3">
+<caption>第 3 節　武器與翅膀，上色、拆開與發表</caption>
+<tr><th>時間</th><th>教學活動</th><th>教學重點／提問</th><th>評量</th></tr>
+<tr><td>問題情境<br>5 分</td><td>投影：劍放在手旁邊，看起來「沒拿著」。問：「怎樣看起來才像握住？」</td><td>引出握持技巧</td><td>口頭</td></tr>
+<tr><td>示範<br>7 分</td><td><b>握持</b>：先把武器旋轉到想要的角度 → 選拳頭（手）＋武器 → <kbd>L</kbd> → 先點拳頭 → 左右、前後置中 → 拳頭設「透明」檢查柄在裡面 → 關掉透明。<br><b>翅膀</b>：放在蛋背後，<kbd>Ctrl</kbd>+<kbd>D</kbd> 加 <kbd>M</kbd> 做出另一邊。</td><td>關鍵技巧 C<br>旋轉：點彎箭頭 → <kbd>Tab</kbd> → 輸入角度</td><td>—</td></tr>
+<tr><td>實作<br>18 分</td><td>裝上<b>右手</b>（Bodies → Hand，抬高 30、前後置中、前視角用方向鍵靠到蛋側邊）→ <b>劍</b>握在右手 → 選「手＋劍」<kbd>Ctrl</kbd>+<kbd>D</kbd>、移到左邊、<kbd>M</kbd> 鏡射 → <kbd>Ctrl</kbd>+<kbd>A</kbd> 全選（11 個零件）→ <kbd>Ctrl</kbd>+<kbd>G</kbd> 群組（變單色就開「多色」）→ <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd> 拆開換顏色再組回。</td><td>⚠ 對齊後零件「不見了」＝躲進別的零件裡，<kbd>Ctrl</kbd>+<kbd>Z</kbd> 復原改用方向鍵</td><td>作品檢核表</td></tr>
+<tr><td>創意改造<br>7 分</td><td>挑戰任務卡：換一把武器、換一頂帽子、加一個自己挑的配件，或替武士取名字。</td><td>設計思考：我想讓它看起來像什麼個性？</td><td>學習單「我的改造」</td></tr>
+<tr><td>發表<br>8 分</td><td>3～4 位同學上台轉動自己的武士，說明一個設計想法與一個解決過的難題。</td><td>表達與分享</td><td>發表評分</td></tr>
+</table>
+</section>
+
+<!-- ===== 第 3 頁：差異化、評量、FAQ ===== -->
+<section class="page">
+<h2>六、差異化教學</h2>
+<div class="grid2">
+<div class="box"><b>做得快的同學 → 挑戰任務卡</b>
+<ul>
+<li>武器改成斜斜舉高（旋轉 30°～45°），而且仍然握在手裡。</li>
+<li>從「基本造型」自己做一個零件：盾牌（圓柱加星形）或披風（屋頂壓扁）。</li>
+<li>用「孔」在帽子上挖出一個徽章凹槽。</li>
+<li>替武士做一個底座，並把名字用文字工具加上去。</li>
+</ul></div>
+<div class="box"><b>需要協助的同學 → 精簡版＋支援</b>
+<ul>
+<li>精簡任務：蛋身、雙腳、眼睛、帽子、一把武器就算完成，翅膀選做。</li>
+<li>小老師：同組同學只能「用說的」教，不能幫忙按滑鼠。</li>
+<li>卡關三步驟：<kbd>Ctrl</kbd>+<kbd>Z</kbd> 復原 → 切「上」「前」視角看 → 舉手。</li>
+<li>投影畫面持續顯示「三大關鍵技巧」小卡。</li>
+</ul></div>
+</div>
+
+<h2>七、評量規準</h2>
+<table>
+<tr><th>向度</th><th>優秀 A</th><th>良好 B</th><th>基礎 C</th><th>待加強 D</th></tr>
+<tr><td><b>組裝完成度</b></td><td>全部部位完成，比例協調，從各角度看都沒有懸空或縫隙</td><td>主要部位完成，少數零件稍微懸空</td><td>完成蛋身、腳、臉</td><td>只完成 1～2 個部位</td></tr>
+<tr><td><b>工具運用</b></td><td>能自己判斷何時用 L、W、Tab、旋轉與鏡射</td><td>經提示後能正確使用</td><td>會用拖曳與改尺寸</td><td>需要逐步協助</td></tr>
+<tr><td><b>結合與檢查</b></td><td>主動切換上、前視角檢查，零件確實插入結合</td><td>多數零件有結合</td><td>知道要結合但常有縫隙</td><td>未檢查</td></tr>
+<tr><td><b>色彩與群組管理</b></td><td>會群組加多色，也會拆開修改再重組</td><td>會群組加多色</td><td>會替單一零件上色</td><td>群組後顏色混亂未處理</td></tr>
+<tr><td><b>創意與表達</b></td><td>有明確角色個性並清楚說明設計想法</td><td>有改造並能說明</td><td>有小幅改造</td><td>未改造</td></tr>
+</table>
+
+<h2>八、常見問題與處理</h2>
+<table>
+<tr><th>學生狀況</th><th>處理方式</th></tr>
+<tr><td>找不到零件</td><td>形狀庫上方下拉選單切到「生物與人物」；或按放大鏡搜尋；或點「更多造型」。</td></tr>
+<tr><td>零件掉到地板下面或飄走</td><td>選它按 <kbd>D</kbd>（置放到工作平面），再用 <kbd>Ctrl</kbd>+<kbd>↑</kbd> 抬高。</td></tr>
+<tr><td>拖進來的零件都歪歪的</td><td>工作平面沒還原：按 <kbd>W</kbd>，點空白處。</td></tr>
+<tr><td>對齊後東西跑錯位置</td><td>沒有先點基準零件，或點到上下那排。按 <kbd>Ctrl</kbd>+<kbd>Z</kbd> 重來。</td></tr>
+<tr><td>按 L 之後點零件，黑點消失</td><td>點太快，對齊模式關掉了。按 L 後等一兩秒再點基準。</td></tr>
+<tr><td>群組後全部變同一個顏色</td><td>點色塊 → 「多色」選開啟。</td></tr>
+<tr><td>數字打不進去</td><td>點白點後按 <kbd>Tab</kbd>，數字變藍色再打，最後按 <kbd>Enter</kbd>。</td></tr>
+<tr><td>取消群組是灰色</td><td>它本來就是單一零件，不能再拆；可以整個換顏色，或用孔切開。</td></tr>
+</table>
+
+<h2>九、課後延伸</h2>
+<ul>
+<li><b>3D 列印</b>：單色印表機印出的武士只有一種顏色。想要彩色，可以把零件拆開分別匯出，用不同顏色的線材印好後再黏起來。</li>
+<li><b>角色家族</b>：全班的武士放在同一張大圖上做「雞蛋軍團」海報，或拍照做成 GIF。</li>
+</ul>
+<p class="note">配套教學網頁會提供每一步的實機截圖，以及對齊 L、工作平面 W、握持三段互動動畫，可以投影或讓學生自學。</p>
+</section>
+
+<!-- ===== 第 4 頁：學習單 ===== -->
+<section class="page ws">
+<h1>雞蛋武士組裝學習單<small>班級＿＿＿＿　座號＿＿＿＿　姓名＿＿＿＿＿＿＿＿　設計名稱：雞蛋武士-＿＿＿-＿＿＿</small></h1>
+
+<h2>一、零件偵探（第 1 節）</h2>
+<p>看老師的雞蛋武士，填寫每個部位用了什麼零件。零件可能來自「生物與人物」或「基本造型」。</p>
+<table>
+<tr><th style="width:18%">部位</th><th style="width:30%">我猜是什麼零件</th><th style="width:22%">要用的技巧</th><th>實際找到的零件</th></tr>
+<tr><td>身體</td><td></td><td>改尺寸、抬高</td><td></td></tr>
+<tr><td>腳</td><td></td><td>縮放、鏡射、對齊</td><td></td></tr>
+<tr><td>眼睛</td><td></td><td>等比例放大、對齊正面</td><td></td></tr>
+<tr><td>鬍子</td><td></td><td>對齊正面</td><td></td></tr>
+<tr><td>帽子</td><td></td><td>對齊 L</td><td></td></tr>
+<tr><td>手</td><td></td><td>鏡射</td><td></td></tr>
+<tr><td>武器</td><td></td><td>旋轉、握持</td><td></td></tr>
+<tr><td>翅膀（挑戰）</td><td></td><td>基本造型自己拼、鏡射</td><td></td></tr>
+</table>
+
+<h2>二、我的改造設計（第 3 節）</h2>
+<div class="grid2">
+<div><div class="sketch">畫出你的武士草圖</div></div>
+<div>
+<p>我的武士名字：</p><div class="blank"></div>
+<p>它的個性是：</p><div class="blank"></div>
+<p>我換了／加了什麼配件：</p><div class="blank"></div>
+<p>我遇到的最大難題，和我怎麼解決：</p><div class="blank"></div><div class="blank"></div>
+</div>
+</div>
+
+<h2>三、組裝檢核（做完打勾）</h2>
+<table class="check">
+<tr><td>☐</td><td>我會切換「生物與人物」零件分類，拖出零件</td></tr>
+<tr><td>☐</td><td>我會點白點後按 <kbd>Tab</kbd> 打數字改大小</td></tr>
+<tr><td>☐</td><td>我會用對齊 <kbd>L</kbd>，而且記得「先點基準」</td></tr>
+<tr><td>☐</td><td>我會等比例放大零件，並用對齊「正面」把它貼在臉上</td></tr>
+<tr><td>☐</td><td>武器真的握在手裡（我用「透明」檢查過）</td></tr>
+<tr><td>☐</td><td>從「上」和「前」視角看，沒有零件懸空</td></tr>
+<tr><td>☐</td><td>群組後我有開「多色」，顏色都正確</td></tr>
+<tr><td>☐</td><td>我會用取消群組把零件拆開</td></tr>
+</table>
+</section>
+
+</body>
+</html>
