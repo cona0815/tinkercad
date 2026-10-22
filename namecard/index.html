@@ -1,7 +1,7 @@
 <!doctype html>
-<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.0 2026-10-22
+<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.1 2026-10-22
      依同事 Codeblocks 專案「copy of Cool Kup-Snaget」的流程改寫成一般 3D 設計操作：
-     切角器（Ø10 圓柱孔＋20×20 方塊）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
+     切角器（Ø10 圓柱孔，側 20＋20×20 方塊）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
      → 第一面、第二面文字 46×19×2 → 第二面翻面 180° → 疊成 60×30×4 雙面名牌。 -->
 <html lang="zh-Hant">
 <head>
@@ -161,7 +161,7 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
       <tr><td>每一面（模板）</td><td class="v">60 × 30 × 2</td><td>四個角是半徑 5 的圓角</td></tr>
       <tr><td>凹槽</td><td class="v">54.96 × 24.9 × 深 1</td><td>底部還有 1 mm 厚；外框寬約 2.5</td></tr>
       <tr><td>文字（兩面都一樣）</td><td class="v">46 × 19 × 2</td><td>放在凹槽正中間，頂面跟外框一樣高</td></tr>
-      <tr><td>切角器的圓柱（孔）</td><td class="v">10 × 10 × 2</td><td>直徑 10＝半徑 5，切出圓角</td></tr>
+      <tr><td>切角器的圓柱（孔）</td><td class="v">10 × 10 × 2</td><td>直徑 10＝半徑 5；性質：側 20、斜切 0、線段 1</td></tr>
       <tr><td>切角器的方塊</td><td class="v">20 × 20 × 2</td><td>和圓柱群組後變成孔</td></tr>
     </tbody>
   </table></div>
@@ -270,7 +270,7 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
   </div>
 </section>
 
-<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.0（2026-10-22）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
+<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.1（2026-10-22）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
 </main>
 
 <script>
@@ -370,8 +370,8 @@ const STEPS={
   todo:['登入 Tinkercad，按「＋建立」→「3D 設計」。','點左上角的設計名稱，改成 <b>座號-姓名-名牌</b>（例：07-王小明-名牌）。','看右下角<b>「鎖點格線」</b>，確定是 <span class="n">1.0 mm</span>。這樣方向鍵每按一下移動 1 mm，按住 <kbd>Shift</kbd> 再按方向鍵移動 10 mm。','點左邊的<b>小房子</b>（主視圖）。之後要用方向鍵或對齊時，都先回到這個視角：<kbd>↑</kbd> 是往後、<kbd>↓</kbd> 是往前。'],
   check:'右下角鎖點格線顯示 1.0 mm。'},
  s2:{t:'做「切角器」',min:10,fig:'cut',cap:'圓柱的中心放在方塊的左前角，群組後方塊的角被挖掉四分之一圓。',goal:'名牌的圓角是「切」出來的。先做一個切角器：方塊挖掉一個四分之一圓，再整個變成孔。',
-  vals:V('圓柱','10 × 10 × 2','改成「孔」')+V('方塊','20 × 20 × 2'),
-  todo:['拖一個<b>圓柱</b>出來。角落白點 → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。右上角面板按<b>「孔」</b>。','拖一個<b>方塊</b>出來。角落白點 → <kbd>Tab</kbd> 打 <span class="n">20</span> → <kbd>Tab</kbd> 打 <span class="n">20</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點方塊，<kbd>Shift</kbd>＋點圓柱，按 <kbd>L</kbd> 等黑點 → <b>先點方塊</b> → 點<b>下排中間</b>、<b>左排中間</b>。圓柱跑到方塊正中間。','點空白處取消。只點圓柱，按 <kbd>Shift</kbd>＋<kbd>←</kbd> <b>1 下</b>（往左 10），再按 <kbd>Shift</kbd>＋<kbd>↓</kbd> <b>1 下</b>（往前 10）。圓柱中心剛好在方塊的左前角。','選方塊＋圓柱，按 <kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組（左前角被挖掉一塊）。','群組還選著，在右上角面板按<b>「孔」</b>。整個切角器變成透明條紋。'],
+  vals:V('圓柱','10 × 10 × 2','改成「孔」')+V('圓柱的側','20','預設 48 要改')+V('方塊','20 × 20 × 2'),
+  todo:['拖一個<b>圓柱</b>出來。角落白點 → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。右上角面板按<b>「孔」</b>。','在右上角「性質」把圓柱的 <b>側</b> 拉到 <span class="n">20</span>（預設是 48），<b>斜切</b> <span class="n">0</span>、<b>線段</b> <span class="n">1</span> 不用動。全班都用 20，圓角才會一樣。','拖一個<b>方塊</b>出來。角落白點 → <kbd>Tab</kbd> 打 <span class="n">20</span> → <kbd>Tab</kbd> 打 <span class="n">20</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點方塊，<kbd>Shift</kbd>＋點圓柱，按 <kbd>L</kbd> 等黑點 → <b>先點方塊</b> → 點<b>下排中間</b>、<b>左排中間</b>。圓柱跑到方塊正中間。','點空白處取消。只點圓柱，按 <kbd>Shift</kbd>＋<kbd>←</kbd> <b>1 下</b>（往左 10），再按 <kbd>Shift</kbd>＋<kbd>↓</kbd> <b>1 下</b>（往前 10）。圓柱中心剛好在方塊的左前角。','選方塊＋圓柱，按 <kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組（左前角被挖掉一塊）。','群組還選著，在右上角面板按<b>「孔」</b>。整個切角器變成透明條紋。'],
   check:'切角器是 20 × 20 × 2 的孔，左前角缺了一個四分之一圓。',tip:'圓柱移動 10，是因為方塊寬 20 的一半是 10：中心往左 10、往前 10，就到左前角。'},
  s3:{t:'放底板，把切角器移到右後角',min:10,fig:'place',cap:'切角器只蓋住底板右後角 5 × 5 的範圍，缺口剛好留下圓角。',goal:'底板 60 × 30 × 2。切角器先和底板對齊右邊、後面，再往外移 15。',
   vals:V('底板','60 × 30 × 2')+V('往右','15','Shift+→ 1 下 ＋ → 5 下')+V('往後','15','Shift+↑ 1 下 ＋ ↑ 5 下'),
