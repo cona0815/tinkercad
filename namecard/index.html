@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.2 2026-10-22
+<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.0 2026-10-22
      依同事 Codeblocks 專案「copy of Cool Kup-Snaget」的流程改寫成一般 3D 設計操作：
      十字方塊 60×20＋50×30＋四角 Ø10 圓柱（側 20，等同同事的切角器）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
      → 第一面、第二面文字 46×19×2 → 第二面翻面 180° → 疊成 60×30×4 雙面名牌。 -->
@@ -124,6 +124,19 @@ h2.sec{font-size:clamp(24px,4vw,30px);font-weight:900}
 .final-check input{width:20px;height:20px;margin-top:4px;accent-color:var(--ok);flex:none}
 footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
 
+.see{font-size:14.5px;color:var(--ok);margin-top:4px;line-height:1.55}
+.dotmini{display:block;width:100%;max-width:280px;margin-top:8px;background:var(--paper);border:1px solid var(--line);border-radius:8px}
+.dotname{font-size:14px;margin-top:4px}
+.gloss{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.gloss h3{font-size:19px;font-weight:900;margin-bottom:6px}
+.gloss p,.gloss li{font-size:15.5px}
+.gloss ul{padding-left:1.2em;margin:6px 0}
+.gloss svg{display:block;width:100%;max-width:300px}
+.gloss .dotmini{max-width:300px}
+table.keys{border-collapse:collapse;width:100%;font-size:15px}
+table.keys td{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+table.keys td:first-child{white-space:nowrap}
+@media (max-width:820px){.gloss{grid-template-columns:1fr}}
 @media (max-width:820px){
   .hero,.namebox{grid-template-columns:1fr}
   .step .body{grid-template-columns:1fr}
@@ -136,7 +149,7 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
 
 <nav class="top"><div class="wrap">
   <a class="brand" href="#top">🏷️ 我的 3D 名牌</a>
-  <a href="#spec">統一規格</a><a href="#flow">流程</a><a href="#start">關鍵數字</a><a href="#L1">第 1 節</a><a href="#L2">第 2 節</a><a href="#export">匯出</a><a href="#mistakes">常見錯誤</a><a href="#teacher">老師</a>
+  <a href="#spec">統一規格</a><a href="#basics">先認識</a><a href="#flow">流程</a><a href="#start">關鍵數字</a><a href="#L1">第 1 節</a><a href="#L2">第 2 節</a><a href="#export">匯出</a><a href="#mistakes">常見錯誤</a><a href="#teacher">老師</a>
 </div><div class="prog"><i id="progBar"></i></div></nav>
 
 <main class="wrap" id="top">
@@ -190,6 +203,35 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
   </div>
 </section>
 
+
+<!-- 先認識 -->
+<section id="basics">
+  <h2 class="sec">🔰 開始前，先認識這些</h2>
+  <p class="lead">這 4 樣東西每一步都會用到。先看懂，後面就很簡單。</p>
+  <div class="gloss">
+    <div class="card"><h3>① 白點：打數字改大小</h3><svg id="handleSvg" viewBox="0 0 300 170" role="img" aria-label="白色控制點"></svg>
+      <p>點一下零件，四周會出現<b>白色小方塊</b>（白點）。</p>
+      <ul><li><b>角落的白點</b> → 按 <kbd>Tab</kbd> → 改<b>寬（左右）</b>和<b>長（前後）</b></li><li><b>最上面的白點</b> → 按 <kbd>Tab</kbd> → 改<b>高</b></li><li>數字變<b>藍色</b>才能打，打完按 <kbd>Enter</kbd></li></ul></div>
+    <div class="card"><h3>② 對齊 L：三排黑點</h3>DOTDEMO
+      <p>選兩個零件，按 <kbd>L</kbd>，等 1～2 秒會出現黑點。<b>先點不想動的零件</b>（釘住），再點黑點。</p>
+      <ul><li><b>下排</b>：管左右（左、中、右）</li><li><b>左排</b>：管前後（前、中、後）</li><li><b>右排</b>：管上下，<b>這次都不要點</b></li></ul></div>
+    <div class="card"><h3>③ 實體和孔</h3>
+      <p>右上角面板有兩個圓圈：</p>
+      <ul><li><b>實體</b>（有顏色）：真的會印出來的東西</li><li><b>孔</b>（灰色斜條紋）：群組之後，會把碰到的地方<b>挖掉</b></li></ul>
+      <p>這次只有「挖凹槽」那一步用到孔。</p></div>
+    <div class="card"><h3>④ 常用按鍵</h3>
+      <table class="keys"><tbody>
+        <tr><td><kbd>Ctrl</kbd>＋<kbd>D</kbd></td><td>複製（新的會疊在原本的上面）</td></tr>
+        <tr><td><kbd>Ctrl</kbd>＋<kbd>G</kbd></td><td>群組（黏在一起）</td></tr>
+        <tr><td><kbd>Ctrl</kbd>＋<kbd>A</kbd></td><td>全選</td></tr>
+        <tr><td><kbd>Ctrl</kbd>＋<kbd>Z</kbd></td><td>復原（做錯了就按）</td></tr>
+        <tr><td><kbd>Ctrl</kbd>＋<kbd>↑</kbd></td><td>往上浮 1 mm</td></tr>
+        <tr><td><kbd>Shift</kbd>＋方向鍵</td><td>移動 10 mm</td></tr>
+        <tr><td><kbd>D</kbd></td><td>掉回工作平面</td></tr>
+        <tr><td>🏠 小房子</td><td>回到主視圖（對齊前先按）</td></tr>
+      </tbody></table></div>
+  </div>
+</section>
 
 <!-- 一開始的數字 -->
 <section id="start">
@@ -267,7 +309,7 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
   </div>
 </section>
 
-<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.2（2026-10-22）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
+<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.0（2026-10-22）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
 </main>
 
 <script>
@@ -347,53 +389,178 @@ $('#heroSvg').innerHTML=FIG.hero();
 /* ===== 步驟 ===== */
 const V=(l,v,n='')=>`<div class="val">${l}<b>${v}</b>${n?`<small>${n}</small>`:''}</div>`;
 const LESSONS=[{id:'L1',tag:'第 1 節',title:'做「模板」：拼出圓角底板＋挖凹槽',steps:['s1','s2','s3','s4','s5','s6','s7']},{id:'L2',tag:'第 2 節',title:'兩面文字、翻面合體',steps:['s8','s9','s10','s11','s12']}];
+
+/* 對齊黑點小圖：targets 例 ['x1','y1'] */
+const DOTPOS={x0:[62,132],x1:[122,132],x2:[182,132],y0:[40,112],y1:[52,82],y2:[64,52],z0:[226,112],z1:[226,82],z2:[226,52]};
+const DOTNAME={x0:'下排・左',x1:'下排・中間',x2:'下排・右',y0:'左排・最前面',y1:'左排・中間',y2:'左排・最後面'};
+function dotSvg(t=[],labels=true){
+  let g=`<svg class="dotmini" viewBox="0 0 300 160" role="img" aria-label="對齊黑點：${t.map(k=>DOTNAME[k]).join('、')}">`;
+  g+=`<path d="M62 112 L182 112 L206 52 L86 52 Z" fill="${alpha('acc',14)}" stroke="var(--acc)" stroke-width="1.5"/>`;
+  g+=`<g stroke="var(--sub)" stroke-width="1" fill="none"><line x1="62" y1="132" x2="182" y2="132"/><line x1="40" y1="112" x2="64" y2="52"/><line x1="226" y1="112" x2="226" y2="52"/></g>`;
+  Object.entries(DOTPOS).forEach(([k,[x,y]])=>{const z=k[0]==='z';g+=`<circle cx="${x}" cy="${y}" r="5.5" fill="${z?'var(--hole)':'var(--ink)'}"/>`;});
+  g+=`<text x="226" y="36" text-anchor="middle" class="lbs">不要點</text><path d="M219 30 l14 0" stroke="var(--warn)" stroke-width="0"/>`;
+  t.forEach((k,i)=>{const [x,y]=DOTPOS[k];g+=`<circle cx="${x}" cy="${y}" r="12" fill="none" stroke="var(--warn)" stroke-width="3"/>`+(t.length>1?`<circle cx="${x+15}" cy="${y-13}" r="9" fill="var(--warn)"/><text x="${x+15}" y="${y-9}" text-anchor="middle" style="font:800 11px 'JetBrains Mono',monospace;fill:#fff">${i+1}</text>`:'');});
+  if(labels) g+=`<text x="122" y="153" text-anchor="middle" class="lbs">下排：管左右</text><text x="6" y="30" class="lbs">左排：管前後</text><text x="250" y="86" class="lbs">右排</text><text x="250" y="100" class="lbs">上下</text>`;
+  g+=`<text x="134" y="88" text-anchor="middle" class="lbs">釘住的零件</text></svg>`;
+  return g+(t.length?`<div class="dotname">要點：${t.map((k,i)=>(t.length>1?'①②'[i]+' ':'')+'<b>'+DOTNAME[k]+'</b>').join('　')}</div>`:'');
+}
+/* 每個動作：{d:做什麼, see:你會看到, dot:[要點的黑點], base:'先點誰'} */
+const K=(k)=>`<kbd>${k}</kbd>`, N=(v)=>`<span class="n">${v}</span>`;
+const SIZE=(w,l,h,what)=>[
+  {d:`點${what}<b>角落的白色小方塊</b>（白點），按 ${K('Tab')}。`,see:'白點旁邊出現兩個數字，第一個變成藍色，可以打字了。'},
+  {d:`打 ${N(w)}，再按 ${K('Tab')}，打 ${N(l)}，按 ${K('Enter')}。`,see:`滑鼠移到白點上，看到 ${w} 和 ${l}。`},
+  {d:`點${what}<b>最上面的白點</b>，按 ${K('Tab')}，打 ${N(h)}，按 ${K('Enter')}。`,see:`${what}變成 ${h} mm 高。`}
+];
+const ALIGN=(a,b,dots,see)=>[
+  {d:`點 <b>${a}</b>，按住 ${K('Shift')} 再點 <b>${b}</b>。`,see:'右上角出現 Shapes(2)，兩個都選到了。'},
+  {d:`按 ${K('L')}，<b>數 1、2</b>，等黑點出現。`,see:'零件四周出現很多黑點。'},
+  {d:`<b>先點 ${a}</b>。`,see:`黑點縮到 ${a} 的旁邊，${a} 被「釘住」，等一下不會動。`},
+  {d:`點下面圖上<b>紅圈</b>的黑點${dots.length>1?'（照 ①② 的順序）':''}。`,dot:dots,see}
+];
 const STEPS={
- s1:{t:'開新設計、設定格線',min:4,goal:'先把工作環境設定好，後面的數字才會準。',
-  todo:['登入 Tinkercad，按「＋建立」→「3D 設計」。','點左上角的設計名稱，改成 <b>座號-姓名-名牌</b>（例：07-王小明-名牌）。','看右下角<b>「鎖點格線」</b>，確定是 <span class="n">1.0 mm</span>。這樣方向鍵每按一下移動 1 mm，按住 <kbd>Shift</kbd> 再按方向鍵移動 10 mm。','點左邊的<b>小房子</b>（主視圖）。之後要用方向鍵或對齊時，都先回到這個視角：<kbd>↑</kbd> 是往後、<kbd>↓</kbd> 是往前。'],
-  check:'右下角鎖點格線顯示 1.0 mm。'},
- s2:{t:'方塊 A、B 疊成十字',min:8,fig:'cross',cap:'A 是橫的 60 × 20，B 是直的 50 × 30，四個角各缺 5 × 5。',goal:'兩個方塊疊成十字，決定名牌的長和寬。',
-  vals:V('方塊 A','60 × 20 × 2')+V('方塊 B','50 × 30 × 2'),
-  todo:['拖一個<b>方塊</b>（A）：角落白點 → <kbd>Tab</kbd> 打 <span class="n">60</span> → <kbd>Tab</kbd> 打 <span class="n">20</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','再拖一個<b>方塊</b>（B）：角落白點 → <kbd>Tab</kbd> 打 <span class="n">50</span> → <kbd>Tab</kbd> 打 <span class="n">30</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點 A，<kbd>Shift</kbd>＋點 B，按 <kbd>L</kbd> 等黑點 → <b>先點 A</b> → 點<b>下排中間</b>、<b>左排中間</b>。'],
-  check:'從上面看是十字，左右最寬 60、前後最長 30。',warn:'寬和長不要打相反：A 是 <b>60（左右）× 20（前後）</b>，B 是 <b>50（左右）× 30（前後）</b>。'},
- s3:{t:'第 1 個圓柱：放到右後角',min:8,fig:'cyl1',cap:'圓柱右邊對齊 A、後面對齊 B，中心就在 (25, 10)。',goal:'圓柱只要對齊兩次，就會剛好卡進右後角的缺口。',
+ s1:{t:'開新設計、設定格線',min:4,goal:'先把工作環境準備好，後面打的數字才會準。',
+  todo:[
+   {d:'登入 Tinkercad，按右上角 <b>「＋建立」</b>，選 <b>「3D 設計」</b>。',see:'出現藍色格子的工作平面。'},
+   {d:'點左上角的設計名稱（一串英文），改成 <b>座號-姓名-名牌</b>，例如 07-王小明-名牌。',see:'左上角變成你的名字。'},
+   {d:`看右下角的 <b>「鎖點格線」</b>，確定是 ${N('1.0 mm')}。`,see:'如果不是 1.0，點它改成 1.0 mm。'},
+   {d:'點左邊的 <b>小房子</b>（主視圖）。',see:'工作平面回到正前方斜斜往下看的角度。之後要對齊時，都先回到這個角度，黑點的位置才會跟網頁的圖一樣。'}
+  ],check:'右下角鎖點格線顯示 1.0 mm。'},
+
+ s2:{t:'方塊 A 和方塊 B 疊成十字',min:10,fig:'cross',cap:'A 是橫的長條，B 是直的長條，疊起來像一個「十」字。',
+  goal:'名牌的形狀先用兩個方塊拼出來：A 決定<b>左右 60</b>，B 決定<b>前後 30</b>。',
+  vals:V('方塊 A','60 × 20 × 2','橫的')+V('方塊 B','50 × 30 × 2','直的'),
+  todo:[
+   {d:'從右邊「基本造型」拖一個紅色 <b>方塊</b> 到工作平面上。這是 <b>A</b>。'},
+   ...SIZE(60,20,2,'A'),
+   {d:'再拖一個 <b>方塊</b> 出來，放在 A 旁邊。這是 <b>B</b>。'},
+   ...SIZE(50,30,2,'B'),
+   ...ALIGN('A','B',['x1','y1'],'B 跑到 A 的正中間，變成十字。')
+  ],
+  check:'從上面看是一個十字：左右最寬 60、前後最長 30。',
+  warn:'兩個數字的順序不要打反：<b>第一個是左右，第二個是前後</b>。A 是 60、20，B 是 50、30。'},
+
+ s3:{t:'第 1 個圓柱：補右後角',min:10,fig:'cyl1',cap:'圓柱的右邊對齊 A，後面對齊 B，就剛好卡進缺口。',
+  goal:'十字的四個角各缺一塊。用圓柱把缺口補起來，角就變成圓的了。圓柱要對齊<b>兩次</b>：一次管左右、一次管前後。',
   vals:V('圓柱','10 × 10 × 2')+V('側','20','預設 48 要改'),
-  todo:['拖一個<b>圓柱</b>，放在右後方空地。角落白點 → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','右上角「性質」把<b>側</b>拉到 <span class="n">20</span>（斜切 0、線段 1 不用動）。','<b>對齊左右：</b>點 A，<kbd>Shift</kbd>＋點圓柱，<kbd>L</kbd> → <b>先點 A</b> → 點<b>下排最右邊</b>。','點空白處取消。','<b>對齊前後：</b>點 B，<kbd>Shift</kbd>＋點圓柱，<kbd>L</kbd> → <b>先點 B</b> → 點<b>左排最後面</b>。'],
-  check:'圓柱剛好補住右後角的缺口，邊緣跟 A 的右邊、B 的後面切齊。',tip:'記法：<b>左右對 A（橫的），前後對 B（直的）</b>。'},
- s4:{t:'第 2 個圓柱：複製到左後角',min:4,fig:'cyl2',cap:'複製的圓柱前後已經對了，只要再對齊左邊。',goal:'複製一次、對齊一次。',
-  todo:['點圓柱，<kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製（新的會疊在原本那顆上面）。','點 A，<kbd>Shift</kbd>＋點<b>新的圓柱</b>，<kbd>L</kbd> → <b>先點 A</b> → 點<b>下排最左邊</b>。'],
-  check:'左後、右後各有一個圓柱。'},
- s5:{t:'第 3、4 個圓柱：複製到前面兩角',min:5,fig:'cyl4',cap:'兩顆一起複製、一起對齊到前面。',goal:'兩顆一起複製，一次對齊到前面。',
-  todo:['點右後圓柱，<kbd>Shift</kbd>＋點左後圓柱，<kbd>Ctrl</kbd>＋<kbd>D</kbd>。','複製出來的兩顆還選著，按住 <kbd>Shift</kbd> 再點 <b>B</b>，按 <kbd>L</kbd>。','<b>先點 B</b> → 點<b>左排最前面</b>。兩顆跑到前面兩個角。'],
-  check:'四個角都有圓柱，左右、前後都對稱。'},
- s6:{t:'群組成圓角底板',min:4,fig:'round',cap:'6 個零件群組後，就是四角半徑 5 的底板。',goal:'把 6 個零件黏成一塊。',
-  todo:['<kbd>Ctrl</kbd>＋<kbd>A</kbd> 全選，右上角應該顯示 <b>6 個形狀</b>（2 個方塊＋4 個圓柱）。','<kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。','滑鼠移到白點檢查尺寸。'],
+  todo:[
+   {d:'拖一個橘色 <b>圓柱</b>，放在十字<b>右後方</b>的空地。'},
+   ...SIZE(10,10,2,'圓柱'),
+   {d:`看右上角的「性質」，把 <b>側</b> 的拉桿拉到 ${N('20')}。<b>斜切</b> 保持 0、<b>線段</b> 保持 1。`,see:'圓柱的邊變成 20 個小面。'},
+   {d:'<b>第一次對齊：管左右，對 A。</b>'},
+   ...ALIGN('A','圓柱',['x2'],'圓柱的右邊和 A 的右邊一樣齊。'),
+   {d:'點空白的地方，取消選取。'},
+   {d:'<b>第二次對齊：管前後，對 B。</b>'},
+   ...ALIGN('B','圓柱',['y2'],'圓柱的後面和 B 的後面一樣齊，剛好卡進右後角。')
+  ],
+  check:'右後角變成圓弧，圓柱沒有凸出去。',tip:'記法：<b>左右對 A（橫的），前後對 B（直的）</b>。'},
+
+ s4:{t:'第 2 個圓柱：複製到左後角',min:5,fig:'cyl2',cap:'複製出來的圓柱，前後已經對好了，只要再對左右。',
+  goal:'不用重新做一個，複製就好。複製出來的圓柱前後位置已經對了。',
+  todo:[
+   {d:`點右後角的圓柱，按 ${K('Ctrl')}＋${K('D')} 複製。`,see:'看起來好像沒變，因為新的圓柱疊在舊的上面。'},
+   ...ALIGN('A','新的圓柱',['x0'],'新的圓柱跑到左後角。')
+  ],
+  check:'左後角和右後角都變成圓弧。'},
+
+ s5:{t:'第 3、4 個圓柱：複製到前面兩角',min:6,fig:'cyl4',cap:'兩顆一起複製，一起對齊到前面。',
+  goal:'後面兩顆一起複製，一次對齊到前面。',
+  todo:[
+   {d:`點右後的圓柱，按住 ${K('Shift')} 再點左後的圓柱。`,see:'兩顆都被選起來。'},
+   {d:`按 ${K('Ctrl')}＋${K('D')} 複製。`,see:'新的兩顆疊在原本的上面，而且是選取狀態。'},
+   {d:`<b>不要取消</b>，按住 ${K('Shift')} 再點 <b>B</b>。`,see:'右上角顯示 Shapes(3)。'},
+   {d:`按 ${K('L')}，數 1、2 等黑點，<b>先點 B</b>。`},
+   {d:'點紅圈的黑點。',dot:['y0'],see:'兩顆新圓柱一起跑到前面兩個角。'}
+  ],
+  check:'四個角都是圓弧，左右一樣、前後一樣。'},
+
+ s6:{t:'群組成圓角底板',min:4,fig:'round',cap:'6 個零件黏在一起，變成一塊圓角底板。',
+  goal:'把 2 個方塊和 4 個圓柱黏成一塊。',
+  todo:[
+   {d:`按 ${K('Ctrl')}＋${K('A')} 全選。`,see:'右上角顯示 <b>Shapes(6)</b>。不是 6 的話，檢查是不是多拉了零件。'},
+   {d:`按 ${K('Ctrl')}＋${K('G')} 群組。`,see:'6 個零件變成同一個顏色的一塊板子。'},
+   {d:'滑鼠移到角落白點和頂端白點，看尺寸。'}
+  ],
   vals:V('寬','60.00')+V('長','30.00')+V('高','2.00'),
-  check:'四個角都是圓角，尺寸 <span class="n">60 × 30 × 2</span>。數字不對就 <kbd>Ctrl</kbd>＋<kbd>Z</kbd>，回去檢查哪個零件打錯或沒對齊。'},
- s7:{t:'挖凹槽，完成「模板」',min:8,fig:'hole',cap:'孔縮小成 54.96 × 24.9，圓角會跟著變成小一點的橢圓角。',goal:'複製底板、縮小成孔、抬高 1，挖出 1 mm 深的凹槽。',
-  vals:V('寬','54.96')+V('長','24.9')+V('高','1')+V('抬高','1','Ctrl+↑ 1 下'),
-  todo:['點圓角底板，<kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製，右上角按<b>「孔」</b>。','角落白點 → <kbd>Tab</kbd> 打 <span class="n">54.96</span> → <kbd>Tab</kbd> 打 <span class="n">24.9</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">1</span> → <kbd>Enter</kbd>。','孔還選著，按 <kbd>Ctrl</kbd>＋<kbd>↑</kbd> <b>1 下</b>，離地 1。','點<b>底板的外框</b>，<kbd>Shift</kbd>＋點孔，按 <kbd>L</kbd> 等黑點 → <b>先點底板</b> → 點<b>下排中間</b>、<b>左排中間</b>。','選底板＋孔，<kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。這就是<b>「模板」</b>。'],
-  check:'模板 <span class="n">60 × 30 × 2</span>，中間凹下去 1 mm，外框一圈寬度一樣。',tip:'第 1 節到這裡。小數點要打完整：<b>54.96</b>、<b>24.9</b>。',warn:'不要點右排（上下）黑點，孔會掉到地上把底板挖穿。'},
- s8:{t:'複製一個模板給第二面',min:3,full:true,goal:'兩面要用一樣的模板，先複製一個放旁邊。',
-  vals:V('往前','40','Shift+↓ 4 下'),
-  todo:['點模板，<kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製。','按 <kbd>Shift</kbd>＋<kbd>↓</kbd> <b>4 下</b>，往前 40，放在原本模板的前面。','後面那個做<b>第一面</b>，前面那個做<b>第二面</b>。'],
+  check:`尺寸是 ${N('60 × 30 × 2')}，四個角都是圓的。`},
+
+ s7:{t:'挖凹槽，完成「模板」',min:10,fig:'hole',cap:'孔比底板小一圈，抬高 1 之後只會挖掉上面 1 mm。',
+  goal:'做一個比底板小一圈的「孔」，把底板上面挖下去 1 mm，邊邊留一圈外框。做好的這塊叫做<b>「模板」</b>。',
+  vals:V('寬','54.96')+V('長','24.9')+V('高','1')+V('抬高','1','Ctrl+↑ 按 1 下'),
+  todo:[
+   {d:`點底板，按 ${K('Ctrl')}＋${K('D')} 複製。`,see:'新的底板疊在原本的上面。'},
+   {d:'在右上角面板按 <b>「孔」</b>。',see:'新的那塊變成灰色斜條紋（透明的）。'},
+   ...SIZE('54.96','24.9',1,'孔'),
+   {d:`孔還選著，按住 ${K('Ctrl')} 再按 ${K('↑')} <b>1 下</b>。`,see:'孔往上浮起來 1 mm。'},
+   ...ALIGN('底板','孔',['x1','y1'],'孔跑到底板的正中間，四周露出一樣寬的外框。'),
+   {d:`選底板＋孔（${K('Ctrl')}＋${K('A')}），按 ${K('Ctrl')}＋${K('G')} 群組。`,see:'中間凹下去了！這就是「模板」。'}
+  ],
+  check:`模板是 ${N('60 × 30 × 2')}，中間凹下去 1 mm。`,
+  tip:'小數點要打完整：<b>54.96</b>、<b>24.9</b>。第 1 節做到這裡。',
+  warn:'點底板的時候要點在<b>外框</b>上，不要點到中間的孔。右邊直立那排黑點不要點，孔會掉到地上把底板挖穿。'},
+
+ s8:{t:'複製一個模板給第二面',min:3,goal:'名牌有兩面，兩面都要用模板。先複製一個放在前面。',
+  vals:V('往前','40','Shift+↓ 按 4 下'),
+  todo:[
+   {d:`點模板，按 ${K('Ctrl')}＋${K('D')} 複製。`},
+   {d:`按住 ${K('Shift')} 再按 ${K('↓')} <b>4 下</b>。（${K('Shift')}＋方向鍵一次移動 10 mm，4 下＝40 mm）`,see:'新的模板移到原本那個的前面，兩個不會重疊。'},
+   {d:'<b>後面那個</b>做第一面（名字），<b>前面那個</b>做第二面（班級座號）。'}
+  ],
   check:'畫面上有兩個一樣的模板，一前一後。'},
- s9:{t:'第一面：放名字',min:10,fig:'text',cap:'文字 46 × 19 放在凹槽正中間，文字的頂面和外框一樣高（離地 2）。',goal:'文字高 2、放在地上，頂面就剛好跟外框一樣高。',
-  vals:V('寬','46')+V('長','19')+V('高','2')+V('抬高','0','不用抬'),
-  todo:['從「基本造型」拖出<b>「文字」</b>，放在後面的模板旁邊。','在右上角面板的文字欄位輸入<b>你的名字</b>，字型選<b>「多國語言」</b>。','角落白點 → <kbd>Tab</kbd> 打 <span class="n">46</span> → <kbd>Tab</kbd> 打 <span class="n">19</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點<b>模板的外框</b>，<kbd>Shift</kbd>＋點文字，按 <kbd>L</kbd> 等黑點 → <b>先點模板</b> → 點<b>下排中間</b>、<b>左排中間</b>。','選模板＋文字，<kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。這是<b>第一面</b>。'],
-  check:'名字在凹槽正中間，字的頂面跟外框一樣高；第一面還是 <span class="n">60 × 30 × 2</span>。',warn:'中文變成方框？字型沒有選「多國語言」。'},
- s10:{t:'第二面：放班級座號',min:6,full:true,goal:'在前面那個模板上，用一樣的方法放第二面的文字。',
+
+ s9:{t:'第一面：放上名字',min:12,fig:'text',cap:'名字放在凹槽正中間。文字高 2，頂面剛好跟外框一樣高。',
+  goal:'把名字放進後面那個模板的凹槽裡。',
   vals:V('寬','46')+V('長','19')+V('高','2'),
-  todo:['再拖一個<b>「文字」</b>，輸入第二面的內容（例：<b>601-07</b>，或老師指定的文字），字型選<b>「多國語言」</b>。','角落白點 → <kbd>Tab</kbd> 打 <span class="n">46</span> → <kbd>Tab</kbd> 打 <span class="n">19</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點<b>前面模板的外框</b>，<kbd>Shift</kbd>＋點文字，<kbd>L</kbd> → <b>先點模板</b> → <b>下排中間</b>、<b>左排中間</b>。','選前面模板＋文字，<kbd>Ctrl</kbd>＋<kbd>G</kbd>。這是<b>第二面</b>。'],
-  check:'兩面都做好了，各自是 <span class="n">60 × 30 × 2</span>。'},
- s11:{t:'第二面翻面 180°',min:6,full:true,goal:'第二面要翻過來（字朝下），疊在第一面下面。要用「旋轉」，<b>不能用鏡射</b>，鏡射會讓字變成反的。',
-  vals:V('旋轉','180°','繞前後方向的軸'),
-  todo:['點左上角視角方塊的<b>「前」</b>，從正面看。','點第二面。名牌正面會出現一個<b>彎曲的箭頭</b>（讓名牌像方向盤一樣轉的那一個）。','按住彎曲箭頭拖曳，滑鼠靠近<b>內圈</b>時每 22.5° 跳一格，拖到顯示 <span class="n">180</span> 放開。名牌整個翻過來，字朝下。','按 <kbd>D</kbd>，讓第二面落回工作平面。','點小房子回到主視圖。'],
-  check:'從上面看第二面，看到的是平平的底面；從下面看（右鍵拖曳轉到底下），文字是正的、不是反的。',warn:'字變成鏡子裡的反字，代表用了 <kbd>M</kbd> 鏡射。<kbd>Ctrl</kbd>＋<kbd>Z</kbd>，改用旋轉。'},
- s12:{t:'合體成雙面名牌',min:6,fig:'stack',figVB:'0 0 600 320',cap:'從前面切開看：第二面在下（字朝下），第一面在上（字朝上），總厚 4。',goal:'第一面抬高 2，疊在第二面上，對齊後群組。',
-  vals:V('第一面抬高','2','Ctrl+↑ 2 下')+V('完成','60 × 30 × 4'),
-  todo:['點第一面，按 <kbd>Ctrl</kbd>＋<kbd>↑</kbd> <b>2 下</b>，離地 2。','點<b>第二面</b>，<kbd>Shift</kbd>＋點第一面，按 <kbd>L</kbd> 等黑點 → <b>先點第二面</b> → 點<b>下排中間</b>、<b>左排中間</b>。第一面移到第二面正上方。','<kbd>Ctrl</kbd>＋<kbd>A</kbd> 全選（2 個形狀），<kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。','滑鼠移到白點檢查尺寸。'],
-  check:'完成！尺寸 <span class="n">60 × 30 × 4</span>，上面是名字，翻過來是班級座號。'}
+  todo:[
+   {d:'從「基本造型」拖出 <b>「文字」</b>（紅色的 TEXT），放在後面模板的旁邊。'},
+   {d:'在右上角面板的 <b>文字</b> 欄位，把 TEXT 刪掉，打上<b>你的名字</b>。',see:'工作平面上的字變成你的名字。'},
+   {d:'<b>字型</b> 選 <b>「多國語言」</b>。',see:'中文正常顯示，不是方框。'},
+   ...SIZE(46,19,2,'文字'),
+   ...ALIGN('模板','文字',['x1','y1'],'名字跑到凹槽正中間。'),
+   {d:`選模板＋文字，按 ${K('Ctrl')}＋${K('G')} 群組。`,see:'名字和模板黏在一起，這是「第一面」。'}
+  ],
+  check:'名字在凹槽正中間；第一面還是 60 × 30 × 2。',warn:'點模板時要點在<b>外框</b>上，不要點到文字。'},
+
+ s10:{t:'第二面：放上班級座號',min:8,goal:'用一樣的方法，在前面那個模板放第二面的字。',
+  vals:V('寬','46')+V('長','19')+V('高','2'),
+  todo:[
+   {d:'再拖一個 <b>「文字」</b>，打上第二面的內容，例如 <b>601-07</b>（或老師指定的字）。'},
+   {d:'<b>字型</b> 選 <b>「多國語言」</b>。'},
+   ...SIZE(46,19,2,'文字'),
+   ...ALIGN('前面的模板','文字',['x1','y1'],'字跑到前面模板的凹槽正中間。'),
+   {d:`選前面的模板＋文字，按 ${K('Ctrl')}＋${K('G')} 群組。`,see:'這是「第二面」。'}
+  ],
+  check:'兩面都做好了，各自都是 60 × 30 × 2。'},
+
+ s11:{t:'把第二面翻過來',min:8,goal:'第二面要翻過來、字朝下，等一下疊在第一面的下面。要用<b>「旋轉」</b>，不能用鏡射（鏡射字會變成反的）。',
+  vals:V('旋轉','180°'),
+  todo:[
+   {d:'點左上角視角方塊上的 <b>「前」</b>。',see:'變成從正前方看名牌。'},
+   {d:'點第二面。',see:'名牌旁邊出現幾個彎彎的箭頭。'},
+   {d:'找到在名牌<b>正面</b>、會讓名牌像<b>方向盤</b>一樣左右轉的那個彎箭頭。'},
+   {d:'按住彎箭頭拖曳。滑鼠靠近<b>裡面那一圈</b>時，每次跳 22.5°，拖到顯示 <span class="n">180</span> 再放開。',see:'名牌整個倒過來，字朝下。'},
+   {d:`按 ${K('D')}。`,see:'第二面落回工作平面上。'},
+   {d:'點左邊的小房子，回到主視圖。'}
+  ],
+  check:'從上面看第二面是平平的底；轉到下面看，字是正的。',warn:'字變成鏡子裡的反字，就是用了 M 鏡射。按 Ctrl＋Z 復原，改用旋轉。'},
+
+ s12:{t:'兩面合體',min:8,fig:'stack',figVB:'0 0 600 320',cap:'第二面在下面（字朝下），第一面在上面（字朝上），總共 4 mm 厚。',
+  goal:'把第一面抬高 2，放到第二面的正上方，再黏在一起。',
+  vals:V('第一面抬高','2','Ctrl+↑ 按 2 下')+V('完成','60 × 30 × 4'),
+  todo:[
+   {d:`點第一面，按住 ${K('Ctrl')} 再按 ${K('↑')} <b>2 下</b>。`,see:'第一面浮起來 2 mm。'},
+   ...ALIGN('第二面','第一面',['x1','y1'],'第一面移到第二面的正上方，疊成一塊。'),
+   {d:`按 ${K('Ctrl')}＋${K('A')} 全選，再按 ${K('Ctrl')}＋${K('G')} 群組。`},
+   {d:'滑鼠移到白點上，看尺寸。'}
+  ],
+  check:`完成！尺寸是 ${N('60 × 30 × 4')}。上面是名字，翻過來是班級座號。`}
 };
+
+/* ===== 先認識：圖 ===== */
+document.querySelector('#basics .gloss .card:nth-child(2)').innerHTML=document.querySelector('#basics .gloss .card:nth-child(2)').innerHTML.replace('DOTDEMO',dotSvg([],true));
+(function(){let g=DEFS+`<path d="M70 120 L210 120 L240 60 L100 60 Z" fill="${alpha('pB',30)}" stroke="var(--pB)" stroke-width="2"/>`;
+ [[70,120],[210,120],[240,60],[100,60]].forEach(([x,y])=>g+=`<rect x="${x-6}" y="${y-6}" width="12" height="12" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>`);
+ g+=`<rect x="149" y="76" width="12" height="12" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/><text x="155" y="46" text-anchor="middle" class="lbs">頂端白點 → 高</text><line x1="155" y1="50" x2="155" y2="75" stroke="var(--sub)" stroke-dasharray="2 2"/><text x="210" y="144" text-anchor="middle" class="lbs">角落白點 → 寬、長</text><path d="M210 132 L210 128" stroke="var(--sub)"/>`;
+ document.getElementById('handleSvg').innerHTML=g;})();
 
 /* ===== 進度 ===== */
 const KEY='namecard.v2';
@@ -406,7 +573,7 @@ $('#lessons').innerHTML=LESSONS.map(L=>`<section id="${L.id}"><div class="lesson
  L.steps.map(id=>{const s=STEPS[id];num++;const f=!!s.fig;
   return `<article class="step${state[id]?' done':''}" id="${id}"><header><div class="sn">${num}</div><div><h3>${s.t}</h3><div class="meta">約 ${s.min} 分鐘</div></div></header>
   <div class="body${f?'':' full'}"><div><p class="goal">${s.goal}</p>${s.vals?`<div class="vals">${s.vals}</div>`:''}
-  <ol class="todo" style="margin-top:10px">${s.todo.map(t=>`<li>${t}</li>`).join('')}</ol>
+  <ol class="todo" style="margin-top:10px">${s.todo.map(t=>typeof t==='string'?`<li>${t}</li>`:`<li>${t.d}${t.dot?dotSvg(t.dot):''}${t.see?`<div class="see">👀 ${t.see}</div>`:''}</li>`).join('')}</ol>
   ${s.check?`<div class="check"><b>✅ 檢查</b>${s.check}</div>`:''}${s.tip?`<div class="tip"><b>💡</b>${s.tip}</div>`:''}${s.warn?`<div class="warn"><b>⚠️</b>${s.warn}</div>`:''}</div>
   ${f?`<figure class="fig"><svg viewBox="${s.figVB||'0 0 600 330'}" role="img" aria-label="${s.cap}">${FIG[s.fig]()}</svg><figcaption>${s.cap}</figcaption></figure>`:''}</div>
   <label class="done-row"><input type="checkbox" data-step="${id}" ${state[id]?'checked':''}> 我完成這一步了</label></article>`}).join('')+'</section>').join('');
