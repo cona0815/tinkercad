@@ -1,7 +1,8 @@
 <!doctype html>
-<!-- 我的 3D 名牌｜Tinkercad 名牌教學 v1.0 2026-10-22
-     規格依 namecardsample.stl 量測：外形 60×30×2 mm、四角為 24×12 橢圓（中心 ±18, ±9）、
-     凹槽 56×26 深 1 mm（外形等比例縮放）、文字 45×20 高 1 mm。組法與範例輪廓最大差 0.037 mm。 -->
+<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.0 2026-10-22
+     依同事 Codeblocks 專案「copy of Cool Kup-Snaget」的流程改寫成一般 3D 設計操作：
+     切角器（Ø10 圓柱孔＋20×20 方塊）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
+     → 第一面、第二面文字 46×19×2 → 第二面翻面 180° → 疊成 60×30×4 雙面名牌。 -->
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
@@ -135,54 +136,86 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
 
 <nav class="top"><div class="wrap">
   <a class="brand" href="#top">🏷️ 我的 3D 名牌</a>
-  <a href="#spec">統一規格</a><a href="#name">算字寬</a><a href="#L1">第 1 節</a><a href="#L2">第 2 節</a><a href="#export">匯出</a><a href="#mistakes">常見錯誤</a><a href="#teacher">老師</a>
+  <a href="#spec">統一規格</a><a href="#flow">流程</a><a href="#start">關鍵數字</a><a href="#L1">第 1 節</a><a href="#L2">第 2 節</a><a href="#export">匯出</a><a href="#mistakes">常見錯誤</a><a href="#teacher">老師</a>
 </div><div class="prog"><i id="progBar"></i></div></nav>
 
 <main class="wrap" id="top">
 <div class="hero">
   <div>
     <div class="eyebrow">TINKERCAD 3D 設計 ・ 五、六年級 ・ 2 節課</div>
-    <h1>做一片自己的<br>3D 名牌</h1>
-    <p>全班的名牌要一起送去 3D 列印，所以<b>每個人的尺寸都要一模一樣</b>。照著這一頁，每個數字都打得跟網頁一樣，你的名牌就會剛好 <span class="n">60 × 30 × 2 mm</span>。</p>
-    <div class="chips"><span class="chip">📐 全部用打數字的方式</span><span class="chip">🧩 用 7 個基本造型＋1 個文字</span><span class="chip">🎯 用到「對齊 L」</span></div>
+    <h1>做一片自己的<br>雙面 3D 名牌</h1>
+    <p>全班的名牌要一起送去 3D 列印，所以<b>每個人的尺寸都要一模一樣</b>。正面放名字、背面放班級，兩面疊起來剛好 <span class="n">60 × 30 × 4 mm</span>。每個數字都照網頁打，就不會出錯。</p>
+    <div class="chips"><span class="chip">📐 全部用打數字的方式</span><span class="chip">✂️ 自己做「切角器」切出圓角</span><span class="chip">🔄 兩面文字、翻面合體</span></div>
   </div>
-  <figure class="drawing"><svg id="heroSvg" viewBox="0 0 600 330" role="img" aria-label="名牌完成圖與尺寸"></svg><figcaption>完成圖（上視圖）。紅色數字是尺寸，單位都是 mm（毫米）。</figcaption></figure>
+  <figure class="drawing"><svg id="heroSvg" viewBox="0 0 600 330" role="img" aria-label="名牌第一面完成圖與尺寸"></svg><figcaption>第一面（上視圖）。紅色數字是尺寸，單位都是 mm（毫米）。</figcaption></figure>
 </div>
 
 <!-- 規格 -->
 <section id="spec">
   <h2 class="sec">📏 統一規格（全班都一樣）</h2>
-  <p class="lead">這些數字是量老師的範例檔得到的。做之前先看一次，做完再對一次。</p>
+  <p class="lead">做之前先看一次，做完再對一次。</p>
   <div class="card spec"><table>
-    <thead><tr><th>部分</th><th>尺寸（左右 × 前後 × 高）</th><th>位置</th><th>說明</th></tr></thead>
+    <thead><tr><th>部分</th><th>尺寸（左右 × 前後 × 高）</th><th>說明</th></tr></thead>
     <tbody>
-      <tr><td><b>整片名牌</b></td><td class="v">60 × 30 × 2</td><td>放在工作平面上</td><td>四個角是橢圓形的圓角</td></tr>
-      <tr><td>底板（最薄的地方）</td><td class="v">厚 1</td><td>離地 0～1</td><td>凹槽底部</td></tr>
-      <tr><td>外框</td><td class="v">寬 2，高 2</td><td>離地 0～2</td><td>名牌外圍一圈凸起的邊</td></tr>
-      <tr><td>凹槽</td><td class="v">56 × 26 × 深 1</td><td>離地 1～2</td><td>外框裡面凹下去的地方</td></tr>
-      <tr><td>名字</td><td class="v">45 × 20 × 1</td><td>離地 1～2，置中</td><td>2 個字的名字用 36 × 20（看下面的「算字寬」）</td></tr>
-      <tr><td>四角的橢圓</td><td class="v">24 × 12 × 2</td><td>中心在左右 ±18、前後 ±9</td><td>用對齊就能放到正確位置，不用自己量</td></tr>
+      <tr><td><b>完成的名牌</b></td><td class="v">60 × 30 × 4</td><td>第一面疊在第二面上面</td></tr>
+      <tr><td>每一面（模板）</td><td class="v">60 × 30 × 2</td><td>四個角是半徑 5 的圓角</td></tr>
+      <tr><td>凹槽</td><td class="v">54.96 × 24.9 × 深 1</td><td>底部還有 1 mm 厚；外框寬約 2.5</td></tr>
+      <tr><td>文字（兩面都一樣）</td><td class="v">46 × 19 × 2</td><td>放在凹槽正中間，頂面跟外框一樣高</td></tr>
+      <tr><td>切角器的圓柱（孔）</td><td class="v">10 × 10 × 2</td><td>直徑 10＝半徑 5，切出圓角</td></tr>
+      <tr><td>切角器的方塊</td><td class="v">20 × 20 × 2</td><td>和圓柱群組後變成孔</td></tr>
     </tbody>
   </table></div>
   <div class="axis">
-    <div><b>寬＝左右</b><small>Tinkercad 角落白點的第 1 個數字。名牌的 <span class="n">60</span>。</small></div>
+    <div><b>寬＝左右</b><small>角落白點的第 1 個數字。名牌的 <span class="n">60</span>。</small></div>
     <div><b>長＝前後</b><small>角落白點的第 2 個數字。名牌的 <span class="n">30</span>。</small></div>
-    <div><b>高＝上下</b><small>頂端白點的數字。名牌的 <span class="n">2</span>。</small></div>
+    <div><b>高＝上下</b><small>頂端白點的數字。每一面 <span class="n">2</span>，合體後 <span class="n">4</span>。</small></div>
   </div>
 </section>
 
-<!-- 名字預覽 -->
-<section id="name">
-  <h2 class="sec">✏️ 先算出你的名字要多寬</h2>
-  <p class="lead">名字的高度（前後）一律是 <span class="n">20</span>，寬度（左右）看字數決定。輸入你的名字看看。</p>
-  <div class="card namebox">
+<!-- 流程 -->
+<section id="flow">
+  <h2 class="sec">🧭 整個流程</h2>
+  <p class="lead">先做一個「模板」，再複製成兩面、各放文字，最後把第二面翻過來疊在下面。</p>
+  <div class="card"><svg id="flowSvg" viewBox="0 0 900 190" role="img" aria-label="流程圖：切角器、圓角底板、模板、兩面文字、合體"></svg></div>
+  <div class="card namebox" style="margin-top:14px">
     <div>
-      <label for="nameIn">你的名字</label>
-      <input id="nameIn" type="text" maxlength="6" value="王小明" autocomplete="off">
-      <div class="nameout" id="nameOut"></div>
+      <label for="nameA">第一面（名字）</label>
+      <input id="nameA" type="text" maxlength="6" value="王小明" autocomplete="off">
+      <label for="nameB" style="margin-top:10px">第二面（例：班級-座號）</label>
+      <input id="nameB" type="text" maxlength="8" value="601-07" autocomplete="off">
+      <div class="nameout">兩面的文字都打 <span class="big" style="font-size:20px">46 × 19 × 2</span><br><span style="color:var(--sub);font-size:14px">寬 46、長 19、高 2</span></div>
     </div>
-    <figure class="fig" style="margin:0"><svg id="nameSvg" viewBox="0 0 600 330" role="img" aria-label="你的名牌預覽"></svg><figcaption>預覽只是示意，字型以 Tinkercad 為準。</figcaption></figure>
+    <figure class="fig" style="margin:0"><svg id="nameSvg" viewBox="0 0 600 640" role="img" aria-label="兩面預覽"></svg><figcaption>上：第一面。下：第二面（翻過來看的樣子）。預覽只是示意，字型以 Tinkercad 為準。</figcaption></figure>
   </div>
+</section>
+
+
+<!-- 一開始的數字 -->
+<section id="start">
+  <h2 class="sec">📍 一開始最重要的數字</h2>
+  <p class="lead">圓角做得對不對，全看切角器放的位置。先把這張圖看懂再開始做。</p>
+  <div class="card namebox" style="align-items:start">
+    <figure class="fig" style="margin:0"><svg id="cornerSvg" viewBox="0 0 600 420" role="img" aria-label="右後角放大圖"></svg><figcaption>右後角放大圖（1 格＝1 mm）。黃色是底板，灰色是切角器（孔）。</figcaption></figure>
+    <div style="font-size:16px">
+      <p style="margin-top:0"><b>切角器只蓋住底板角落 <span class="n">5 × 5</span> 的小正方形。</b>缺口的四分之一圓（半徑 <span class="n">5</span>）不會被挖掉，所以留下圓角。</p>
+      <ul style="padding-left:1.2em;margin:0 0 10px">
+        <li>切角器大小：<span class="n">20 × 20 × 2</span></li>
+        <li>缺口圓心：底板的角往內 <span class="n">5</span>、往內 <span class="n">5</span></li>
+        <li>切角器要比底板<b>多出去 15</b>：20 − 5 ＝ 15</li>
+      </ul>
+      <p style="margin:0"><b>為什麼移 15？</b>先讓切角器的右邊對齊底板右邊，它整個在底板裡面。再往右移 15，就只剩 5 mm 留在底板上。往後也一樣。</p>
+    </div>
+  </div>
+  <div class="card spec" style="margin-top:14px"><table>
+    <thead><tr><th>切角器</th><th>左右範圍</th><th>前後範圍</th><th>缺口圓心</th><th>怎麼放</th></tr></thead>
+    <tbody>
+      <tr><td><b>① 右後</b></td><td class="v">25 ～ 45</td><td class="v">10 ～ 30</td><td class="v">(25, 10)</td><td>對齊右邊、後面 → 往右 15、往後 15</td></tr>
+      <tr><td><b>② 右前</b></td><td class="v">25 ～ 45</td><td class="v">−30 ～ −10</td><td class="v">(25, −10)</td><td>複製 ① → 前後鏡射 → 往前 40</td></tr>
+      <tr><td><b>③ 左後</b></td><td class="v">−45 ～ −25</td><td class="v">10 ～ 30</td><td class="v">(−25, 10)</td><td>複製 ①② → 左右鏡射 → 往左 70</td></tr>
+      <tr><td><b>④ 左前</b></td><td class="v">−45 ～ −25</td><td class="v">−30 ～ −10</td><td class="v">(−25, −10)</td><td>（和 ③ 一起完成）</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:14px;color:var(--sub);margin:8px 0 0">座標以底板中心為 (0, 0)，單位 mm。底板範圍：左右 −30～30、前後 −15～15。這組數字和同事 Codeblocks 程式的「移動 (25, 10)」「移動 (0, −40)」「移動 (−70, 0)」完全一樣。</p></div>
 </section>
 
 <div id="lessons"></div>
@@ -193,202 +226,238 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
   <p class="lead">老師要拿 STL 檔去列印。檔名要照規定，老師才找得到你的。</p>
   <div class="card">
     <ol class="todo">
-      <li>點空白處取消選取，確認畫面上<b>只有你的名牌</b>，沒有多餘的零件。</li>
+      <li>點空白處取消選取，確認畫面上<b>只有一個名牌</b>（60 × 30 × 4），沒有多餘的零件。</li>
       <li>按右上角的<b>「匯出」</b>。</li>
       <li>選<b>「設計中的所有內容」</b>，格式按 <b>.STL</b>，檔案會下載到電腦。</li>
       <li>把檔名改成 <b>座號_姓名.stl</b>，例如 <span class="n">07_王小明.stl</span>，上傳到老師指定的地方。</li>
     </ol>
-    <div class="tip"><b>💡</b>STL 檔不記錄單位。老師在切片軟體打開時，要選 <b>毫米（mm）</b>、比例 <b>100%</b>，尺寸才會是 60 × 30 × 2。</div>
+    <div class="tip"><b>💡</b>STL 檔不記錄單位。老師在切片軟體打開時，要選 <b>毫米（mm）</b>、比例 <b>100%</b>，尺寸才會是 60 × 30 × 4。</div>
   </div>
 </section>
 
-<!-- 最後檢查 -->
 <section id="final">
   <h2 class="sec">✅ 交件前最後檢查</h2>
   <p class="lead">全部打勾才交件。</p>
   <ul class="final-check" id="finalCheck"></ul>
 </section>
 
-<!-- 常見錯誤 -->
 <section id="mistakes">
   <h2 class="sec">🆘 常見錯誤和救法</h2>
   <p class="lead">先按 <kbd>Ctrl</kbd>＋<kbd>Z</kbd> 復原，再對照下面。</p>
   <div class="grid2" id="misBox"></div>
 </section>
 
-<!-- 老師 -->
 <section id="teacher">
   <h2 class="sec">🧑‍🏫 給老師</h2>
   <div class="card" style="font-size:16px">
-    <p style="margin-top:0"><b>規格來源：</b>量測 <code>namecardsample.stl</code> 中「3D列印」那一片：外形 60.000 × 30.000 × 2.000 mm，底板頂面 Z＝0.999，外框頂面 Z＝1.996，凹槽 56.006 × 26.005。四角為橢圓，擬合結果長軸 24、短軸 12，中心 (±18, ±9)；凹槽恰為外形縮放成 56 × 26。</p>
-    <p><b>本頁組法：</b>方塊 60×18×2 ＋ 方塊 36×30×2 ＋ 4 個 24×12×2 橢圓（圓柱改尺寸），聯集後與範例輪廓最大偏差 0.037 mm（範例 STL 本身的折線誤差）。高度取整數 1、2 mm，與範例 0.999／1.996 的差小於 0.005 mm，列印上看不出來。</p>
-    <p><b>列印建議：</b>字朝上平放，不需支撐。最薄處 1 mm，建議層高 0.2 mm（底板 5 層、字 5 層）。換色列印可在 Z＝1.0 mm 處暫停換線，名字就會是第二個顏色。</p>
-    <p style="margin-bottom:0"><b>和範例不同的地方：</b>範例裡還有直立、有吊環孔的版本和翻面版本，本課統一做「字朝上、沒有孔」的平放版本，方便全班一起排版列印。</p>
+    <p style="margin-top:0"><b>流程來源：</b>同事的 Codeblocks 專案「copy of Cool Kup-Snaget」（42 個積木）。本頁把每個積木換成一般 3D 設計的操作，數字一一對應：</p>
+    <div class="spec"><table>
+      <thead><tr><th>Codeblocks 積木</th><th>本頁對應步驟</th></tr></thead>
+      <tbody>
+        <tr><td>圓柱（孔）半徑 5 高 2 ＋ 方塊 20×20×2 移動 (10,10)，群組成孔</td><td>步驟 2：切角器</td></tr>
+        <tr><td>切角器移動 (25,10)</td><td>步驟 3：對齊右邊、後面，再移 15、15</td></tr>
+        <tr><td>複製 → 繞 X 軸 180° → 移動 (0,−40)</td><td>步驟 4：複製 → 前後鏡射 → 往前 40</td></tr>
+        <tr><td>全選複製 → 繞 Y 軸 180° → 移動 (−70,0)</td><td>步驟 5：複製兩個 → 左右鏡射 → 往左 70</td></tr>
+        <tr><td>方塊 60×30×2，全選群組</td><td>步驟 3、6：底板與群組</td></tr>
+        <tr><td>複製成孔 → 比例 (0.916, 0.83, 0.5) → 移動 Z 0.5 → 群組</td><td>步驟 7：孔 54.96×24.9×1，抬高 1</td></tr>
+        <tr><td>文字（多國語言，高 2）比例 (0.6, 0.7, 1) ＋ 模板 → 群組 → 移動 Z 2</td><td>步驟 9、12：文字 46×19×2，第一面抬高 2</td></tr>
+        <tr><td>第二面：文字＋模板 → 群組 → 繞 Y 軸 180°</td><td>步驟 10、11：第二面翻面</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>關於文字尺寸：</b>Codeblocks 的文字是用「比例 0.6、0.7」縮小，實際寬度會隨字數改變。我從同事成品的「第一面」量到約 46 × 19 mm，本頁統一用 <b>46 × 19</b>，每個人都一樣大，凹槽四周留約 4.5 mm（左右）、2.9 mm（前後）。</p>
+    <p><b>列印建議：</b>第二面朝下的文字會碰到列印平台，印出來是凹凸的平面字；若要兩面都乾淨，可以在切片軟體把兩面拆開分別列印再黏合，或加支撐。層高 0.2 mm 時，每 1 mm 是 5 層。</p>
+    <p style="margin-bottom:0"><b>和範例 STL 的差別：</b>你給的 namecardsample.stl 是另一個版本（橢圓角、凹槽 56×26、文字 45×20）。本頁以同事目前的程式為準。</p>
   </div>
 </section>
 
-<footer>我的 3D 名牌｜Tinkercad 名牌教學 v1.0（2026-10-22）｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
+<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.0（2026-10-22）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
 </main>
 
 <script>
 (function(){
 const $=s=>document.querySelector(s);
-
-/* ================= 幾何（單位 mm，原點＝名牌中心） ================= */
-const S=8;               // 1 mm = 8 px
-const OX=300, OY=165;    // 圖的中心
-const X=x=>OX+x*S, Y=y=>OY-y*S;  // y 往後（上）為正
-const rect=(x0,y0,x1,y1,fill,stroke,extra='')=>`<rect x="${X(x0)}" y="${Y(y1)}" width="${(x1-x0)*S}" height="${(y1-y0)*S}" fill="${fill}" stroke="${stroke}" stroke-width="2" ${extra}/>`;
-const ell=(cx,cy,a,b,fill,stroke,extra='')=>`<ellipse cx="${X(cx)}" cy="${Y(cy)}" rx="${a*S}" ry="${b*S}" fill="${fill}" stroke="${stroke}" stroke-width="2" ${extra}/>`;
-// 外形路徑（四角橢圓的聯集），k＝縮放
-function outline(sx=1,sy=1){
-  const a=12*sx,b=6*sy,cx=18*sx,cy=9*sy,W=30*sx,H=15*sy;
-  return `M${X(-cx)} ${Y(H)} L${X(cx)} ${Y(H)} A${a*S} ${b*S} 0 0 1 ${X(W)} ${Y(cy)} L${X(W)} ${Y(-cy)} A${a*S} ${b*S} 0 0 1 ${X(cx)} ${Y(-H)} L${X(-cx)} ${Y(-H)} A${a*S} ${b*S} 0 0 1 ${X(-W)} ${Y(-cy)} L${X(-W)} ${Y(cy)} A${a*S} ${b*S} 0 0 1 ${X(-cx)} ${Y(H)} Z`;
+/* ===== 幾何（mm，原點＝名牌中心） ===== */
+const S=8, OX=300, OY=165;
+const X=x=>OX+x*S, Y=y=>OY-y*S;
+const C=v=>`var(--${v})`, alpha=(v,a)=>`color-mix(in srgb, var(--${v}) ${a}%, transparent)`;
+const R=5, RX=0.916, RY=0.83;
+function outline(sx=1,sy=1,oy=0){ // 圓角矩形（R5），縮放後角變成橢圓
+  const W=30*sx,H=15*sy,a=R*sx,b=R*sy, y=v=>Y(v)+oy;
+  return `M${X(-W+a)} ${y(H)} L${X(W-a)} ${y(H)} A${a*S} ${b*S} 0 0 1 ${X(W)} ${y(H-b)} L${X(W)} ${y(-H+b)} A${a*S} ${b*S} 0 0 1 ${X(W-a)} ${y(-H)} L${X(-W+a)} ${y(-H)} A${a*S} ${b*S} 0 0 1 ${X(-W)} ${y(-H+b)} L${X(-W)} ${y(H-b)} A${a*S} ${b*S} 0 0 1 ${X(-W+a)} ${y(H)} Z`;
 }
-const C=v=>`var(--${v})`;
-const alpha=(v,a)=>`color-mix(in srgb, var(--${v}) ${a}%, transparent)`;
-// 尺寸線
-function dimH(x0,x1,y,label,off=-26){ // 水平尺寸線，y 為 mm 位置，off 為 px 偏移
-  const yy=Y(y)+off, t=yy+(off<0?-6:16);
-  return `<g stroke="var(--dim)" stroke-width="1.5" fill="none"><line x1="${X(x0)}" y1="${Y(y)}" x2="${X(x0)}" y2="${yy}" stroke-dasharray="3 3"/><line x1="${X(x1)}" y1="${Y(y)}" x2="${X(x1)}" y2="${yy}" stroke-dasharray="3 3"/><line x1="${X(x0)}" y1="${yy}" x2="${X(x1)}" y2="${yy}" marker-start="url(#ar)" marker-end="url(#ar)"/></g><text x="${(X(x0)+X(x1))/2}" y="${t}" text-anchor="middle" class="dl">${label}</text>`;
-}
-function dimV(y0,y1,x,label,off=26){
-  const xx=X(x)+off, t=xx+(off>0?8:-8);
-  return `<g stroke="var(--dim)" stroke-width="1.5" fill="none"><line x1="${X(x)}" y1="${Y(y0)}" x2="${xx}" y2="${Y(y0)}" stroke-dasharray="3 3"/><line x1="${X(x)}" y1="${Y(y1)}" x2="${xx}" y2="${Y(y1)}" stroke-dasharray="3 3"/><line x1="${xx}" y1="${Y(y0)}" x2="${xx}" y2="${Y(y1)}" marker-start="url(#ar)" marker-end="url(#ar)"/></g><text x="${t}" y="${(Y(y0)+Y(y1))/2+5}" text-anchor="${off>0?'start':'end'}" class="dl">${label}</text>`;
-}
+function dimH(x0,x1,y,label,off=-26,oy=0){const yy=Y(y)+oy+off,t=yy+(off<0?-6:16);return `<g stroke="var(--dim)" stroke-width="1.5" fill="none"><line x1="${X(x0)}" y1="${Y(y)+oy}" x2="${X(x0)}" y2="${yy}" stroke-dasharray="3 3"/><line x1="${X(x1)}" y1="${Y(y)+oy}" x2="${X(x1)}" y2="${yy}" stroke-dasharray="3 3"/><line x1="${X(x0)}" y1="${yy}" x2="${X(x1)}" y2="${yy}" marker-start="url(#ar)" marker-end="url(#ar)"/></g><text x="${(X(x0)+X(x1))/2}" y="${t}" text-anchor="middle" class="dl">${label}</text>`}
+function dimV(y0,y1,x,label,off=26){const xx=X(x)+off,t=xx+(off>0?8:-8);return `<g stroke="var(--dim)" stroke-width="1.5" fill="none"><line x1="${X(x)}" y1="${Y(y0)}" x2="${xx}" y2="${Y(y0)}" stroke-dasharray="3 3"/><line x1="${X(x)}" y1="${Y(y1)}" x2="${xx}" y2="${Y(y1)}" stroke-dasharray="3 3"/><line x1="${xx}" y1="${Y(y0)}" x2="${xx}" y2="${Y(y1)}" marker-start="url(#ar)" marker-end="url(#ar)"/></g><text x="${t}" y="${(Y(y0)+Y(y1))/2+5}" text-anchor="${off>0?'start':'end'}" class="dl">${label}</text>`}
 const DEFS=`<defs><marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 Z" fill="var(--dim)"/></marker><style>.dl{font:800 15px 'JetBrains Mono',monospace;fill:var(--dim)}.lb{font:700 13px 'Noto Sans TC',sans-serif;fill:var(--ink)}.lbs{font:500 12px 'Noto Sans TC',sans-serif;fill:var(--sub)}</style></defs>`;
-const svgWrap=(inner,vb='0 0 600 330')=>`${DEFS}${inner}`;
-const axes=`<g class="lbs"><text x="${X(-36)}" y="${Y(-19)}">↔ 左右（寬）</text><text x="${X(36)}" y="${Y(-19)}" text-anchor="end">↕ 前後（長）</text></g>`;
-const plate=(fill=alpha('acc',18),stroke=C('acc'))=>`<path d="${outline()}" fill="${fill}" stroke="${stroke}" stroke-width="2.5"/>`;
-const recess=()=>`<path d="${outline(56/60,26/30)}" fill="${alpha('hole',22)}" stroke="var(--hole)" stroke-width="2" stroke-dasharray="7 5"/>`;
-const nameText=(t,w,h=20)=>`<text x="${X(0)}" y="${Y(0)+h*S*0.36}" text-anchor="middle" textLength="${w*S}" lengthAdjust="spacingAndGlyphs" style="font:900 ${h*S*0.98}px 'Noto Sans TC',sans-serif;fill:var(--text)">${t}</text>`;
+const plate=(oy=0)=>`<path d="${outline(1,1,oy)}" fill="${alpha('acc',18)}" stroke="var(--acc)" stroke-width="2.5"/>`;
+const recess=(oy=0)=>`<path d="${outline(RX,RY,oy)}" fill="${alpha('hole',22)}" stroke="var(--hole)" stroke-width="2" stroke-dasharray="7 5"/>`;
+const txt=(t,w=46,h=19,oy=0)=>`<text x="${X(0)}" y="${Y(0)+oy+h*S*0.36}" text-anchor="middle" textLength="${w*S}" lengthAdjust="spacingAndGlyphs" style="font:900 ${h*S*0.98}px 'Noto Sans TC',sans-serif;fill:var(--text)">${t}</text>`;
+const rect=(x0,y0,x1,y1,f,s,ex='')=>`<rect x="${X(x0)}" y="${Y(y1)}" width="${(x1-x0)*S}" height="${(y1-y0)*S}" fill="${f}" stroke="${s}" stroke-width="2" ${ex}/>`;
+// 切角器：方塊 x0..x0+20, y0..y0+20，缺口圓心 (nx,ny)
+function cutter(x0,y0,nx,ny,dash){
+  const id='c'+Math.round(Math.random()*1e6);
+  return `<defs><mask id="${id}" maskUnits="userSpaceOnUse" x="-400" y="-400" width="1600" height="1200"><rect x="0" y="0" width="900" height="900" fill="#fff"/><circle cx="${X(nx)}" cy="${Y(ny)}" r="${R*S}" fill="#000"/></mask></defs><rect x="${X(x0)}" y="${Y(y0+20)}" width="${20*S}" height="${20*S}" fill="${alpha('hole',35)}" stroke="var(--hole)" stroke-width="2" ${dash?'stroke-dasharray="6 4"':''} mask="url(#${id})"/><circle cx="${X(nx)}" cy="${Y(ny)}" r="${R*S}" fill="none" stroke="var(--hole)" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+}
+const axes=`<g class="lbs"><text x="12" y="322">↔ 左右（寬）　↕ 前後（長）</text></g>`;
+const W=(inner,vb='0 0 600 330')=>`<svg viewBox="${vb}" role="img">${DEFS}${inner}</svg>`;
 
-/* ================= 圖 ================= */
 const FIG={
-  hero:()=>svgWrap(plate()+recess()+nameText('王小明',45)+dimH(-30,30,15,'60')+dimV(-15,15,30,'30')+`<text x="${X(-30)}" y="${Y(-15)+38}" class="lbs">厚度 2（凹槽處 1）</text>`),
-  A:()=>svgWrap(rect(-30,-9,30,9,alpha('pA',25),C('pA'))+`<text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">方塊 A</text>`+dimH(-30,30,9,'60')+dimV(-9,9,30,'18')+axes),
-  AB:()=>svgWrap(rect(-30,-9,30,9,alpha('pA',25),C('pA'))+rect(-18,-15,18,15,alpha('pB',30),C('pB'))+`<text x="${X(-24)}" y="${Y(0)+5}" text-anchor="middle" class="lb">A</text><text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">方塊 B</text>`+dimH(-18,18,15,'36')+dimV(-15,15,18,'30',110)+axes),
-  E1:()=>svgWrap(rect(-30,-9,30,9,alpha('pA',18),C('pA'))+rect(-18,-15,18,15,alpha('pB',22),C('pB'))+ell(18,9,12,6,alpha('pE',35),C('pE'))+`<text x="${X(18)}" y="${Y(9)+5}" text-anchor="middle" class="lb">橢圓</text>`+dimH(6,30,15,'24')+dimV(3,15,30,'12')+
-    `<g class="lbs"><text x="${X(30)}" y="${Y(-11)}" text-anchor="end">① 右邊切齊 A 的右邊</text><text x="${X(-30)}" y="${Y(12.5)}">② 後面切齊 B 的後面</text></g>`),
-  E2:()=>svgWrap(rect(-30,-9,30,9,alpha('pA',18),C('pA'))+rect(-18,-15,18,15,alpha('pB',22),C('pB'))+ell(18,9,12,6,alpha('pE',35),C('pE'))+ell(-18,9,12,6,alpha('pE',35),C('pE'),'stroke-dasharray="6 4"')+`<text x="${X(-18)}" y="${Y(9)+5}" text-anchor="middle" class="lb">複製</text><text x="${X(-30)}" y="${Y(-12)}" class="lbs">左邊切齊 A 的左邊</text>`+axes),
-  E4:()=>svgWrap(rect(-30,-9,30,9,alpha('pA',18),C('pA'))+rect(-18,-15,18,15,alpha('pB',22),C('pB'))+[[18,9],[-18,9]].map(p=>ell(p[0],p[1],12,6,alpha('pE',35),C('pE'))).join('')+[[18,-9],[-18,-9]].map(p=>ell(p[0],p[1],12,6,alpha('pE',35),C('pE'),'stroke-dasharray="6 4"')).join('')+`<text x="${X(0)}" y="${Y(-15)+22}" text-anchor="middle" class="lbs">前面兩顆：前面切齊 B 的前面</text>`+axes),
-  U:()=>svgWrap(rect(-30,-9,30,9,'none',alpha('pA',60),'stroke-dasharray="4 4"')+rect(-18,-15,18,15,'none',alpha('pB',60),'stroke-dasharray="4 4"')+[[18,9],[-18,9],[18,-9],[-18,-9]].map(p=>ell(p[0],p[1],12,6,'none',alpha('pE',60),'stroke-dasharray="4 4"')).join('')+plate(alpha('acc',14))+dimH(-30,30,15,'60')+dimV(-15,15,30,'30')+`<text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">群組後：底板 60 × 30 × 2</text>`),
-  H:()=>svgWrap(plate()+recess()+dimH(-28,28,13,'56',-50)+dimV(-13,13,28,'26',46)+`<text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">孔 56 × 26，抬高 1</text><text x="${X(-30)}" y="${Y(-15)+22}" class="lbs">外框寬 2（30 − 28 ＝ 2）</text>`),
-  T:()=>svgWrap(plate()+recess()+`<rect x="${X(-22.5)}" y="${Y(10)}" width="${45*S}" height="${20*S}" fill="none" stroke="var(--text)" stroke-width="1.5" stroke-dasharray="5 4"/>`+nameText('王小明',45)+dimH(-22.5,22.5,10,'45',-46)+dimV(-10,10,22.5,'20',70)),
-  side:()=>{ // 剖面圖：橫向放大 X 8 倍、高度放大 40 倍
-    const sx=8, sz=40, ox=60, gz=250;
-    const xp=x=>ox+(x+30)*sx, zp=z=>gz-z*sz;
-    const r=(x0,z0,x1,z1,f,s)=>`<rect x="${xp(x0)}" y="${zp(z1)}" width="${(x1-x0)*sx}" height="${(z1-z0)*sz}" fill="${f}" stroke="${s}" stroke-width="2"/>`;
-    return `${DEFS}<line x1="30" y1="${gz}" x2="570" y2="${gz}" stroke="var(--sub)" stroke-width="2"/><text x="566" y="${gz+18}" text-anchor="end" class="lbs">工作平面（離地 0）</text>`+
-      r(-30,0,30,1,alpha('acc',25),C('acc'))+r(-30,1,-28,2,alpha('acc',25),C('acc'))+r(28,1,30,2,alpha('acc',25),C('acc'))+r(-22.5,1,22.5,2,alpha('text',30),C('text'))+
-      `<text x="${xp(0)}" y="${zp(1.5)+5}" text-anchor="middle" class="lb">名字 高 1</text><text x="${xp(0)}" y="${zp(0.5)+5}" text-anchor="middle" class="lb">底板 厚 1</text>`+
-      `<g stroke="var(--dim)" stroke-width="1.5"><line x1="${xp(30)+14}" y1="${zp(0)}" x2="${xp(30)+14}" y2="${zp(2)}" marker-start="url(#ar)" marker-end="url(#ar)"/><line x1="${xp(-30)-14}" y1="${zp(0)}" x2="${xp(-30)-14}" y2="${zp(1)}" marker-start="url(#ar)" marker-end="url(#ar)"/></g><text x="${xp(30)+22}" y="${zp(1)+5}" class="dl">2</text><text x="${xp(-30)-22}" y="${zp(0.5)+5}" text-anchor="end" class="dl">1</text>`+
-      `<text x="${xp(29)}" y="${zp(2)-10}" text-anchor="middle" class="lbs">外框</text><text x="300" y="40" text-anchor="middle" class="lbs">從前面切開看（高度放大畫，比較看得清楚）</text>`;
-  }
+ hero:()=>DEFS+plate()+recess()+txt('王小明')+dimH(-30,30,15,'60')+dimV(-15,15,30,'30')+`<text x="${X(-30)}" y="${Y(-15)+36}" class="lbs">每一面厚 2，兩面疊起來 4</text>`,
+ cut:()=>{ // 放大畫：方塊 20×20，圓柱在左前角
+   const s=11,ox=180,oy=262, P=(x,y)=>[ox+x*s, oy-y*s];
+   const [bx,by]=P(0,20), [cx,cy]=P(0,0);
+   return DEFS+`<defs><mask id="cm"><rect width="600" height="330" fill="#fff"/><circle cx="${cx}" cy="${cy}" r="${5*s}" fill="#000"/></mask></defs>`+
+   `<rect x="${bx}" y="${by}" width="${20*s}" height="${20*s}" fill="${alpha('pB',30)}" stroke="var(--pB)" stroke-width="2" mask="url(#cm)"/>`+
+   `<circle cx="${cx}" cy="${cy}" r="${5*s}" fill="${alpha('hole',30)}" stroke="var(--hole)" stroke-width="2" stroke-dasharray="6 4"/>`+
+   `<text x="${P(10,10)[0]}" y="${P(10,10)[1]+5}" text-anchor="middle" class="lb">方塊 20 × 20</text><text x="${cx}" y="${cy+5}" text-anchor="middle" class="lb">孔</text>`+
+   `<g stroke="var(--dim)" stroke-width="1.5"><line x1="${bx}" y1="${by-18}" x2="${bx+20*s}" y2="${by-18}" marker-start="url(#ar)" marker-end="url(#ar)"/><line x1="${cx-5*s}" y1="${cy+22}" x2="${cx+5*s}" y2="${cy+22}" marker-start="url(#ar)" marker-end="url(#ar)"/></g>`+
+   `<text x="${bx+10*s}" y="${by-24}" text-anchor="middle" class="dl">20</text><text x="${cx}" y="${cy+40}" text-anchor="middle" class="dl">Ø10</text>`+
+   `<text x="430" y="120" class="lbs">圓柱的中心</text><text x="430" y="138" class="lbs">＝方塊的左前角</text><text x="430" y="176" class="lbs">群組後整個改成「孔」</text><line x1="425" y1="125" x2="${cx+6}" y2="${cy-6}" stroke="var(--sub)" stroke-dasharray="3 3"/>`;
+ },
+ place:()=>DEFS+'<g transform="translate(300 165) scale(0.62) translate(-300 -165)">'+rect(-30,-15,30,15,alpha('pA',22),C('pA'))+`<text x="${X(-8)}" y="${Y(0)+5}" text-anchor="middle" class="lb">底板 60 × 30</text>`+cutter(25,10,25,10)+dimH(25,30,10,'5',30)+dimV(10,15,30,'5',40)+dimH(-30,30,-15,'60',36)+'</g>'+`<text x="12" y="22" class="lbs">切角器：右邊、後面先對齊底板，再往右 15、往後 15</text>`+axes,
+ four:()=>DEFS+'<g transform="translate(300 165) scale(0.62) translate(-300 -165)">'+rect(-30,-15,30,15,alpha('pA',22),C('pA'))+cutter(25,10,25,10)+cutter(25,-30,25,-10,true)+cutter(-45,10,-25,10,true)+cutter(-45,-30,-25,-10,true)+`<text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">四個角都有切角器</text></g>`,
+ round:()=>DEFS+plate()+dimH(-30,30,15,'60')+dimV(-15,15,30,'30')+`<circle cx="${X(25)}" cy="${Y(10)}" r="3" fill="var(--dim)"/><text x="${X(18)}" y="${Y(4)}" class="dl" text-anchor="middle">R5</text><line x1="${X(25)}" y1="${Y(10)}" x2="${X(25+R*0.7071)}" y2="${Y(10+R*0.7071)}" stroke="var(--dim)" stroke-width="1.5"/><text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">圓角底板 60 × 30 × 2</text>`,
+ hole:()=>DEFS+plate()+recess()+dimH(-27.48,27.48,12.45,'54.96',-44)+dimV(-12.45,12.45,27.48,'24.9',42)+`<text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">孔 54.96 × 24.9 × 1，抬高 1</text>`,
+ text:()=>DEFS+plate()+recess()+`<rect x="${X(-23)}" y="${Y(9.5)}" width="${46*S}" height="${19*S}" fill="none" stroke="var(--text)" stroke-width="1.5" stroke-dasharray="5 4"/>`+txt('王小明')+dimH(-23,23,9.5,'46',-38)+dimV(-9.5,9.5,23,'19',52),
+ stack:()=>{ // 前視剖面
+   const sx=8,sz=24,ox=60,gz=270, xp=x=>ox+(x+30)*sx, zp=z=>gz-z*sz;
+   const r=(x0,z0,x1,z1,f,s)=>`<rect x="${xp(x0)}" y="${zp(z1)}" width="${(x1-x0)*sx}" height="${(z1-z0)*sz}" fill="${f}" stroke="${s}" stroke-width="2"/>`;
+   const face=(z0,up,col)=>{const fl=up?[z0,z0+1]:[z0+1,z0+2], rm=up?[z0+1,z0+2]:[z0,z0+1];return r(-30,fl[0],30,fl[1],alpha(col,25),C(col))+r(-30,rm[0],-27.48,rm[1],alpha(col,25),C(col))+r(27.48,rm[0],30,rm[1],alpha(col,25),C(col))+r(-23,rm[0],23,rm[1],alpha('text',30),C('text'))};
+   return DEFS+`<line x1="30" y1="${gz}" x2="570" y2="${gz}" stroke="var(--sub)" stroke-width="2"/><text x="566" y="${gz+18}" text-anchor="end" class="lbs">工作平面</text>`+face(0,false,'pB')+face(2,true,'acc')+
+   `<text x="${xp(0)}" y="${zp(3.5)+5}" text-anchor="middle" class="lb">第一面（字朝上）</text><text x="${xp(0)}" y="${zp(0.5)+5}" text-anchor="middle" class="lb">第二面（翻面，字朝下）</text>`+
+   `<g stroke="var(--dim)" stroke-width="1.5"><line x1="${xp(30)+16}" y1="${zp(0)}" x2="${xp(30)+16}" y2="${zp(4)}" marker-start="url(#ar)" marker-end="url(#ar)"/><line x1="${xp(-30)-16}" y1="${zp(2)}" x2="${xp(-30)-16}" y2="${zp(4)}" marker-start="url(#ar)" marker-end="url(#ar)"/><line x1="${xp(-30)-16}" y1="${zp(0)}" x2="${xp(-30)-16}" y2="${zp(2)}" marker-start="url(#ar)" marker-end="url(#ar)"/></g><text x="${xp(30)+24}" y="${zp(2)+5}" class="dl">4</text><text x="${xp(-30)-24}" y="${zp(3)+5}" text-anchor="end" class="dl">2</text><text x="${xp(-30)-24}" y="${zp(1)+5}" text-anchor="end" class="dl">2</text><text x="300" y="40" text-anchor="middle" class="lbs">從前面切開看（高度放大畫）</text>`;
+ }
 };
-const svgTag=(key,label,vb='0 0 600 330')=>`<svg viewBox="${vb}" role="img" aria-label="${label}">${FIG[key]()}</svg>`;
 $('#heroSvg').innerHTML=FIG.hero();
 
-/* ================= 步驟資料 ================= */
-const V=(label,val,note='')=>`<div class="val">${label}<b>${val}</b>${note?`<small>${note}</small>`:''}</div>`;
-const LESSONS=[
- {id:'L1',tag:'第 1 節',title:'用 6 個零件拼出底板',steps:['s1','s2','s3','s4','s5','s6','s7']},
- {id:'L2',tag:'第 2 節',title:'挖凹槽、放名字',steps:['s8','s9','s10','s11']}
-];
+
+/* 右後角放大圖：x 15..47, y 0..32 mm */
+(function(){
+ const s=11.5, ox=60, oy=395, P=(x,y)=>[ox+(x-15)*s, oy-(y)*s];
+ const sy=s; let g=DEFS;
+ for(let x=15;x<=47;x++){const [a]=P(x,0);g+=`<line x1="${a}" y1="${P(0,0)[1]}" x2="${a}" y2="${P(0,32)[1]}" stroke="var(--line)" stroke-width="${x%5?0.6:1.2}"/>`}
+ for(let y=0;y<=32;y++){const [,b]=P(15,y);g+=`<line x1="${P(15,0)[0]}" y1="${b}" x2="${P(47,0)[0]}" y2="${b}" stroke="var(--line)" stroke-width="${y%5?0.6:1.2}"/>`}
+ // 底板（到 x30,y15）
+ const [px0,py1]=P(15,15),[px1,py0]=P(30,0);
+ g+=`<rect x="${px0}" y="${py1}" width="${px1-px0}" height="${py0-py1}" fill="${alpha('pB',35)}" stroke="var(--pB)" stroke-width="2.5"/>`;
+ // 切角器 x25..45 y10..30，缺口圓心 (25,10) r5
+ const [cx0,cy1]=P(25,30),[cx1,cy0]=P(45,10),[nx,ny]=P(25,10);
+ g+=`<defs><mask id="cmk"><rect width="600" height="420" fill="#fff"/><ellipse cx="${nx}" cy="${ny}" rx="${5*s}" ry="${5*sy}" fill="#000"/></mask></defs><rect x="${cx0}" y="${cy1}" width="${cx1-cx0}" height="${cy0-cy1}" fill="${alpha('hole',45)}" stroke="var(--hole)" stroke-width="2" mask="url(#cmk)"/><ellipse cx="${nx}" cy="${ny}" rx="${5*s}" ry="${5*sy}" fill="none" stroke="var(--dim)" stroke-width="2" stroke-dasharray="4 3"/>`;
+ // 被切掉的 5×5 區（底板內、圓外）
+ const [ox0,oy1]=P(25,15),[ox1,oy0]=P(30,10);
+ g+=`<rect x="${ox0}" y="${oy1}" width="${ox1-ox0}" height="${oy0-oy1}" fill="none" stroke="var(--warn)" stroke-width="2.5"/>`;
+ g+=`<circle cx="${nx}" cy="${ny}" r="4" fill="var(--dim)"/><text x="${nx-8}" y="${ny+20}" text-anchor="end" class="dl">圓心 (25, 10)</text><line x1="${nx}" y1="${ny}" x2="${nx+5*s*0.707}" y2="${ny-5*sy*0.707}" stroke="var(--dim)" stroke-width="2"/><text x="${nx+18}" y="${ny-16}" class="dl">R5</text>`;
+ // 標尺
+ const lab=(x,y,t,a='middle')=>`<text x="${x}" y="${y}" text-anchor="${a}" class="dl">${t}</text>`;
+ g+=lab(P(30,0)[0],P(0,0)[1]+18,'30')+lab(P(25,0)[0],P(0,0)[1]+18,'25')+lab(P(45,0)[0],P(0,0)[1]+18,'45')+lab(P(15,10)[0]-6,P(0,10)[1]+5,'10','end')+lab(P(15,15)[0]-6,P(0,15)[1]+5,'15','end')+lab(P(15,30)[0]-6,P(0,30)[1]+5,'30','end');
+ g+=`<text x="${P(20,0)[0]}" y="${P(0,7)[1]}" text-anchor="middle" class="lb">底板</text><text x="${P(37,0)[0]}" y="${P(0,22)[1]}" text-anchor="middle" class="lb">切角器（孔）</text><text x="${P(37,0)[0]}" y="${P(0,22)[1]+18}" text-anchor="middle" class="lbs">20 × 20</text>`;
+ g+=`<text x="${ox1+8}" y="${oy1+8}" class="lbs" style="fill:var(--warn)">紅框 5 × 5：圓外的部分被切掉</text>`;
+ $('#cornerSvg').innerHTML=g;
+})();
+
+/* 流程圖 */
+(function(){
+ const items=[['切角器','Ø10 孔＋20×20'],['圓角底板','60×30×2'],['模板','挖凹槽 1 mm'],['兩面文字','46×19×2'],['翻面合體','60×30×4']];
+ let s=DEFS; items.forEach((it,i)=>{const x=20+i*176; s+=`<rect x="${x}" y="50" width="150" height="90" rx="12" fill="${alpha('acc',12)}" stroke="var(--acc)" stroke-width="2"/><text x="${x+75}" y="40" text-anchor="middle" class="dl">${i+1}</text><text x="${x+75}" y="88" text-anchor="middle" style="font:900 19px 'Noto Sans TC',sans-serif;fill:var(--ink)">${it[0]}</text><text x="${x+75}" y="116" text-anchor="middle" style="font:800 14px 'JetBrains Mono',monospace;fill:var(--dim)">${it[1]}</text>`; if(i<4) s+=`<path d="M${x+152} 95 L${x+172} 95" stroke="var(--sub)" stroke-width="2" marker-end="url(#ar)"/>`});
+ s+=`<text x="450" y="176" text-anchor="middle" class="lbs">第 1 節做到「模板」，第 2 節做兩面文字並合體</text>`;
+ $('#flowSvg').innerHTML=s;
+})();
+
+/* ===== 步驟 ===== */
+const V=(l,v,n='')=>`<div class="val">${l}<b>${v}</b>${n?`<small>${n}</small>`:''}</div>`;
+const LESSONS=[{id:'L1',tag:'第 1 節',title:'做「模板」：圓角底板＋凹槽',steps:['s1','s2','s3','s4','s5','s6','s7']},{id:'L2',tag:'第 2 節',title:'兩面文字、翻面合體',steps:['s8','s9','s10','s11','s12']}];
 const STEPS={
- s1:{t:'開新設計、設定格線',min:5,full:true,goal:'先把工作環境設定好，後面的數字才會準。',
-   todo:['登入 Tinkercad，按「＋建立」→「3D 設計」。','點左上角的設計名稱，改成 <b>座號-姓名-名牌</b>（例：07-王小明-名牌）。','看右下角<b>「鎖點格線」</b>，確定是 <span class="n">1.0 mm</span>。','點左邊的<b>小房子</b>（主視圖）。之後要對齊時，都先回到這個視角，黑點的方向才會跟網頁一樣。'],
-   check:'右下角鎖點格線顯示 1.0 mm。'},
- s2:{t:'方塊 A：60 × 18 × 2',min:7,fig:'A',cap:'方塊 A 是名牌的「中間那一條」。',goal:'第一個方塊決定名牌的左右長度。',
-   vals:V('寬（左右）','60')+V('長（前後）','18')+V('高','2'),
-   todo:['從右邊「基本造型」拖一個<b>方塊</b>到工作平面中間。','點方塊<b>角落的白點</b>，按 <kbd>Tab</kbd>，數字變藍色後打 <span class="n">60</span>；再按 <kbd>Tab</kbd> 打 <span class="n">18</span>，按 <kbd>Enter</kbd>。','點方塊<b>頂端的白點</b>，按 <kbd>Tab</kbd> 打 <span class="n">2</span>，按 <kbd>Enter</kbd>。'],
-   check:'滑鼠移到白點上，看到 60、18、2。',warn:'寬和長不要打相反：<b>60 是左右</b>，18 是前後。打錯會變成直的長條。'},
- s3:{t:'方塊 B：36 × 30 × 2，對齊到 A 的正中間',min:8,fig:'AB',cap:'B 比 A 窄、比 A 長，兩個疊成十字形。',goal:'第二個方塊決定名牌的前後寬度。',
-   vals:V('寬（左右）','36')+V('長（前後）','30')+V('高','2'),
-   todo:['再拖一個<b>方塊</b>出來，放在 A 旁邊。','角落白點 → <kbd>Tab</kbd> 打 <span class="n">36</span> → <kbd>Tab</kbd> 打 <span class="n">30</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點 A，按住 <kbd>Shift</kbd> 點 B，按 <kbd>L</kbd>，<b>等 1～2 秒</b>黑點出現。','<b>先點 A</b>（A 被釘住不動）。','點<b>下排中間</b>的黑點，再點<b>左排中間</b>的黑點。B 跑到 A 的正中間，變成十字形。'],
-   check:'從上面看是一個十字，左右最寬 60、前後最長 30。',warn:'右邊直立那排是「上下」，<b>不要點</b>。點了零件會跑到空中。'},
- s4:{t:'第 1 個橢圓：放到右後角',min:10,fig:'E1',cap:'橢圓的右邊對齊 A，後面對齊 B，中心就剛好在 (18, 9)。',goal:'四個角的圓弧是橢圓形的。先做一個，用兩次對齊放到右後角。',
-   vals:V('寬（左右）','24')+V('長（前後）','12')+V('高','2'),
-   todo:['拖一個<b>圓柱</b>出來，放在右後方空地。','角落白點 → <kbd>Tab</kbd> 打 <span class="n">24</span> → <kbd>Tab</kbd> 打 <span class="n">12</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。圓柱變成扁扁的橢圓。','<b>第一次對齊（左右）：</b>點 A，<kbd>Shift</kbd>＋點橢圓，按 <kbd>L</kbd> 等黑點 → <b>先點 A</b> → 點<b>下排最右邊</b>的黑點。橢圓的右邊和 A 的右邊切齊。','點空白處取消選取。','<b>第二次對齊（前後）：</b>點 B，<kbd>Shift</kbd>＋點橢圓，按 <kbd>L</kbd> 等黑點 → <b>先點 B</b> → 點<b>左排最後面</b>的黑點。橢圓的後面和 B 的後面切齊。'],
-   check:'橢圓剛好卡在右後角：右邊跟 A 一樣齊，後面跟 B 一樣齊。',tip:'第一次對 A、第二次對 B，兩次的基準不一樣。記法：<b>左右看 A（長的那條），前後看 B（寬的那條）</b>。'},
- s5:{t:'第 2 個橢圓：複製到左後角',min:5,fig:'E2',cap:'複製的橢圓前後位置已經對了，只要再對齊左右。',goal:'用複製，只要對齊一次。',
-   todo:['點右後角的橢圓，按 <kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製。','點 A，<kbd>Shift</kbd>＋點<b>新的橢圓</b>，按 <kbd>L</kbd> 等黑點 → <b>先點 A</b> → 點<b>下排最左邊</b>的黑點。'],
-   check:'左後角和右後角各有一個橢圓，前後位置一樣。',warn:'Ctrl＋D 複製出來的橢圓會疊在原本那顆上面，看起來像只有一顆。直接照步驟對齊，它就會移到左邊。'},
- s6:{t:'第 3、4 個橢圓：複製到前面兩角',min:6,fig:'E4',cap:'兩顆一起複製、一起對齊。',goal:'後面兩顆一起複製，一次對齊到前面。',
-   todo:['點右後角橢圓，<kbd>Shift</kbd>＋點左後角橢圓（兩顆都選），按 <kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製。','複製出來的兩顆還在選取中。按住 <kbd>Shift</kbd> 再點 <b>B</b>，按 <kbd>L</kbd> 等黑點。','<b>先點 B</b> → 點<b>左排最前面</b>的黑點。兩顆新橢圓一起跑到前面。'],
-   check:'四個角都有橢圓，左右對稱、前後對稱。',tip:'如果選錯了，點空白處取消，重新照順序選。'},
- s7:{t:'群組成底板，檢查 60 × 30 × 2',min:4,fig:'U',cap:'6 個零件群組後，外形就是名牌的形狀。',goal:'把 6 個零件黏成一塊底板。',
-   todo:['按 <kbd>Ctrl</kbd>＋<kbd>A</kbd> 全選，右上角應該顯示 <b>6 個形狀</b>。','按 <kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。','滑鼠移到角落和頂端白點，檢查尺寸。'],
-   vals:V('寬','60.00')+V('長','30.00')+V('高','2.00'),
-   check:'底板是 <span class="n">60 × 30 × 2</span>。數字不對就按 <kbd>Ctrl</kbd>＋<kbd>Z</kbd> 取消群組，回去檢查哪個零件打錯。',tip:'第 1 節到這裡結束。記得存檔（Tinkercad 會自動存，名稱要改好）。'},
- s8:{t:'做凹槽的孔：56 × 26，抬高 1',min:10,fig:'H',cap:'孔比底板每邊小 2 mm，留下一圈 2 mm 寬的外框。',goal:'複製底板、縮小、變成孔，挖出 1 mm 深的凹槽。',
-   vals:V('寬','56')+V('長','26')+V('高','2','不用改')+V('抬高','1','Ctrl+↑ 1 下'),
-   todo:['點底板，按 <kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製。','在右上角面板按<b>「孔」</b>，複製的那片變成透明條紋。','角落白點 → <kbd>Tab</kbd> 打 <span class="n">56</span> → <kbd>Tab</kbd> 打 <span class="n">26</span> → <kbd>Enter</kbd>。高度維持 <span class="n">2</span>，不要改。','孔還選著，按 <kbd>Ctrl</kbd>＋<kbd>↑</kbd> <b>1 下</b>，孔離地 <span class="n">1</span>。','點<b>底板的外框</b>，<kbd>Shift</kbd>＋點孔，按 <kbd>L</kbd> 等黑點 → <b>先點底板</b> → 點<b>下排中間</b>，再點<b>左排中間</b>。'],
-   check:'孔在底板正中間，四周露出的外框寬度一樣。',warn:'<b>千萬不要點右排</b>（上下）。點了孔會掉到地上，整片挖穿。按 <kbd>Ctrl</kbd>＋<kbd>Z</kbd> 救回來。'},
- s9:{t:'群組，挖出凹槽',min:4,fig:'side',figVB:'0 0 600 300',cap:'從前面切開看：中間凹下去 1 mm，外框高 2 mm。',goal:'把孔和底板群組，凹槽就挖好了。',
-   todo:['點底板，<kbd>Shift</kbd>＋點孔，按 <kbd>Ctrl</kbd>＋<kbd>G</kbd>。','轉一下視角（右鍵拖曳），看到中間凹下去、外圍一圈凸起。'],
-   vals:V('整片','60 × 30 × 2')+V('凹槽深','1'),
-   check:'尺寸還是 <span class="n">60 × 30 × 2</span>，中間有凹槽。'},
- s10:{t:'放上名字：寬依字數 × 20 × 1',min:12,fig:'T',cap:'名字在凹槽正中間，左右各留 5.5 mm、前後各留 3 mm（45 × 20 時）。',goal:'名字的頂面要剛好和外框一樣高（離地 2）。',
-   vals:V('寬','45','2 個字用 36')+V('長','20')+V('高','1')+V('抬高','1','Ctrl+↑ 1 下'),
-   todo:['從「基本造型」拖出<b>「文字」</b>。','在右上角面板的文字欄位，把 TEXT 改成<b>你的名字</b>。','字型選<b>「多國語言」</b>（中文才會正常顯示）。','角落白點 → <kbd>Tab</kbd> 打寬度（3 個字以上 <span class="n">45</span>、2 個字 <span class="n">36</span>）→ <kbd>Tab</kbd> 打 <span class="n">20</span> → <kbd>Enter</kbd>。','頂端白點 → <kbd>Tab</kbd> 打 <span class="n">1</span> → <kbd>Enter</kbd>。','文字還選著，按 <kbd>Ctrl</kbd>＋<kbd>↑</kbd> <b>1 下</b>，離地 <span class="n">1</span>。','點<b>名牌外框</b>，<kbd>Shift</kbd>＋點文字，按 <kbd>L</kbd> 等黑點 → <b>先點名牌</b> → 點<b>下排中間</b>，再點<b>左排中間</b>。'],
-   check:'名字在凹槽正中間，字的頂面跟外框一樣高（離地 2）。',warn:'中文變成方框或空白？字型沒有選「多國語言」。'},
- s11:{t:'全部群組，最後檢查',min:5,goal:'把名字和名牌黏成一片，準備交件。',full:true,
-   todo:['按 <kbd>Ctrl</kbd>＋<kbd>A</kbd> 全選，右上角應該顯示 <b>2 個形狀</b>（名牌、名字）。','按 <kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。','滑鼠移到角落和頂端白點，最後檢查一次尺寸。'],
-   vals:V('寬','60.00')+V('長','30.00')+V('高','2.00'),
-   check:'是 <span class="n">60 × 30 × 2</span> 就完成了！接著到下面「匯出 STL」交件。',tip:'群組後名字變成跟名牌同一個顏色沒關係，列印只看形狀。想保留顏色，點色塊打開「多色」。'}
+ s1:{t:'開新設計、設定格線',min:4,goal:'先把工作環境設定好，後面的數字才會準。',
+  todo:['登入 Tinkercad，按「＋建立」→「3D 設計」。','點左上角的設計名稱，改成 <b>座號-姓名-名牌</b>（例：07-王小明-名牌）。','看右下角<b>「鎖點格線」</b>，確定是 <span class="n">1.0 mm</span>。這樣方向鍵每按一下移動 1 mm，按住 <kbd>Shift</kbd> 再按方向鍵移動 10 mm。','點左邊的<b>小房子</b>（主視圖）。之後要用方向鍵或對齊時，都先回到這個視角：<kbd>↑</kbd> 是往後、<kbd>↓</kbd> 是往前。'],
+  check:'右下角鎖點格線顯示 1.0 mm。'},
+ s2:{t:'做「切角器」',min:10,fig:'cut',cap:'圓柱的中心放在方塊的左前角，群組後方塊的角被挖掉四分之一圓。',goal:'名牌的圓角是「切」出來的。先做一個切角器：方塊挖掉一個四分之一圓，再整個變成孔。',
+  vals:V('圓柱','10 × 10 × 2','改成「孔」')+V('方塊','20 × 20 × 2'),
+  todo:['拖一個<b>圓柱</b>出來。角落白點 → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。右上角面板按<b>「孔」</b>。','拖一個<b>方塊</b>出來。角落白點 → <kbd>Tab</kbd> 打 <span class="n">20</span> → <kbd>Tab</kbd> 打 <span class="n">20</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點方塊，<kbd>Shift</kbd>＋點圓柱，按 <kbd>L</kbd> 等黑點 → <b>先點方塊</b> → 點<b>下排中間</b>、<b>左排中間</b>。圓柱跑到方塊正中間。','點空白處取消。只點圓柱，按 <kbd>Shift</kbd>＋<kbd>←</kbd> <b>1 下</b>（往左 10），再按 <kbd>Shift</kbd>＋<kbd>↓</kbd> <b>1 下</b>（往前 10）。圓柱中心剛好在方塊的左前角。','選方塊＋圓柱，按 <kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組（左前角被挖掉一塊）。','群組還選著，在右上角面板按<b>「孔」</b>。整個切角器變成透明條紋。'],
+  check:'切角器是 20 × 20 × 2 的孔，左前角缺了一個四分之一圓。',tip:'圓柱移動 10，是因為方塊寬 20 的一半是 10：中心往左 10、往前 10，就到左前角。'},
+ s3:{t:'放底板，把切角器移到右後角',min:10,fig:'place',cap:'切角器只蓋住底板右後角 5 × 5 的範圍，缺口剛好留下圓角。',goal:'底板 60 × 30 × 2。切角器先和底板對齊右邊、後面，再往外移 15。',
+  vals:V('底板','60 × 30 × 2')+V('往右','15','Shift+→ 1 下 ＋ → 5 下')+V('往後','15','Shift+↑ 1 下 ＋ ↑ 5 下'),
+  todo:['拖一個<b>方塊</b>出來當底板：角落白點 → <kbd>Tab</kbd> 打 <span class="n">60</span> → <kbd>Tab</kbd> 打 <span class="n">30</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點底板，<kbd>Shift</kbd>＋點切角器，按 <kbd>L</kbd> 等黑點 → <b>先點底板</b> → 點<b>下排最右邊</b>（右邊切齊）→ 再點<b>左排最後面</b>（後面切齊）。','對齊後切角器整個在底板裡面（左右 10～30、前後 −5～15）。點空白處取消。只點切角器，按 <kbd>Shift</kbd>＋<kbd>→</kbd> <b>1 下</b>，再按 <kbd>→</kbd> <b>5 下</b>（往右 15，變成左右 25～45）。','再按 <kbd>Shift</kbd>＋<kbd>↑</kbd> <b>1 下</b>，再按 <kbd>↑</kbd> <b>5 下</b>（往後 15，變成前後 10～30）。'],
+  check:'切角器只蓋住底板右後角 <span class="n">5 × 5</span>，缺口圓心在底板角往內 5、往內 5（對照上面的「關鍵數字」放大圖）。',warn:'方向鍵要在<b>主視圖</b>按（先點小房子），不然方向會跑掉。'},
+ s4:{t:'複製到右前角',min:5,fig:'four',cap:'四個切角器的位置。虛線是複製出來的。',goal:'複製、鏡射、往前移 40。',
+  vals:V('往前','40','Shift+↓ 4 下'),
+  todo:['點切角器，按 <kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製。','按 <kbd>M</kbd>，點<b>「前後」</b>方向的雙箭頭鏡射（缺口跑到後面）。','按 <kbd>Shift</kbd>＋<kbd>↓</kbd> <b>4 下</b>，往前 40。'],
+  check:'右前角也有切角器，缺口朝向底板的角。'},
+ s5:{t:'複製到左邊兩個角',min:5,fig:'four',cap:'左邊兩個是右邊兩個複製、左右鏡射、往左 70。',goal:'兩個一起複製、一起鏡射、往左移 70。',
+  vals:V('往左','70','Shift+← 7 下'),
+  todo:['點右後的切角器，<kbd>Shift</kbd>＋點右前的切角器，按 <kbd>Ctrl</kbd>＋<kbd>D</kbd>。','按 <kbd>M</kbd>，點<b>「左右」</b>方向的雙箭頭鏡射。','按 <kbd>Shift</kbd>＋<kbd>←</kbd> <b>7 下</b>，往左 70。'],
+  check:'四個角都有切角器，缺口都朝向底板的角。'},
+ s6:{t:'群組，切出圓角底板',min:4,fig:'round',cap:'四個角切成半徑 5 的圓角。',goal:'底板和四個切角器群組。',
+  todo:['按 <kbd>Ctrl</kbd>＋<kbd>A</kbd> 全選，右上角應該顯示 <b>5 個形狀</b>（底板＋4 個切角器）。','按 <kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。','滑鼠移到白點檢查尺寸。'],
+  vals:V('寬','60.00')+V('長','30.00')+V('高','2.00'),
+  check:'四個角都是圓角，尺寸還是 <span class="n">60 × 30 × 2</span>。如果變大了，代表切角器裡有一個不是孔，<kbd>Ctrl</kbd>＋<kbd>Z</kbd> 檢查。'},
+ s7:{t:'挖凹槽，完成「模板」',min:8,fig:'hole',cap:'孔縮小成 54.96 × 24.9，圓角會跟著變成小一點的橢圓角。',goal:'複製底板、縮小成孔、抬高 1，挖出 1 mm 深的凹槽。',
+  vals:V('寬','54.96')+V('長','24.9')+V('高','1')+V('抬高','1','Ctrl+↑ 1 下'),
+  todo:['點圓角底板，<kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製，右上角按<b>「孔」</b>。','角落白點 → <kbd>Tab</kbd> 打 <span class="n">54.96</span> → <kbd>Tab</kbd> 打 <span class="n">24.9</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">1</span> → <kbd>Enter</kbd>。','孔還選著，按 <kbd>Ctrl</kbd>＋<kbd>↑</kbd> <b>1 下</b>，離地 1。','點<b>底板的外框</b>，<kbd>Shift</kbd>＋點孔，按 <kbd>L</kbd> 等黑點 → <b>先點底板</b> → 點<b>下排中間</b>、<b>左排中間</b>。','選底板＋孔，<kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。這就是<b>「模板」</b>。'],
+  check:'模板 <span class="n">60 × 30 × 2</span>，中間凹下去 1 mm，外框一圈寬度一樣。',tip:'第 1 節到這裡。小數點要打完整：<b>54.96</b>、<b>24.9</b>。',warn:'不要點右排（上下）黑點，孔會掉到地上把底板挖穿。'},
+ s8:{t:'複製一個模板給第二面',min:3,full:true,goal:'兩面要用一樣的模板，先複製一個放旁邊。',
+  vals:V('往前','40','Shift+↓ 4 下'),
+  todo:['點模板，<kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製。','按 <kbd>Shift</kbd>＋<kbd>↓</kbd> <b>4 下</b>，往前 40，放在原本模板的前面。','後面那個做<b>第一面</b>，前面那個做<b>第二面</b>。'],
+  check:'畫面上有兩個一樣的模板，一前一後。'},
+ s9:{t:'第一面：放名字',min:10,fig:'text',cap:'文字 46 × 19 放在凹槽正中間，文字的頂面和外框一樣高（離地 2）。',goal:'文字高 2、放在地上，頂面就剛好跟外框一樣高。',
+  vals:V('寬','46')+V('長','19')+V('高','2')+V('抬高','0','不用抬'),
+  todo:['從「基本造型」拖出<b>「文字」</b>，放在後面的模板旁邊。','在右上角面板的文字欄位輸入<b>你的名字</b>，字型選<b>「多國語言」</b>。','角落白點 → <kbd>Tab</kbd> 打 <span class="n">46</span> → <kbd>Tab</kbd> 打 <span class="n">19</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點<b>模板的外框</b>，<kbd>Shift</kbd>＋點文字，按 <kbd>L</kbd> 等黑點 → <b>先點模板</b> → 點<b>下排中間</b>、<b>左排中間</b>。','選模板＋文字，<kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。這是<b>第一面</b>。'],
+  check:'名字在凹槽正中間，字的頂面跟外框一樣高；第一面還是 <span class="n">60 × 30 × 2</span>。',warn:'中文變成方框？字型沒有選「多國語言」。'},
+ s10:{t:'第二面：放班級座號',min:6,full:true,goal:'在前面那個模板上，用一樣的方法放第二面的文字。',
+  vals:V('寬','46')+V('長','19')+V('高','2'),
+  todo:['再拖一個<b>「文字」</b>，輸入第二面的內容（例：<b>601-07</b>，或老師指定的文字），字型選<b>「多國語言」</b>。','角落白點 → <kbd>Tab</kbd> 打 <span class="n">46</span> → <kbd>Tab</kbd> 打 <span class="n">19</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點<b>前面模板的外框</b>，<kbd>Shift</kbd>＋點文字，<kbd>L</kbd> → <b>先點模板</b> → <b>下排中間</b>、<b>左排中間</b>。','選前面模板＋文字，<kbd>Ctrl</kbd>＋<kbd>G</kbd>。這是<b>第二面</b>。'],
+  check:'兩面都做好了，各自是 <span class="n">60 × 30 × 2</span>。'},
+ s11:{t:'第二面翻面 180°',min:6,full:true,goal:'第二面要翻過來（字朝下），疊在第一面下面。要用「旋轉」，<b>不能用鏡射</b>，鏡射會讓字變成反的。',
+  vals:V('旋轉','180°','繞前後方向的軸'),
+  todo:['點左上角視角方塊的<b>「前」</b>，從正面看。','點第二面。名牌正面會出現一個<b>彎曲的箭頭</b>（讓名牌像方向盤一樣轉的那一個）。','按住彎曲箭頭拖曳，滑鼠靠近<b>內圈</b>時每 22.5° 跳一格，拖到顯示 <span class="n">180</span> 放開。名牌整個翻過來，字朝下。','按 <kbd>D</kbd>，讓第二面落回工作平面。','點小房子回到主視圖。'],
+  check:'從上面看第二面，看到的是平平的底面；從下面看（右鍵拖曳轉到底下），文字是正的、不是反的。',warn:'字變成鏡子裡的反字，代表用了 <kbd>M</kbd> 鏡射。<kbd>Ctrl</kbd>＋<kbd>Z</kbd>，改用旋轉。'},
+ s12:{t:'合體成雙面名牌',min:6,fig:'stack',figVB:'0 0 600 320',cap:'從前面切開看：第二面在下（字朝下），第一面在上（字朝上），總厚 4。',goal:'第一面抬高 2，疊在第二面上，對齊後群組。',
+  vals:V('第一面抬高','2','Ctrl+↑ 2 下')+V('完成','60 × 30 × 4'),
+  todo:['點第一面，按 <kbd>Ctrl</kbd>＋<kbd>↑</kbd> <b>2 下</b>，離地 2。','點<b>第二面</b>，<kbd>Shift</kbd>＋點第一面，按 <kbd>L</kbd> 等黑點 → <b>先點第二面</b> → 點<b>下排中間</b>、<b>左排中間</b>。第一面移到第二面正上方。','<kbd>Ctrl</kbd>＋<kbd>A</kbd> 全選（2 個形狀），<kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。','滑鼠移到白點檢查尺寸。'],
+  check:'完成！尺寸 <span class="n">60 × 30 × 4</span>，上面是名字，翻過來是班級座號。'}
 };
 
-/* ================= 進度 ================= */
-const KEY='namecard.v1';
+/* ===== 進度 ===== */
+const KEY='namecard.v2';
 let state={}; try{state=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){state={}}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}};
 const ORDER=LESSONS.flatMap(L=>L.steps);
-function prog(){const n=ORDER.filter(id=>state[id]).length;$('#progBar').style.width=(n/ORDER.length*100)+'%'}
-
+const prog=()=>{$('#progBar').style.width=(ORDER.filter(id=>state[id]).length/ORDER.length*100)+'%'};
 let num=0;
-$('#lessons').innerHTML=LESSONS.map(L=>`<section id="${L.id}"><div class="lesson-h"><span class="tag">${L.tag}</span><h2>${L.title}</h2><span class="meta" style="color:var(--sub);font-size:14px">約 ${L.steps.reduce((a,id)=>a+STEPS[id].min,0)} 分鐘</span></div>`+
-  L.steps.map(id=>{const s=STEPS[id];num++;const hasFig=!!s.fig;
-    return `<article class="step${state[id]?' done':''}" id="${id}"><header><div class="sn">${num}</div><div><h3>${s.t}</h3><div class="meta">約 ${s.min} 分鐘</div></div></header>
-    <div class="body${hasFig?'':' full'}"><div>
-      <p class="goal">${s.goal}</p>
-      ${s.vals?`<div class="vals">${s.vals}</div>`:''}
-      <ol class="todo" style="margin-top:10px">${s.todo.map(t=>`<li>${t}</li>`).join('')}</ol>
-      ${s.check?`<div class="check"><b>✅ 檢查</b>${s.check}</div>`:''}
-      ${s.tip?`<div class="tip"><b>💡</b>${s.tip}</div>`:''}
-      ${s.warn?`<div class="warn"><b>⚠️</b>${s.warn}</div>`:''}
-    </div>${hasFig?`<figure class="fig">${svgTag(s.fig,s.cap,s.figVB)}<figcaption>${s.cap}</figcaption></figure>`:''}</div>
-    <label class="done-row"><input type="checkbox" data-step="${id}" ${state[id]?'checked':''}> 我完成這一步了</label></article>`}).join('')+`</section>`).join('');
+$('#lessons').innerHTML=LESSONS.map(L=>`<section id="${L.id}"><div class="lesson-h"><span class="tag">${L.tag}</span><h2>${L.title}</h2><span style="color:var(--sub);font-size:14px">約 ${L.steps.reduce((a,id)=>a+STEPS[id].min,0)} 分鐘</span></div>`+
+ L.steps.map(id=>{const s=STEPS[id];num++;const f=!!s.fig;
+  return `<article class="step${state[id]?' done':''}" id="${id}"><header><div class="sn">${num}</div><div><h3>${s.t}</h3><div class="meta">約 ${s.min} 分鐘</div></div></header>
+  <div class="body${f?'':' full'}"><div><p class="goal">${s.goal}</p>${s.vals?`<div class="vals">${s.vals}</div>`:''}
+  <ol class="todo" style="margin-top:10px">${s.todo.map(t=>`<li>${t}</li>`).join('')}</ol>
+  ${s.check?`<div class="check"><b>✅ 檢查</b>${s.check}</div>`:''}${s.tip?`<div class="tip"><b>💡</b>${s.tip}</div>`:''}${s.warn?`<div class="warn"><b>⚠️</b>${s.warn}</div>`:''}</div>
+  ${f?`<figure class="fig"><svg viewBox="${s.figVB||'0 0 600 330'}" role="img" aria-label="${s.cap}">${FIG[s.fig]()}</svg><figcaption>${s.cap}</figcaption></figure>`:''}</div>
+  <label class="done-row"><input type="checkbox" data-step="${id}" ${state[id]?'checked':''}> 我完成這一步了</label></article>`}).join('')+'</section>').join('');
 document.querySelectorAll('[data-step]').forEach(cb=>cb.addEventListener('change',e=>{const id=e.target.dataset.step;state[id]=e.target.checked;save();document.getElementById(id).classList.toggle('done',e.target.checked);prog()}));
 prog();
 
-/* ================= 名字預覽 ================= */
-function widthFor(n){return n<=2?36:45}
-function renderName(){
-  const raw=$('#nameIn').value.trim(); const t=raw||'王小明'; const n=[...t].length; const w=widthFor(n);
-  $('#nameSvg').innerHTML=svgWrap(plate()+recess()+`<rect x="${X(-w/2)}" y="${Y(10)}" width="${w*S}" height="${20*S}" fill="none" stroke="var(--text)" stroke-width="1.5" stroke-dasharray="5 4"/>`+nameText(t.replace(/[<>&]/g,''),w)+dimH(-w/2,w/2,10,String(w),-46)+dimV(-10,10,w/2,'20',(28-w/2)*S+16));
-  const note=n>4?'<br><span style="color:var(--warn)">超過 4 個字，字會很擠。請跟老師討論。</span>':'';
-  $('#nameOut').innerHTML=`<b>${n}</b> 個字 → 文字尺寸打<br><span class="big">${w} × 20 × 1</span><br><span style="color:var(--sub);font-size:14px">寬 ${w}、長 20、高 1，抬高 1</span>${note}`;
+/* ===== 兩面預覽 ===== */
+const esc=t=>t.replace(/[<>&"]/g,'');
+function renderNames(){
+ const a=esc($('#nameA').value.trim()||'王小明'), b=esc($('#nameB').value.trim()||'601-07');
+ $('#nameSvg').innerHTML=DEFS+plate(-10)+recess(-10)+txt(a,46,19,-10)+`<text x="20" y="40" class="lb">第一面</text>`+plate(300)+recess(300)+txt(b,46,19,300)+`<text x="20" y="350" class="lb">第二面</text>`;
 }
-$('#nameIn').addEventListener('input',renderName); renderName();
+['#nameA','#nameB'].forEach(s=>$(s).addEventListener('input',renderNames)); renderNames();
 
-/* ================= 最後檢查 ================= */
-const FINAL=['整片尺寸是 60 × 30 × 2（滑鼠移到白點上看）','名字在凹槽正中間，沒有超出外框','名字是我的名字，沒有錯字、沒有方框','名字的頂面跟外框一樣高，沒有凸出來','畫面上只有名牌，沒有多的零件','檔名是「座號_姓名.stl」'];
+/* ===== 最後檢查 ===== */
+const FINAL=['完成的名牌是 60 × 30 × 4（滑鼠移到白點上看）','四個角都是圓角','第一面的字在凹槽正中間，沒有錯字、沒有方框','第二面翻過來看，字是正的（不是鏡子裡的反字）','畫面上只有名牌，沒有多的零件','檔名是「座號_姓名.stl」'];
 $('#finalCheck').innerHTML=FINAL.map((f,i)=>`<li><input type="checkbox" id="fc${i}" ${state['fc'+i]?'checked':''}><label for="fc${i}">${f}</label></li>`).join('');
 document.querySelectorAll('#finalCheck input').forEach(cb=>cb.addEventListener('change',e=>{state[e.target.id]=e.target.checked;save()}));
 
-/* ================= 常見錯誤 ================= */
+/* ===== 常見錯誤 ===== */
 const MIS=[
- ['名牌變成直的（30 × 60）','寬和長打反了。點錯的零件，重新打：<b>第 1 個數字是左右</b>。'],
+ ['底板變成直的（30 × 60）','寬和長打反了：<b>第 1 個數字是左右 60</b>。'],
  ['數字打不進去','點白點後要按 <kbd>Tab</kbd>，數字變藍才能打，打完按 <kbd>Enter</kbd>。'],
- ['對齊後，A 或 B 跑掉了','沒有「先點基準」。<kbd>Ctrl</kbd>＋<kbd>Z</kbd>，重新按 <kbd>L</kbd>，第一下點 A（或 B）。'],
- ['橢圓跑到奇怪的地方','左右要對 A、前後要對 B，基準選錯了。<kbd>Ctrl</kbd>＋<kbd>Z</kbd> 重來。'],
- ['群組後不是 60 × 30','有零件打錯數字或沒對齊。<kbd>Ctrl</kbd>＋<kbd>Shift</kbd>＋<kbd>G</kbd> 拆開，一個一個檢查。'],
- ['底板整個被挖穿','孔沒有抬高 1，或點到右排黑點。選孔，看離地是不是 1。'],
- ['外框一邊寬一邊窄','孔沒有對齊置中。選底板＋孔，L，先點底板，點下排中間、左排中間。'],
- ['名字凸出來或陷下去','文字高要 1、抬高 1，頂面才會在 2。用頂端白點檢查。'],
+ ['群組後角沒有變圓，反而多出方塊','切角器沒有改成「孔」。拆開群組，選切角器按「孔」。'],
+ ['圓角缺口在錯的位置','鏡射方向選錯，或方向鍵不是在主視圖按的。<kbd>Ctrl</kbd>＋<kbd>Z</kbd> 重做那一步。'],
+ ['方向鍵移動的方向怪怪的','先點左邊小房子回到主視圖再按。'],
+ ['對齊後底板跑掉','沒有「先點基準」。<kbd>Ctrl</kbd>＋<kbd>Z</kbd>，重新按 <kbd>L</kbd>，第一下點底板（或模板）。'],
+ ['底板被挖穿','凹槽的孔沒有抬高 1，或點到右排黑點。'],
  ['中文變成方框','字型要選「多國語言」。'],
- ['黑點閃一下就不見','按 L 之後等 1～2 秒再點。']
+ ['第二面的字是反的','用了鏡射。要用旋轉 180°。'],
+ ['合體後不是 60 × 30 × 4','第一面沒有抬高 2，或兩面沒有對齊置中。']
 ];
 $('#misBox').innerHTML=MIS.map(m=>`<div class="mis"><b>❌ ${m[0]}</b><p>✅ ${m[1]}</p></div>`).join('');
 })();
