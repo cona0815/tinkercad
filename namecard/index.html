@@ -1,7 +1,7 @@
 <!doctype html>
-<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.1 2026-10-22
+<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.2 2026-10-22
      依同事 Codeblocks 專案「copy of Cool Kup-Snaget」的流程改寫成一般 3D 設計操作：
-     切角器（Ø10 圓柱孔，側 20＋20×20 方塊）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
+     十字方塊 60×20＋50×30＋四角 Ø10 圓柱（側 20，等同同事的切角器）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
      → 第一面、第二面文字 46×19×2 → 第二面翻面 180° → 疊成 60×30×4 雙面名牌。 -->
 <html lang="zh-Hant">
 <head>
@@ -145,7 +145,7 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
     <div class="eyebrow">TINKERCAD 3D 設計 ・ 五、六年級 ・ 2 節課</div>
     <h1>做一片自己的<br>雙面 3D 名牌</h1>
     <p>全班的名牌要一起送去 3D 列印，所以<b>每個人的尺寸都要一模一樣</b>。正面放名字、背面放班級，兩面疊起來剛好 <span class="n">60 × 30 × 4 mm</span>。每個數字都照網頁打，就不會出錯。</p>
-    <div class="chips"><span class="chip">📐 全部用打數字的方式</span><span class="chip">✂️ 自己做「切角器」切出圓角</span><span class="chip">🔄 兩面文字、翻面合體</span></div>
+    <div class="chips"><span class="chip">📐 全部用打數字的方式</span><span class="chip">🧩 方塊＋圓柱拼出圓角</span><span class="chip">🔄 兩面文字、翻面合體</span></div>
   </div>
   <figure class="drawing"><svg id="heroSvg" viewBox="0 0 600 330" role="img" aria-label="名牌第一面完成圖與尺寸"></svg><figcaption>第一面（上視圖）。紅色數字是尺寸，單位都是 mm（毫米）。</figcaption></figure>
 </div>
@@ -161,8 +161,9 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
       <tr><td>每一面（模板）</td><td class="v">60 × 30 × 2</td><td>四個角是半徑 5 的圓角</td></tr>
       <tr><td>凹槽</td><td class="v">54.96 × 24.9 × 深 1</td><td>底部還有 1 mm 厚；外框寬約 2.5</td></tr>
       <tr><td>文字（兩面都一樣）</td><td class="v">46 × 19 × 2</td><td>放在凹槽正中間，頂面跟外框一樣高</td></tr>
-      <tr><td>切角器的圓柱（孔）</td><td class="v">10 × 10 × 2</td><td>直徑 10＝半徑 5；性質：側 20、斜切 0、線段 1</td></tr>
-      <tr><td>切角器的方塊</td><td class="v">20 × 20 × 2</td><td>和圓柱群組後變成孔</td></tr>
+      <tr><td>方塊 A</td><td class="v">60 × 20 × 2</td><td>十字的「橫」</td></tr>
+      <tr><td>方塊 B</td><td class="v">50 × 30 × 2</td><td>十字的「直」</td></tr>
+      <tr><td>四角的圓柱（4 個）</td><td class="v">10 × 10 × 2</td><td>直徑 10＝半徑 5；性質：側 20、斜切 0、線段 1</td></tr>
     </tbody>
   </table></div>
   <div class="axis">
@@ -176,7 +177,7 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
 <section id="flow">
   <h2 class="sec">🧭 整個流程</h2>
   <p class="lead">先做一個「模板」，再複製成兩面、各放文字，最後把第二面翻過來疊在下面。</p>
-  <div class="card"><svg id="flowSvg" viewBox="0 0 900 190" role="img" aria-label="流程圖：切角器、圓角底板、模板、兩面文字、合體"></svg></div>
+  <div class="card"><svg id="flowSvg" viewBox="0 0 900 190" role="img" aria-label="流程圖：十字與圓柱、圓角底板、模板、兩面文字、合體"></svg></div>
   <div class="card namebox" style="margin-top:14px">
     <div>
       <label for="nameA">第一面（名字）</label>
@@ -193,29 +194,29 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
 <!-- 一開始的數字 -->
 <section id="start">
   <h2 class="sec">📍 一開始最重要的數字</h2>
-  <p class="lead">圓角做得對不對，全看切角器放的位置。先把這張圖看懂再開始做。</p>
+  <p class="lead">圓角底板是用 2 個方塊和 4 個圓柱「拼」起來的。每個零件的位置都用對齊決定，不用按方向鍵。</p>
   <div class="card namebox" style="align-items:start">
-    <figure class="fig" style="margin:0"><svg id="cornerSvg" viewBox="0 0 600 420" role="img" aria-label="右後角放大圖"></svg><figcaption>右後角放大圖（1 格＝1 mm）。黃色是底板，灰色是切角器（孔）。</figcaption></figure>
+    <figure class="fig" style="margin:0"><svg id="cornerSvg" viewBox="0 0 600 420" role="img" aria-label="右後角放大圖"></svg><figcaption>右後角放大圖（1 格＝1 mm）。藍色是方塊 A，橘色是方塊 B，綠色是圓柱。</figcaption></figure>
     <div style="font-size:16px">
-      <p style="margin-top:0"><b>切角器只蓋住底板角落 <span class="n">5 × 5</span> 的小正方形。</b>缺口的四分之一圓（半徑 <span class="n">5</span>）不會被挖掉，所以留下圓角。</p>
+      <p style="margin-top:0"><b>A 比 B 寬 10、B 比 A 長 10，兩個疊成十字，四個角各缺一塊 5 × 5。</b>圓柱直徑 10，剛好把缺口補成圓角。</p>
       <ul style="padding-left:1.2em;margin:0 0 10px">
-        <li>切角器大小：<span class="n">20 × 20 × 2</span></li>
-        <li>缺口圓心：底板的角往內 <span class="n">5</span>、往內 <span class="n">5</span></li>
-        <li>切角器要比底板<b>多出去 15</b>：20 − 5 ＝ 15</li>
+        <li>方塊 A：<span class="n">60 × 20 × 2</span>（左右到頭）</li>
+        <li>方塊 B：<span class="n">50 × 30 × 2</span>（前後到頭）</li>
+        <li>圓柱：<span class="n">10 × 10 × 2</span>，中心在 (25, 10)</li>
       </ul>
-      <p style="margin:0"><b>為什麼移 15？</b>先讓切角器的右邊對齊底板右邊，它整個在底板裡面。再往右移 15，就只剩 5 mm 留在底板上。往後也一樣。</p>
+      <p style="margin:0"><b>圓柱怎麼放準？</b>它的<b>右邊</b>對齊 A 的右邊（30），<b>後面</b>對齊 B 的後面（15）。圓柱寬 10，所以中心自動落在 30 − 5 ＝ 25、15 − 5 ＝ 10。</p>
     </div>
   </div>
   <div class="card spec" style="margin-top:14px"><table>
-    <thead><tr><th>切角器</th><th>左右範圍</th><th>前後範圍</th><th>缺口圓心</th><th>怎麼放</th></tr></thead>
+    <thead><tr><th>圓柱</th><th>中心</th><th>左右對齊</th><th>前後對齊</th></tr></thead>
     <tbody>
-      <tr><td><b>① 右後</b></td><td class="v">25 ～ 45</td><td class="v">10 ～ 30</td><td class="v">(25, 10)</td><td>對齊右邊、後面 → 往右 15、往後 15</td></tr>
-      <tr><td><b>② 右前</b></td><td class="v">25 ～ 45</td><td class="v">−30 ～ −10</td><td class="v">(25, −10)</td><td>複製 ① → 前後鏡射 → 往前 40</td></tr>
-      <tr><td><b>③ 左後</b></td><td class="v">−45 ～ −25</td><td class="v">10 ～ 30</td><td class="v">(−25, 10)</td><td>複製 ①② → 左右鏡射 → 往左 70</td></tr>
-      <tr><td><b>④ 左前</b></td><td class="v">−45 ～ −25</td><td class="v">−30 ～ −10</td><td class="v">(−25, −10)</td><td>（和 ③ 一起完成）</td></tr>
+      <tr><td><b>① 右後</b></td><td class="v">(25, 10)</td><td>右邊 ＝ A 的右邊</td><td>後面 ＝ B 的後面</td></tr>
+      <tr><td><b>② 左後</b></td><td class="v">(−25, 10)</td><td>左邊 ＝ A 的左邊</td><td>（複製 ①，前後已經對了）</td></tr>
+      <tr><td><b>③ 右前</b></td><td class="v">(25, −10)</td><td>（複製 ①②，左右已經對了）</td><td>前面 ＝ B 的前面</td></tr>
+      <tr><td><b>④ 左前</b></td><td class="v">(−25, −10)</td><td>（和 ③ 一起完成）</td><td>前面 ＝ B 的前面</td></tr>
     </tbody>
   </table>
-  <p style="font-size:14px;color:var(--sub);margin:8px 0 0">座標以底板中心為 (0, 0)，單位 mm。底板範圍：左右 −30～30、前後 −15～15。這組數字和同事 Codeblocks 程式的「移動 (25, 10)」「移動 (0, −40)」「移動 (−70, 0)」完全一樣。</p></div>
+  <p style="font-size:14px;color:var(--sub);margin:8px 0 0">座標以底板中心為 (0, 0)，單位 mm。做出來的形狀和同事 Codeblocks 用「切角器」切出來的完全一樣（60 × 30、四角半徑 5）。</p></div>
 </section>
 
 <div id="lessons"></div>
@@ -254,11 +255,7 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
     <div class="spec"><table>
       <thead><tr><th>Codeblocks 積木</th><th>本頁對應步驟</th></tr></thead>
       <tbody>
-        <tr><td>圓柱（孔）半徑 5 高 2 ＋ 方塊 20×20×2 移動 (10,10)，群組成孔</td><td>步驟 2：切角器</td></tr>
-        <tr><td>切角器移動 (25,10)</td><td>步驟 3：對齊右邊、後面，再移 15、15</td></tr>
-        <tr><td>複製 → 繞 X 軸 180° → 移動 (0,−40)</td><td>步驟 4：複製 → 前後鏡射 → 往前 40</td></tr>
-        <tr><td>全選複製 → 繞 Y 軸 180° → 移動 (−70,0)</td><td>步驟 5：複製兩個 → 左右鏡射 → 往左 70</td></tr>
-        <tr><td>方塊 60×30×2，全選群組</td><td>步驟 3、6：底板與群組</td></tr>
+        <tr><td>圓柱（孔）半徑 5 ＋ 方塊 20×20 做切角器，移動 (25,10)、複製鏡射到四角，再和方塊 60×30×2 群組</td><td>步驟 2～6：改用「拼」的——方塊 60×20、50×30 疊成十字，四角各補一個 Ø10 圓柱，只用對齊、不用方向鍵。形狀和切出來的完全相同（已用程式比對，差異面積 0）</td></tr>
         <tr><td>複製成孔 → 比例 (0.916, 0.83, 0.5) → 移動 Z 0.5 → 群組</td><td>步驟 7：孔 54.96×24.9×1，抬高 1</td></tr>
         <tr><td>文字（多國語言，高 2）比例 (0.6, 0.7, 1) ＋ 模板 → 群組 → 移動 Z 2</td><td>步驟 9、12：文字 46×19×2，第一面抬高 2</td></tr>
         <tr><td>第二面：文字＋模板 → 群組 → 繞 Y 軸 180°</td><td>步驟 10、11：第二面翻面</td></tr>
@@ -270,7 +267,7 @@ footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
   </div>
 </section>
 
-<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.1（2026-10-22）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
+<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v2.2（2026-10-22）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
 </main>
 
 <script>
@@ -302,20 +299,11 @@ const W=(inner,vb='0 0 600 330')=>`<svg viewBox="${vb}" role="img">${DEFS}${inne
 
 const FIG={
  hero:()=>DEFS+plate()+recess()+txt('王小明')+dimH(-30,30,15,'60')+dimV(-15,15,30,'30')+`<text x="${X(-30)}" y="${Y(-15)+36}" class="lbs">每一面厚 2，兩面疊起來 4</text>`,
- cut:()=>{ // 放大畫：方塊 20×20，圓柱在左前角
-   const s=11,ox=180,oy=262, P=(x,y)=>[ox+x*s, oy-y*s];
-   const [bx,by]=P(0,20), [cx,cy]=P(0,0);
-   return DEFS+`<defs><mask id="cm"><rect width="600" height="330" fill="#fff"/><circle cx="${cx}" cy="${cy}" r="${5*s}" fill="#000"/></mask></defs>`+
-   `<rect x="${bx}" y="${by}" width="${20*s}" height="${20*s}" fill="${alpha('pB',30)}" stroke="var(--pB)" stroke-width="2" mask="url(#cm)"/>`+
-   `<circle cx="${cx}" cy="${cy}" r="${5*s}" fill="${alpha('hole',30)}" stroke="var(--hole)" stroke-width="2" stroke-dasharray="6 4"/>`+
-   `<text x="${P(10,10)[0]}" y="${P(10,10)[1]+5}" text-anchor="middle" class="lb">方塊 20 × 20</text><text x="${cx}" y="${cy+5}" text-anchor="middle" class="lb">孔</text>`+
-   `<g stroke="var(--dim)" stroke-width="1.5"><line x1="${bx}" y1="${by-18}" x2="${bx+20*s}" y2="${by-18}" marker-start="url(#ar)" marker-end="url(#ar)"/><line x1="${cx-5*s}" y1="${cy+22}" x2="${cx+5*s}" y2="${cy+22}" marker-start="url(#ar)" marker-end="url(#ar)"/></g>`+
-   `<text x="${bx+10*s}" y="${by-24}" text-anchor="middle" class="dl">20</text><text x="${cx}" y="${cy+40}" text-anchor="middle" class="dl">Ø10</text>`+
-   `<text x="430" y="120" class="lbs">圓柱的中心</text><text x="430" y="138" class="lbs">＝方塊的左前角</text><text x="430" y="176" class="lbs">群組後整個改成「孔」</text><line x1="425" y1="125" x2="${cx+6}" y2="${cy-6}" stroke="var(--sub)" stroke-dasharray="3 3"/>`;
- },
- place:()=>DEFS+'<g transform="translate(300 165) scale(0.62) translate(-300 -165)">'+rect(-30,-15,30,15,alpha('pA',22),C('pA'))+`<text x="${X(-8)}" y="${Y(0)+5}" text-anchor="middle" class="lb">底板 60 × 30</text>`+cutter(25,10,25,10)+dimH(25,30,10,'5',30)+dimV(10,15,30,'5',40)+dimH(-30,30,-15,'60',36)+'</g>'+`<text x="12" y="22" class="lbs">切角器：右邊、後面先對齊底板，再往右 15、往後 15</text>`+axes,
- four:()=>DEFS+'<g transform="translate(300 165) scale(0.62) translate(-300 -165)">'+rect(-30,-15,30,15,alpha('pA',22),C('pA'))+cutter(25,10,25,10)+cutter(25,-30,25,-10,true)+cutter(-45,10,-25,10,true)+cutter(-45,-30,-25,-10,true)+`<text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">四個角都有切角器</text></g>`,
- round:()=>DEFS+plate()+dimH(-30,30,15,'60')+dimV(-15,15,30,'30')+`<circle cx="${X(25)}" cy="${Y(10)}" r="3" fill="var(--dim)"/><text x="${X(18)}" y="${Y(4)}" class="dl" text-anchor="middle">R5</text><line x1="${X(25)}" y1="${Y(10)}" x2="${X(25+R*0.7071)}" y2="${Y(10+R*0.7071)}" stroke="var(--dim)" stroke-width="1.5"/><text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">圓角底板 60 × 30 × 2</text>`,
+ cross:()=>DEFS+rect(-30,-10,30,10,alpha('pA',25),C('pA'))+rect(-25,-15,25,15,alpha('pB',30),C('pB'))+`<text x="${X(-27.5)}" y="${Y(0)+5}" text-anchor="middle" class="lb">A</text><text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">B</text>`+dimH(-30,30,-10,'60',40)+dimH(-25,25,15,'50')+dimV(-15,15,25,'30',62)+dimV(-10,10,-30,'20',-22)+axes,
+ cyl1:()=>DEFS+rect(-30,-10,30,10,alpha('pA',18),C('pA'))+rect(-25,-15,25,15,alpha('pB',22),C('pB'))+`<circle cx="${X(25)}" cy="${Y(10)}" r="${5*S}" fill="${alpha('pE',40)}" stroke="var(--pE)" stroke-width="2"/><text x="${X(25)}" y="${Y(10)+5}" text-anchor="middle" class="lb">①</text>`+`<g class="lbs"><text x="${X(30)}" y="${Y(-13)}" text-anchor="end">① 右邊對齊 A 的右邊</text><text x="${X(-30)}" y="${Y(13)}">② 後面對齊 B 的後面</text></g>`+axes,
+ cyl2:()=>DEFS+rect(-30,-10,30,10,alpha('pA',18),C('pA'))+rect(-25,-15,25,15,alpha('pB',22),C('pB'))+[[25,10,0],[-25,10,1]].map(c=>`<circle cx="${X(c[0])}" cy="${Y(c[1])}" r="${5*S}" fill="${alpha('pE',40)}" stroke="var(--pE)" stroke-width="2" ${c[2]?'stroke-dasharray="6 4"':''}/>`).join('')+`<text x="${X(-25)}" y="${Y(10)+5}" text-anchor="middle" class="lb">②</text><text x="${X(-30)}" y="${Y(-13)}" class="lbs">左邊對齊 A 的左邊</text>`+axes,
+ cyl4:()=>DEFS+rect(-30,-10,30,10,alpha('pA',18),C('pA'))+rect(-25,-15,25,15,alpha('pB',22),C('pB'))+[[25,10,0],[-25,10,0],[25,-10,1],[-25,-10,1]].map(c=>`<circle cx="${X(c[0])}" cy="${Y(c[1])}" r="${5*S}" fill="${alpha('pE',40)}" stroke="var(--pE)" stroke-width="2" ${c[2]?'stroke-dasharray="6 4"':''}/>`).join('')+`<text x="${X(0)}" y="${Y(-15)+22}" text-anchor="middle" class="lbs">③④ 前面對齊 B 的前面</text>`+axes,
+ round:()=>DEFS+rect(-30,-10,30,10,'none',alpha('pA',60),'stroke-dasharray="4 4"')+rect(-25,-15,25,15,'none',alpha('pB',60),'stroke-dasharray="4 4"')+plate()+dimH(-30,30,15,'60')+dimV(-15,15,30,'30')+`<circle cx="${X(25)}" cy="${Y(10)}" r="3" fill="var(--dim)"/><line x1="${X(25)}" y1="${Y(10)}" x2="${X(25+R*0.7071)}" y2="${Y(10+R*0.7071)}" stroke="var(--dim)" stroke-width="1.5"/><text x="${X(19)}" y="${Y(6)}" class="dl" text-anchor="middle">R5</text><text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">圓角底板 60 × 30 × 2</text>`,
  hole:()=>DEFS+plate()+recess()+dimH(-27.48,27.48,12.45,'54.96',-44)+dimV(-12.45,12.45,27.48,'24.9',42)+`<text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">孔 54.96 × 24.9 × 1，抬高 1</text>`,
  text:()=>DEFS+plate()+recess()+`<rect x="${X(-23)}" y="${Y(9.5)}" width="${46*S}" height="${19*S}" fill="none" stroke="var(--text)" stroke-width="1.5" stroke-dasharray="5 4"/>`+txt('王小明')+dimH(-23,23,9.5,'46',-38)+dimV(-9.5,9.5,23,'19',52),
  stack:()=>{ // 前視剖面
@@ -330,33 +318,27 @@ const FIG={
 $('#heroSvg').innerHTML=FIG.hero();
 
 
-/* 右後角放大圖：x 15..47, y 0..32 mm */
+/* 右後角放大圖：x 15..35, y 0..20 mm */
 (function(){
- const s=11.5, ox=60, oy=395, P=(x,y)=>[ox+(x-15)*s, oy-(y)*s];
- const sy=s; let g=DEFS;
- for(let x=15;x<=47;x++){const [a]=P(x,0);g+=`<line x1="${a}" y1="${P(0,0)[1]}" x2="${a}" y2="${P(0,32)[1]}" stroke="var(--line)" stroke-width="${x%5?0.6:1.2}"/>`}
- for(let y=0;y<=32;y++){const [,b]=P(15,y);g+=`<line x1="${P(15,0)[0]}" y1="${b}" x2="${P(47,0)[0]}" y2="${b}" stroke="var(--line)" stroke-width="${y%5?0.6:1.2}"/>`}
- // 底板（到 x30,y15）
- const [px0,py1]=P(15,15),[px1,py0]=P(30,0);
- g+=`<rect x="${px0}" y="${py1}" width="${px1-px0}" height="${py0-py1}" fill="${alpha('pB',35)}" stroke="var(--pB)" stroke-width="2.5"/>`;
- // 切角器 x25..45 y10..30，缺口圓心 (25,10) r5
- const [cx0,cy1]=P(25,30),[cx1,cy0]=P(45,10),[nx,ny]=P(25,10);
- g+=`<defs><mask id="cmk"><rect width="600" height="420" fill="#fff"/><ellipse cx="${nx}" cy="${ny}" rx="${5*s}" ry="${5*sy}" fill="#000"/></mask></defs><rect x="${cx0}" y="${cy1}" width="${cx1-cx0}" height="${cy0-cy1}" fill="${alpha('hole',45)}" stroke="var(--hole)" stroke-width="2" mask="url(#cmk)"/><ellipse cx="${nx}" cy="${ny}" rx="${5*s}" ry="${5*sy}" fill="none" stroke="var(--dim)" stroke-width="2" stroke-dasharray="4 3"/>`;
- // 被切掉的 5×5 區（底板內、圓外）
- const [ox0,oy1]=P(25,15),[ox1,oy0]=P(30,10);
- g+=`<rect x="${ox0}" y="${oy1}" width="${ox1-ox0}" height="${oy0-oy1}" fill="none" stroke="var(--warn)" stroke-width="2.5"/>`;
- g+=`<circle cx="${nx}" cy="${ny}" r="4" fill="var(--dim)"/><text x="${nx-8}" y="${ny+20}" text-anchor="end" class="dl">圓心 (25, 10)</text><line x1="${nx}" y1="${ny}" x2="${nx+5*s*0.707}" y2="${ny-5*sy*0.707}" stroke="var(--dim)" stroke-width="2"/><text x="${nx+18}" y="${ny-16}" class="dl">R5</text>`;
- // 標尺
+ const s=17, ox=90, oy=380, P=(x,y)=>[ox+(x-15)*s, oy-y*s]; let g=DEFS;
+ for(let x=15;x<=35;x++){const [a]=P(x,0);g+=`<line x1="${a}" y1="${P(0,0)[1]}" x2="${a}" y2="${P(0,20)[1]}" stroke="var(--line)" stroke-width="${x%5?0.6:1.2}"/>`}
+ for(let y=0;y<=20;y++){const [,b]=P(15,y);g+=`<line x1="${P(15,0)[0]}" y1="${b}" x2="${P(35,0)[0]}" y2="${b}" stroke="var(--line)" stroke-width="${y%5?0.6:1.2}"/>`}
+ const R_=(x0,y0,x1,y1,f,st)=>{const [a,b]=P(x0,y1),[c,d]=P(x1,y0);return `<rect x="${a}" y="${b}" width="${c-a}" height="${d-b}" fill="${f}" stroke="${st}" stroke-width="2.5"/>`};
+ g+=R_(15,0,30,10,alpha('pA',30),C('pA'))+R_(15,0,25,15,alpha('pB',35),C('pB'));
+ const [cx,cy]=P(25,10); g+=`<circle cx="${cx}" cy="${cy}" r="${5*s}" fill="${alpha('pE',40)}" stroke="var(--pE)" stroke-width="2.5"/><circle cx="${cx}" cy="${cy}" r="4" fill="var(--dim)"/>`;
+ // 對齊線
+ const [x30]=P(30,0),[,y15]=P(0,15);
+ g+=`<line x1="${x30}" y1="${P(0,0)[1]}" x2="${x30}" y2="${P(0,20)[1]}" stroke="var(--dim)" stroke-width="2" stroke-dasharray="6 4"/><line x1="${P(15,0)[0]}" y1="${y15}" x2="${P(35,0)[0]}" y2="${y15}" stroke="var(--dim)" stroke-width="2" stroke-dasharray="6 4"/>`;
  const lab=(x,y,t,a='middle')=>`<text x="${x}" y="${y}" text-anchor="${a}" class="dl">${t}</text>`;
- g+=lab(P(30,0)[0],P(0,0)[1]+18,'30')+lab(P(25,0)[0],P(0,0)[1]+18,'25')+lab(P(45,0)[0],P(0,0)[1]+18,'45')+lab(P(15,10)[0]-6,P(0,10)[1]+5,'10','end')+lab(P(15,15)[0]-6,P(0,15)[1]+5,'15','end')+lab(P(15,30)[0]-6,P(0,30)[1]+5,'30','end');
- g+=`<text x="${P(20,0)[0]}" y="${P(0,7)[1]}" text-anchor="middle" class="lb">底板</text><text x="${P(37,0)[0]}" y="${P(0,22)[1]}" text-anchor="middle" class="lb">切角器（孔）</text><text x="${P(37,0)[0]}" y="${P(0,22)[1]+18}" text-anchor="middle" class="lbs">20 × 20</text>`;
- g+=`<text x="${ox1+8}" y="${oy1+8}" class="lbs" style="fill:var(--warn)">紅框 5 × 5：圓外的部分被切掉</text>`;
+ g+=lab(P(25,0)[0],P(0,0)[1]+20,'25')+lab(x30,P(0,0)[1]+20,'30')+lab(P(15,10)[0]-8,P(0,10)[1]+5,'10','end')+lab(P(15,15)[0]-8,y15+5,'15','end');
+ g+=`<text x="${cx+8}" y="${cy+22}" class="dl">(25, 10)</text><text x="${P(19,0)[0]}" y="${P(0,5)[1]}" text-anchor="middle" class="lb">A</text><text x="${P(19,0)[0]}" y="${P(0,12.5)[1]}" text-anchor="middle" class="lb">B</text>`;
+ g+=`<text x="${x30+8}" y="${P(0,4)[1]}" class="lbs">A 的右邊</text><text x="${P(31,0)[0]}" y="${y15-8}" class="lbs">B 的後面</text>`;
  $('#cornerSvg').innerHTML=g;
 })();
 
 /* 流程圖 */
 (function(){
- const items=[['切角器','Ø10 孔＋20×20'],['圓角底板','60×30×2'],['模板','挖凹槽 1 mm'],['兩面文字','46×19×2'],['翻面合體','60×30×4']];
+ const items=[['十字＋圓柱','60×20＋50×30＋Ø10'],['圓角底板','60×30×2'],['模板','挖凹槽 1 mm'],['兩面文字','46×19×2'],['翻面合體','60×30×4']];
  let s=DEFS; items.forEach((it,i)=>{const x=20+i*176; s+=`<rect x="${x}" y="50" width="150" height="90" rx="12" fill="${alpha('acc',12)}" stroke="var(--acc)" stroke-width="2"/><text x="${x+75}" y="40" text-anchor="middle" class="dl">${i+1}</text><text x="${x+75}" y="88" text-anchor="middle" style="font:900 19px 'Noto Sans TC',sans-serif;fill:var(--ink)">${it[0]}</text><text x="${x+75}" y="116" text-anchor="middle" style="font:800 14px 'JetBrains Mono',monospace;fill:var(--dim)">${it[1]}</text>`; if(i<4) s+=`<path d="M${x+152} 95 L${x+172} 95" stroke="var(--sub)" stroke-width="2" marker-end="url(#ar)"/>`});
  s+=`<text x="450" y="176" text-anchor="middle" class="lbs">第 1 節做到「模板」，第 2 節做兩面文字並合體</text>`;
  $('#flowSvg').innerHTML=s;
@@ -364,31 +346,29 @@ $('#heroSvg').innerHTML=FIG.hero();
 
 /* ===== 步驟 ===== */
 const V=(l,v,n='')=>`<div class="val">${l}<b>${v}</b>${n?`<small>${n}</small>`:''}</div>`;
-const LESSONS=[{id:'L1',tag:'第 1 節',title:'做「模板」：圓角底板＋凹槽',steps:['s1','s2','s3','s4','s5','s6','s7']},{id:'L2',tag:'第 2 節',title:'兩面文字、翻面合體',steps:['s8','s9','s10','s11','s12']}];
+const LESSONS=[{id:'L1',tag:'第 1 節',title:'做「模板」：拼出圓角底板＋挖凹槽',steps:['s1','s2','s3','s4','s5','s6','s7']},{id:'L2',tag:'第 2 節',title:'兩面文字、翻面合體',steps:['s8','s9','s10','s11','s12']}];
 const STEPS={
  s1:{t:'開新設計、設定格線',min:4,goal:'先把工作環境設定好，後面的數字才會準。',
   todo:['登入 Tinkercad，按「＋建立」→「3D 設計」。','點左上角的設計名稱，改成 <b>座號-姓名-名牌</b>（例：07-王小明-名牌）。','看右下角<b>「鎖點格線」</b>，確定是 <span class="n">1.0 mm</span>。這樣方向鍵每按一下移動 1 mm，按住 <kbd>Shift</kbd> 再按方向鍵移動 10 mm。','點左邊的<b>小房子</b>（主視圖）。之後要用方向鍵或對齊時，都先回到這個視角：<kbd>↑</kbd> 是往後、<kbd>↓</kbd> 是往前。'],
   check:'右下角鎖點格線顯示 1.0 mm。'},
- s2:{t:'做「切角器」',min:10,fig:'cut',cap:'圓柱的中心放在方塊的左前角，群組後方塊的角被挖掉四分之一圓。',goal:'名牌的圓角是「切」出來的。先做一個切角器：方塊挖掉一個四分之一圓，再整個變成孔。',
-  vals:V('圓柱','10 × 10 × 2','改成「孔」')+V('圓柱的側','20','預設 48 要改')+V('方塊','20 × 20 × 2'),
-  todo:['拖一個<b>圓柱</b>出來。角落白點 → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。右上角面板按<b>「孔」</b>。','在右上角「性質」把圓柱的 <b>側</b> 拉到 <span class="n">20</span>（預設是 48），<b>斜切</b> <span class="n">0</span>、<b>線段</b> <span class="n">1</span> 不用動。全班都用 20，圓角才會一樣。','拖一個<b>方塊</b>出來。角落白點 → <kbd>Tab</kbd> 打 <span class="n">20</span> → <kbd>Tab</kbd> 打 <span class="n">20</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點方塊，<kbd>Shift</kbd>＋點圓柱，按 <kbd>L</kbd> 等黑點 → <b>先點方塊</b> → 點<b>下排中間</b>、<b>左排中間</b>。圓柱跑到方塊正中間。','點空白處取消。只點圓柱，按 <kbd>Shift</kbd>＋<kbd>←</kbd> <b>1 下</b>（往左 10），再按 <kbd>Shift</kbd>＋<kbd>↓</kbd> <b>1 下</b>（往前 10）。圓柱中心剛好在方塊的左前角。','選方塊＋圓柱，按 <kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組（左前角被挖掉一塊）。','群組還選著，在右上角面板按<b>「孔」</b>。整個切角器變成透明條紋。'],
-  check:'切角器是 20 × 20 × 2 的孔，左前角缺了一個四分之一圓。',tip:'圓柱移動 10，是因為方塊寬 20 的一半是 10：中心往左 10、往前 10，就到左前角。'},
- s3:{t:'放底板，把切角器移到右後角',min:10,fig:'place',cap:'切角器只蓋住底板右後角 5 × 5 的範圍，缺口剛好留下圓角。',goal:'底板 60 × 30 × 2。切角器先和底板對齊右邊、後面，再往外移 15。',
-  vals:V('底板','60 × 30 × 2')+V('往右','15','Shift+→ 1 下 ＋ → 5 下')+V('往後','15','Shift+↑ 1 下 ＋ ↑ 5 下'),
-  todo:['拖一個<b>方塊</b>出來當底板：角落白點 → <kbd>Tab</kbd> 打 <span class="n">60</span> → <kbd>Tab</kbd> 打 <span class="n">30</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點底板，<kbd>Shift</kbd>＋點切角器，按 <kbd>L</kbd> 等黑點 → <b>先點底板</b> → 點<b>下排最右邊</b>（右邊切齊）→ 再點<b>左排最後面</b>（後面切齊）。','對齊後切角器整個在底板裡面（左右 10～30、前後 −5～15）。點空白處取消。只點切角器，按 <kbd>Shift</kbd>＋<kbd>→</kbd> <b>1 下</b>，再按 <kbd>→</kbd> <b>5 下</b>（往右 15，變成左右 25～45）。','再按 <kbd>Shift</kbd>＋<kbd>↑</kbd> <b>1 下</b>，再按 <kbd>↑</kbd> <b>5 下</b>（往後 15，變成前後 10～30）。'],
-  check:'切角器只蓋住底板右後角 <span class="n">5 × 5</span>，缺口圓心在底板角往內 5、往內 5（對照上面的「關鍵數字」放大圖）。',warn:'方向鍵要在<b>主視圖</b>按（先點小房子），不然方向會跑掉。'},
- s4:{t:'複製到右前角',min:5,fig:'four',cap:'四個切角器的位置。虛線是複製出來的。',goal:'複製、鏡射、往前移 40。',
-  vals:V('往前','40','Shift+↓ 4 下'),
-  todo:['點切角器，按 <kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製。','按 <kbd>M</kbd>，點<b>「前後」</b>方向的雙箭頭鏡射（缺口跑到後面）。','按 <kbd>Shift</kbd>＋<kbd>↓</kbd> <b>4 下</b>，往前 40。'],
-  check:'右前角也有切角器，缺口朝向底板的角。'},
- s5:{t:'複製到左邊兩個角',min:5,fig:'four',cap:'左邊兩個是右邊兩個複製、左右鏡射、往左 70。',goal:'兩個一起複製、一起鏡射、往左移 70。',
-  vals:V('往左','70','Shift+← 7 下'),
-  todo:['點右後的切角器，<kbd>Shift</kbd>＋點右前的切角器，按 <kbd>Ctrl</kbd>＋<kbd>D</kbd>。','按 <kbd>M</kbd>，點<b>「左右」</b>方向的雙箭頭鏡射。','按 <kbd>Shift</kbd>＋<kbd>←</kbd> <b>7 下</b>，往左 70。'],
-  check:'四個角都有切角器，缺口都朝向底板的角。'},
- s6:{t:'群組，切出圓角底板',min:4,fig:'round',cap:'四個角切成半徑 5 的圓角。',goal:'底板和四個切角器群組。',
-  todo:['按 <kbd>Ctrl</kbd>＋<kbd>A</kbd> 全選，右上角應該顯示 <b>5 個形狀</b>（底板＋4 個切角器）。','按 <kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。','滑鼠移到白點檢查尺寸。'],
+ s2:{t:'方塊 A、B 疊成十字',min:8,fig:'cross',cap:'A 是橫的 60 × 20，B 是直的 50 × 30，四個角各缺 5 × 5。',goal:'兩個方塊疊成十字，決定名牌的長和寬。',
+  vals:V('方塊 A','60 × 20 × 2')+V('方塊 B','50 × 30 × 2'),
+  todo:['拖一個<b>方塊</b>（A）：角落白點 → <kbd>Tab</kbd> 打 <span class="n">60</span> → <kbd>Tab</kbd> 打 <span class="n">20</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','再拖一個<b>方塊</b>（B）：角落白點 → <kbd>Tab</kbd> 打 <span class="n">50</span> → <kbd>Tab</kbd> 打 <span class="n">30</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','點 A，<kbd>Shift</kbd>＋點 B，按 <kbd>L</kbd> 等黑點 → <b>先點 A</b> → 點<b>下排中間</b>、<b>左排中間</b>。'],
+  check:'從上面看是十字，左右最寬 60、前後最長 30。',warn:'寬和長不要打相反：A 是 <b>60（左右）× 20（前後）</b>，B 是 <b>50（左右）× 30（前後）</b>。'},
+ s3:{t:'第 1 個圓柱：放到右後角',min:8,fig:'cyl1',cap:'圓柱右邊對齊 A、後面對齊 B，中心就在 (25, 10)。',goal:'圓柱只要對齊兩次，就會剛好卡進右後角的缺口。',
+  vals:V('圓柱','10 × 10 × 2')+V('側','20','預設 48 要改'),
+  todo:['拖一個<b>圓柱</b>，放在右後方空地。角落白點 → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Tab</kbd> 打 <span class="n">10</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">2</span> → <kbd>Enter</kbd>。','右上角「性質」把<b>側</b>拉到 <span class="n">20</span>（斜切 0、線段 1 不用動）。','<b>對齊左右：</b>點 A，<kbd>Shift</kbd>＋點圓柱，<kbd>L</kbd> → <b>先點 A</b> → 點<b>下排最右邊</b>。','點空白處取消。','<b>對齊前後：</b>點 B，<kbd>Shift</kbd>＋點圓柱，<kbd>L</kbd> → <b>先點 B</b> → 點<b>左排最後面</b>。'],
+  check:'圓柱剛好補住右後角的缺口，邊緣跟 A 的右邊、B 的後面切齊。',tip:'記法：<b>左右對 A（橫的），前後對 B（直的）</b>。'},
+ s4:{t:'第 2 個圓柱：複製到左後角',min:4,fig:'cyl2',cap:'複製的圓柱前後已經對了，只要再對齊左邊。',goal:'複製一次、對齊一次。',
+  todo:['點圓柱，<kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製（新的會疊在原本那顆上面）。','點 A，<kbd>Shift</kbd>＋點<b>新的圓柱</b>，<kbd>L</kbd> → <b>先點 A</b> → 點<b>下排最左邊</b>。'],
+  check:'左後、右後各有一個圓柱。'},
+ s5:{t:'第 3、4 個圓柱：複製到前面兩角',min:5,fig:'cyl4',cap:'兩顆一起複製、一起對齊到前面。',goal:'兩顆一起複製，一次對齊到前面。',
+  todo:['點右後圓柱，<kbd>Shift</kbd>＋點左後圓柱，<kbd>Ctrl</kbd>＋<kbd>D</kbd>。','複製出來的兩顆還選著，按住 <kbd>Shift</kbd> 再點 <b>B</b>，按 <kbd>L</kbd>。','<b>先點 B</b> → 點<b>左排最前面</b>。兩顆跑到前面兩個角。'],
+  check:'四個角都有圓柱，左右、前後都對稱。'},
+ s6:{t:'群組成圓角底板',min:4,fig:'round',cap:'6 個零件群組後，就是四角半徑 5 的底板。',goal:'把 6 個零件黏成一塊。',
+  todo:['<kbd>Ctrl</kbd>＋<kbd>A</kbd> 全選，右上角應該顯示 <b>6 個形狀</b>（2 個方塊＋4 個圓柱）。','<kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。','滑鼠移到白點檢查尺寸。'],
   vals:V('寬','60.00')+V('長','30.00')+V('高','2.00'),
-  check:'四個角都是圓角，尺寸還是 <span class="n">60 × 30 × 2</span>。如果變大了，代表切角器裡有一個不是孔，<kbd>Ctrl</kbd>＋<kbd>Z</kbd> 檢查。'},
+  check:'四個角都是圓角，尺寸 <span class="n">60 × 30 × 2</span>。數字不對就 <kbd>Ctrl</kbd>＋<kbd>Z</kbd>，回去檢查哪個零件打錯或沒對齊。'},
  s7:{t:'挖凹槽，完成「模板」',min:8,fig:'hole',cap:'孔縮小成 54.96 × 24.9，圓角會跟著變成小一點的橢圓角。',goal:'複製底板、縮小成孔、抬高 1，挖出 1 mm 深的凹槽。',
   vals:V('寬','54.96')+V('長','24.9')+V('高','1')+V('抬高','1','Ctrl+↑ 1 下'),
   todo:['點圓角底板，<kbd>Ctrl</kbd>＋<kbd>D</kbd> 複製，右上角按<b>「孔」</b>。','角落白點 → <kbd>Tab</kbd> 打 <span class="n">54.96</span> → <kbd>Tab</kbd> 打 <span class="n">24.9</span> → <kbd>Enter</kbd>；頂端白點 → <kbd>Tab</kbd> 打 <span class="n">1</span> → <kbd>Enter</kbd>。','孔還選著，按 <kbd>Ctrl</kbd>＋<kbd>↑</kbd> <b>1 下</b>，離地 1。','點<b>底板的外框</b>，<kbd>Shift</kbd>＋點孔，按 <kbd>L</kbd> 等黑點 → <b>先點底板</b> → 點<b>下排中間</b>、<b>左排中間</b>。','選底板＋孔，<kbd>Ctrl</kbd>＋<kbd>G</kbd> 群組。這就是<b>「模板」</b>。'],
@@ -450,9 +430,8 @@ document.querySelectorAll('#finalCheck input').forEach(cb=>cb.addEventListener('
 const MIS=[
  ['底板變成直的（30 × 60）','寬和長打反了：<b>第 1 個數字是左右 60</b>。'],
  ['數字打不進去','點白點後要按 <kbd>Tab</kbd>，數字變藍才能打，打完按 <kbd>Enter</kbd>。'],
- ['群組後角沒有變圓，反而多出方塊','切角器沒有改成「孔」。拆開群組，選切角器按「孔」。'],
- ['圓角缺口在錯的位置','鏡射方向選錯，或方向鍵不是在主視圖按的。<kbd>Ctrl</kbd>＋<kbd>Z</kbd> 重做那一步。'],
- ['方向鍵移動的方向怪怪的','先點左邊小房子回到主視圖再按。'],
+ ['圓柱凸出去，角不是圓的','圓柱對錯基準：左右要對 A、前後要對 B。<kbd>Ctrl</kbd>＋<kbd>Z</kbd> 重新對齊。'],
+ ['群組後不是 60 × 30','A、B 的寬和長打反，或圓柱不是 10 × 10。拆開群組一個一個檢查。'],
  ['對齊後底板跑掉','沒有「先點基準」。<kbd>Ctrl</kbd>＋<kbd>Z</kbd>，重新按 <kbd>L</kbd>，第一下點底板（或模板）。'],
  ['底板被挖穿','凹槽的孔沒有抬高 1，或點到右排黑點。'],
  ['中文變成方框','字型要選「多國語言」。'],
