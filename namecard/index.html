@@ -1,7 +1,7 @@
 <!doctype html>
-<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.3 2026-11-09
+<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.4 2026-11-12
      依同事 Codeblocks 專案「copy of Cool Kup-Snaget」的流程改寫成一般 3D 設計操作：
-     切角器（Ø10 圓柱孔，側 20＋20×20 方塊，方塊移動 10,10）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
+     切角器（Ø10 圓柱孔，側 48＋20×20 方塊，方塊移動 10,10）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
      → 第一面、第二面文字 46×19×2 → 第二面翻面 180° → 疊成 60×30×4 雙面名牌。 -->
 <html lang="zh-Hant">
 <head>
@@ -124,6 +124,21 @@ h2.sec{font-size:clamp(24px,4vw,30px);font-weight:900}
 .final-check input{width:20px;height:20px;margin-top:4px;accent-color:var(--ok);flex:none}
 footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
 
+.tcpanel{width:100%;max-width:300px;margin-top:8px;background:#f4f5f7;border:1px solid #d9dde3;border-radius:10px;padding:0 8px 8px;color:#2b3440;font-family:var(--sans)}
+.tch{display:flex;gap:12px;align-items:center;padding:8px 6px;font-size:16px}.tch span{color:#3b4a5c;font-weight:900}
+.tcsh{display:flex;justify-content:space-around;background:#fff;border-radius:10px;padding:12px 6px 8px}
+.tco{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:13px;font-weight:700}.tco .on{color:#4a8fe0}
+.tco i{width:42px;height:42px;border-radius:50%;display:block}.tco i.sol{background:#f5831f}.tco i.hol{background:repeating-linear-gradient(135deg,#b9bdc2 0 6px,#9ea3a9 6px 12px)}
+.tcp{background:#fff;border-radius:10px;margin-top:8px;padding:8px 12px 10px}
+.tcpt{display:flex;justify-content:space-between;font-weight:700;font-size:14px;margin-bottom:4px}
+.tcr{margin:6px 0 10px}.tcl{font-size:13px;color:#4a5563;margin-bottom:6px}
+.tcs{position:relative;height:4px;background:#dfe3e8;border-radius:3px;margin:0 16px 0 14px}.tcs i{position:absolute;left:0;top:0;bottom:0;background:#1a9ad8;border-radius:3px}
+.tcs b{position:absolute;top:50%;transform:translate(-50%,-50%);background:#fff;border:1.5px solid #cfd5dc;border-radius:999px;min-width:30px;padding:1px 7px;font:700 13px var(--mono);text-align:center;color:#c2410c;box-shadow:0 0 0 2px #fde7da}
+.classlinks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:6px 0 14px}
+.classlinks a{display:block;text-align:center;text-decoration:none;font:900 22px var(--mono);color:#fff;background:var(--acc);border-radius:12px;padding:12px 4px}
+.classlinks a small{display:block;font:500 12px var(--mono);opacity:.85}
+.classlinks a:hover{filter:brightness(1.1)}
+@media (max-width:520px){.classlinks{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .see{font-size:14.5px;color:var(--ok);margin-top:4px;line-height:1.55}
 .dotmini{display:block;width:100%;max-width:280px;margin-top:8px;background:var(--paper);border:1px solid var(--line);border-radius:8px}
 .dotname{font-size:14px;margin-top:4px}
@@ -149,7 +164,7 @@ table.keys td:first-child{white-space:nowrap}
 
 <nav class="top"><div class="wrap">
   <a class="brand" href="#top">🏷️ 我的 3D 名牌</a>
-  <a href="#spec">統一規格</a><a href="#basics">先認識</a><a href="#flow">流程</a><a href="#start">關鍵數字</a><a href="#L1">第 1 節</a><a href="#L2">第 2 節</a><a href="#export">匯出</a><a href="#mistakes">常見錯誤</a><a href="#teacher">老師</a>
+  <a href="#spec">統一規格</a><a href="#login">登入</a><a href="#basics">先認識</a><a href="#flow">流程</a><a href="#start">關鍵數字</a><a href="#L1">第 1 節</a><a href="#L2">第 2 節</a><a href="#export">匯出</a><a href="#mistakes">常見錯誤</a><a href="#teacher">老師</a>
 </div><div class="prog"><i id="progBar"></i></div></nav>
 
 <main class="wrap" id="top">
@@ -174,7 +189,7 @@ table.keys td:first-child{white-space:nowrap}
       <tr><td>每一面（模板）</td><td class="v">60 × 30 × 2</td><td>四個角是半徑 5 的圓角</td></tr>
       <tr><td>凹槽</td><td class="v">54.96 × 24.9 × 深 1</td><td>底部還有 1 mm 厚；外框寬約 2.5</td></tr>
       <tr><td>文字（兩面都一樣）</td><td class="v">46 × 19 × 2</td><td>放在凹槽正中間，頂面跟外框一樣高</td></tr>
-      <tr><td>切角器的圓柱（孔）</td><td class="v">10 × 10 × 2</td><td>直徑 10＝半徑 5；性質：側 20、斜切 0、線段 1</td></tr>
+      <tr><td>切角器的圓柱（孔）</td><td class="v">10 × 10 × 2</td><td>直徑 10＝半徑 5；性質：側 48、斜切 0、線段 1</td></tr>
       <tr><td>切角器的方塊</td><td class="v">20 × 20 × 2</td><td>和圓柱群組後整個變成孔</td></tr>
     </tbody>
   </table></div>
@@ -202,6 +217,27 @@ table.keys td:first-child{white-space:nowrap}
   </div>
 </section>
 
+
+<!-- 班級連結與登入 -->
+<section id="login">
+  <h2 class="sec">🔑 班級連結與登入</h2>
+  <p class="lead">上課第一件事：從自己班的連結進入 Tinkercad。</p>
+  <div class="card">
+    <h3 style="margin:0 0 4px;font-size:19px">1. 點選自己班級的連結</h3>
+    <div class="classlinks">
+      <a href="https://www.tinkercad.com/joinclass/PKNNQMRHV" target="_blank" rel="noopener">601<small>PKN-NQM-RHV</small></a>
+      <a href="https://www.tinkercad.com/joinclass/UY45RV2EN" target="_blank" rel="noopener">602<small>UY4-5RV-2EN</small></a>
+      <a href="https://www.tinkercad.com/joinclass/DZECM5SIR" target="_blank" rel="noopener">603<small>DZE-CM5-SIR</small></a>
+      <a href="https://www.tinkercad.com/joinclass/AIEBR7P8P" target="_blank" rel="noopener">604<small>AIE-BR7-P8P</small></a>
+    </div>
+    <ol class="todo">
+      <li>點自己班的按鈕，會開新的分頁進入 Tinkercad 班級。<div class="see">👀 按鈕下面的小字是班級代碼，連結打不開時可以手動輸入。</div></li>
+      <li>用<b>「使用學生登入碼加入」</b>登入，登入後確認是<b>自己的名字</b>。</li>
+      <li>在班級選單選擇<b>自己的班級</b>。</li>
+      <li>在<b>「我們的活動」</b>底下按<b>「新設計」</b>。<div class="see">👀 出現藍色格子的工作平面，就可以開始做名牌了。</div></li>
+    </ol>
+  </div>
+</section>
 
 <!-- 先認識 -->
 <section id="basics">
@@ -312,7 +348,7 @@ table.keys td:first-child{white-space:nowrap}
   </div>
 </section>
 
-<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.3（2026-11-09）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
+<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.4（2026-11-12）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
 </main>
 
 <script>
@@ -422,6 +458,15 @@ function dotSvg(t=[],labels=true){
   g+=`<text x="134" y="88" text-anchor="middle" class="lbs">釘住的零件</text></svg>`;
   return g+(t.length?`<div class="dotname">要點：${t.map((k,i)=>(t.length>1?'①②'[i]+' ':'')+'<b>'+DOTNAME[k]+'</b>').join('　')}</div>`:'');
 }
+
+/* Tinkercad 性質面板（示意，數值＝標準答案） */
+function PANEL(name,hole,rows){
+  const ring='box-shadow:0 0 0 3px #8db8ea';
+  return `<div class="tcpanel" role="img" aria-label="${name}的性質面板：${hole?'孔':'實體'}，${rows.map(r=>r[0]+' '+r[1]).join('、')}">
+   <div class="tch"><span>⌃</span><b>${name}</b></div>
+   <div class="tcsh"><div class="tco"><i class="sol" style="background:${name==='方塊'?'#e91d2d':'#f5831f'};${hole?'':ring}"></i><span ${hole?'':'class="on"'}>實體</span></div><div class="tco"><i class="hol" style="${hole?ring:''}"></i><span ${hole?'class="on"':''}>孔</span></div></div>
+   <div class="tcp"><div class="tcpt">性質 <span>⌃</span></div>${rows.map(([l,v,m])=>{const pc=Math.max(2,Math.min(100,v/m*100));return `<div class="tcr"><div class="tcl">${l}</div><div class="tcs"><i style="width:${v===0?0:pc}%"></i><b style="left:${v===0?0:pc}%">${v}</b></div></div>`}).join('')}</div></div>`;
+}
 /* 每個動作：{d:做什麼, see:你會看到, dot:[要點的黑點], base:'先點誰'} */
 const K=(k)=>`<kbd>${k}</kbd>`, N=(v)=>`<span class="n">${v}</span>`;
 const SIZE=(w,l,h,what)=>[
@@ -438,7 +483,7 @@ const ALIGN=(a,b,dots,see)=>[
 const STEPS={
  s1:{t:'開新設計、設定格線',min:4,goal:'先把工作環境準備好，後面打的數字才會準。',
   todo:[
-   {d:'登入 Tinkercad，按右上角 <b>「＋建立」</b>，選 <b>「3D 設計」</b>。',see:'出現藍色格子的工作平面。'},
+   {d:'照上面「班級連結與登入」進入自己的班級，在<b>「我們的活動」</b>底下按<b>「新設計」</b>。',see:'出現藍色格子的工作平面。'},
    {d:'點左上角的設計名稱（一串英文），改成 <b>座號-姓名-名牌</b>，例如 07-王小明-名牌。',see:'左上角變成你的名字。'},
    {d:`看右下角的 <b>「鎖點格線」</b>，確定是 ${N('1.0 mm')}。`,see:'如果不是 1.0，點它改成 1.0 mm。'},
    {d:'點左邊的 <b>小房子</b>（主視圖）。',see:'工作平面回到正前方斜斜往下看的角度。之後要對齊時，都先回到這個角度，黑點的位置才會跟網頁的圖一樣。'}
@@ -446,16 +491,17 @@ const STEPS={
 
  s2:{t:'做「切角器」',min:12,fig:'cut',cap:'圓柱的中心在方塊的左前角。群組後，方塊的角被挖掉四分之一圓。',
   goal:'名牌的四個圓角是「切」出來的。先做一個切角器：一個方塊，左前角被挖掉四分之一個圓，最後整個變成「孔」。',
-  vals:V('圓柱','10 × 10 × 2','改成「孔」、側 20')+V('方塊','20 × 20 × 2')+V('方塊移動','往右 10、往後 10'),
+  vals:V('圓柱','10 × 10 × 2','改成「孔」、側 48')+V('方塊','20 × 20 × 2')+V('方塊移動','往右 10、往後 10'),
   todo:[
    {d:'拖一個橘色 <b>圓柱</b> 到工作平面上。'},
    ...SIZE(10,10,2,'圓柱'),
-   {d:`看右上角的「性質」。<b>側</b>：點拉桿上的<b>數字圓圈</b>（原本是 48），刪掉，打 ${N('20')}，按 ${K('Enter')}。`,see:'圓柱的邊變成 20 個小面。'},
-   {d:`<b>斜切</b> 要是 ${N('0')}，<b>線段</b> 要是 ${N('1')}。不是的話，一樣點數字圓圈改掉。`,see:'性質三格是：側 20、斜切 0、線段 1。'},
+   {d:`看右上角的「性質」：<b>側</b> ${N('48')}、<b>斜切</b> ${N('0')}、<b>線段</b> ${N('1')}。這是預設值，通常不用改。如果不一樣，點拉桿上的<b>數字圓圈</b>，刪掉，打正確的數字，按 ${K('Enter')}。`},
    {d:'確定圓柱是<b>直直站著</b>的（從上面看是圓形）。如果倒下了，按 Delete 刪掉，重新拖一個。'},
    {d:'在右上角面板按 <b>「孔」</b>。',see:'圓柱變成灰色斜條紋。'},
+   {d:'<b>對照：</b>圓柱的面板要長得跟下面一模一樣。'+PANEL('圓柱',true,[['側',48,64],['斜切',0,10],['線段',1,10]])},
    {d:'拖一個紅色 <b>方塊</b> 出來，放在圓柱旁邊。'},
    ...SIZE(20,20,2,'方塊'),
+   {d:'<b>對照：</b>方塊的面板要長得跟下面一模一樣。（也可以直接在面板的<b>長度、寬度、高度</b>點數字圓圈打 20、20、2。）'+PANEL('方塊',false,[['半徑',0,10],['步驟',10,20],['長度',20,1000],['寬度',20,1000],['高度',2,1000]])},
    {d:'<b>讓圓柱和方塊的中心對在一起：</b>'},
    ...ALIGN('圓柱','方塊',['x1','y1'],'方塊跑到圓柱的正中間，兩個中心重疊。'),
    {d:'點空白的地方，取消選取。'},
