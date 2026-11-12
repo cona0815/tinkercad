@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.4 2026-11-12
+<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.5 2026-11-12
      依同事 Codeblocks 專案「copy of Cool Kup-Snaget」的流程改寫成一般 3D 設計操作：
      切角器（Ø10 圓柱孔，側 48＋20×20 方塊，方塊移動 10,10）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
      → 第一面、第二面文字 46×19×2 → 第二面翻面 180° → 疊成 60×30×4 雙面名牌。 -->
@@ -348,7 +348,7 @@ table.keys td:first-child{white-space:nowrap}
   </div>
 </section>
 
-<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.4（2026-11-12）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
+<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.5（2026-11-12）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
 </main>
 
 <script>
@@ -447,7 +447,7 @@ const LESSONS=[{id:'L1',tag:'第 1 節',title:'做「模板」：切角器切出
 /* 對齊黑點小圖：targets 例 ['x1','y1'] */
 const DOTPOS={x0:[62,132],x1:[122,132],x2:[182,132],y0:[40,112],y1:[52,82],y2:[64,52],z0:[226,112],z1:[226,82],z2:[226,52]};
 const DOTNAME={x0:'下排・左',x1:'下排・中間',x2:'下排・右',y0:'左排・最前面',y1:'左排・中間',y2:'左排・最後面'};
-function dotSvg(t=[],labels=true){
+function dotSvg(t=[],labels=true,base=''){
   let g=`<svg class="dotmini" viewBox="0 0 300 160" role="img" aria-label="對齊黑點：${t.map(k=>DOTNAME[k]).join('、')}">`;
   g+=`<path d="M62 112 L182 112 L206 52 L86 52 Z" fill="${alpha('acc',14)}" stroke="var(--acc)" stroke-width="1.5"/>`;
   g+=`<g stroke="var(--sub)" stroke-width="1" fill="none"><line x1="62" y1="132" x2="182" y2="132"/><line x1="40" y1="112" x2="64" y2="52"/><line x1="226" y1="112" x2="226" y2="52"/></g>`;
@@ -455,7 +455,7 @@ function dotSvg(t=[],labels=true){
   g+=`<text x="226" y="36" text-anchor="middle" class="lbs">不要點</text><path d="M219 30 l14 0" stroke="var(--warn)" stroke-width="0"/>`;
   t.forEach((k,i)=>{const [x,y]=DOTPOS[k];g+=`<circle cx="${x}" cy="${y}" r="12" fill="none" stroke="var(--warn)" stroke-width="3"/>`+(t.length>1?`<circle cx="${x+15}" cy="${y-13}" r="9" fill="var(--warn)"/><text x="${x+15}" y="${y-9}" text-anchor="middle" style="font:800 11px 'JetBrains Mono',monospace;fill:#fff">${i+1}</text>`:'');});
   if(labels) g+=`<text x="122" y="153" text-anchor="middle" class="lbs">下排：管左右</text><text x="6" y="30" class="lbs">左排：管前後</text><text x="250" y="86" class="lbs">右排</text><text x="250" y="100" class="lbs">上下</text>`;
-  g+=`<text x="134" y="88" text-anchor="middle" class="lbs">釘住的零件</text></svg>`;
+  g+=`<text x="134" y="88" text-anchor="middle" class="lbs">${base?'釘住：'+base:'釘住的零件'}</text></svg>`;
   return g+(t.length?`<div class="dotname">要點：${t.map((k,i)=>(t.length>1?'①②'[i]+' ':'')+'<b>'+DOTNAME[k]+'</b>').join('　')}</div>`:'');
 }
 
@@ -478,7 +478,7 @@ const ALIGN=(a,b,dots,see)=>[
   {d:`點 <b>${a}</b>，按住 ${K('Shift')} 再點 <b>${b}</b>。`,see:'右上角出現 Shapes(2)，兩個都選到了。'},
   {d:`按 ${K('L')}，<b>數 1、2</b>，等黑點出現。`,see:'零件四周出現很多黑點。'},
   {d:`<b>先點 ${a}</b>。`,see:`黑點縮到 ${a} 的旁邊，${a} 被「釘住」，等一下不會動。`},
-  {d:`點下面圖上<b>紅圈</b>的黑點${dots.length>1?'（照 ①② 的順序）':''}。`,dot:dots,see}
+  {d:`點下面圖上<b>紅圈</b>的黑點${dots.length>1?'（照 ①② 的順序）':''}。`,dot:dots,base:a,see}
 ];
 const STEPS={
  s1:{t:'開新設計、設定格線',min:4,goal:'先把工作環境準備好，後面打的數字才會準。',
@@ -503,7 +503,7 @@ const STEPS={
    ...SIZE(20,20,2,'方塊'),
    {d:'<b>對照：</b>方塊的面板要長得跟下面一模一樣。（也可以直接在面板的<b>長度、寬度、高度</b>點數字圓圈打 20、20、2。）'+PANEL('方塊',false,[['半徑',0,10],['步驟',10,20],['長度',20,1000],['寬度',20,1000],['高度',2,1000]])},
    {d:'<b>讓圓柱和方塊的中心對在一起：</b>'},
-   ...ALIGN('圓柱','方塊',['x1','y1'],'方塊跑到圓柱的正中間，兩個中心重疊。'),
+   ...ALIGN('方塊','圓柱',['x1','y1'],'圓柱跑到方塊的正中間，兩個中心重疊。'),
    {d:'點空白的地方，取消選取。'},
    {d:`只點 <b>方塊</b>，按住 ${K('Shift')} 再按 ${K('→')} <b>1 下</b>。`,see:'方塊往右移 10 mm。'},
    {d:`再按住 ${K('Shift')} 再按 ${K('↑')} <b>1 下</b>。`,see:'方塊往後移 10 mm。現在圓柱的<b>中心</b>剛好在方塊的<b>左前角</b>：圓柱只有<b>四分之一</b>疊在方塊上，另外四分之三露在外面。<b>這樣是對的！</b>群組後方塊只會被挖掉左前角四分之一個圓。'},
@@ -648,7 +648,7 @@ $('#lessons').innerHTML=LESSONS.map(L=>`<section id="${L.id}"><div class="lesson
  L.steps.map(id=>{const s=STEPS[id];num++;const f=!!s.fig;
   return `<article class="step${state[id]?' done':''}" id="${id}"><header><div class="sn">${num}</div><div><h3>${s.t}</h3><div class="meta">約 ${s.min} 分鐘</div></div></header>
   <div class="body${f?'':' full'}"><div><p class="goal">${s.goal}</p>${s.vals?`<div class="vals">${s.vals}</div>`:''}
-  <ol class="todo" style="margin-top:10px">${s.todo.map(t=>typeof t==='string'?`<li>${t}</li>`:`<li>${t.d}${t.dot?dotSvg(t.dot):''}${t.see?`<div class="see">👀 ${t.see}</div>`:''}</li>`).join('')}</ol>
+  <ol class="todo" style="margin-top:10px">${s.todo.map(t=>typeof t==='string'?`<li>${t}</li>`:`<li>${t.d}${t.dot?dotSvg(t.dot,true,t.base||''):''}${t.see?`<div class="see">👀 ${t.see}</div>`:''}</li>`).join('')}</ol>
   ${s.check?`<div class="check"><b>✅ 檢查</b>${s.check}</div>`:''}${s.tip?`<div class="tip"><b>💡</b>${s.tip}</div>`:''}${s.warn?`<div class="warn"><b>⚠️</b>${s.warn}</div>`:''}</div>
   ${f?`<figure class="fig"><svg viewBox="${s.figVB||'0 0 600 330'}" role="img" aria-label="${s.cap}">${FIG[s.fig]()}</svg><figcaption>${s.cap}</figcaption></figure>`:''}</div>
   <label class="done-row"><input type="checkbox" data-step="${id}" ${state[id]?'checked':''}> 我完成這一步了</label></article>`}).join('')+'</section>').join('');
