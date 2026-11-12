@@ -1,0 +1,731 @@
+<!doctype html>
+<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.8 2026-11-12
+     依同事 Codeblocks 專案「copy of Cool Kup-Snaget」的流程改寫成一般 3D 設計操作：
+     切角器（Ø10 圓柱孔，側 48＋20×20 方塊，方塊移動 10,10）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
+     → 第一面、第二面文字 46×19×2 → 第二面翻面 180° → 疊成 60×30×4 雙面名牌。 -->
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>我的 3D 名牌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700;800&display=swap">
+<style>
+/* 版面：工程製圖紙的感覺——淡格線底、每一步一張「施工卡」，數字一律用等寬字、加框，像圖面上的尺寸標註 */
+:root{
+  --bg:#f3f5f2; --paper:#ffffff; --ink:#1d2622; --sub:#55625c; --line:#d6ddd8; --grid:rgba(40,90,70,.07);
+  --acc:#0f7b5f; --acc-soft:#e1f2ec; --dim:#c2410c; --dim-soft:#fdeee5;
+  --pA:#3b82c4; --pB:#e08a1e; --pE:#2f9e62; --hole:#9aa5a0; --text:#7c4dbb;
+  --warn:#b42318; --warn-soft:#fdecea; --ok:#1f7a3f; --ok-soft:#e5f4ea;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111816; --paper:#18221f; --ink:#e4ece8; --sub:#9db0a8; --line:#2b3a35; --grid:rgba(120,200,170,.06);
+  --acc:#4cc59d; --acc-soft:#173029; --dim:#f08a4b; --dim-soft:#35221a;
+  --pA:#6aaee8; --pB:#f0a54a; --pE:#5cc98c; --hole:#6f7c77; --text:#b38cf0;
+  --warn:#ff8a7a; --warn-soft:#3a1f1c; --ok:#6fd393; --ok-soft:#173022; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111816; --paper:#18221f; --ink:#e4ece8; --sub:#9db0a8; --line:#2b3a35; --grid:rgba(120,200,170,.06);
+  --acc:#4cc59d; --acc-soft:#173029; --dim:#f08a4b; --dim-soft:#35221a;
+  --pA:#6aaee8; --pB:#f0a54a; --pE:#5cc98c; --hole:#6f7c77; --text:#b38cf0;
+  --warn:#ff8a7a; --warn-soft:#3a1f1c; --ok:#6fd393; --ok-soft:#173022; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.75 var(--sans);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:20px 20px}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:18px}
+h1,h2,h3{line-height:1.3;text-wrap:balance;margin:0}
+kbd{font:700 .82em var(--mono);border:1px solid var(--line);border-bottom-width:3px;border-radius:6px;padding:0 7px;background:var(--paper);white-space:nowrap;color:var(--ink)}
+.n{font:800 1em var(--mono);color:var(--dim);background:var(--dim-soft);border-radius:6px;padding:0 6px;white-space:nowrap;font-variant-numeric:tabular-nums}
+b{font-weight:700}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:4px;align-items:center;overflow-x:auto;padding-block:8px;scrollbar-width:none}
+nav.top a{flex:none;text-decoration:none;color:var(--sub);font-size:14px;font-weight:700;padding:4px 11px;border-radius:999px}
+nav.top a:hover{background:var(--paper);color:var(--ink)}
+nav.top .brand{color:var(--ink);font-weight:900;margin-right:6px;padding-left:0}
+.prog{height:4px;background:var(--line)}.prog i{display:block;height:100%;width:0;background:var(--acc);transition:width .3s}
+
+/* 首頁 */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:center;padding-block:34px 10px}
+.eyebrow{font:700 13px var(--mono);letter-spacing:.08em;color:var(--acc)}
+.hero h1{font-size:clamp(34px,6vw,54px);font-weight:900;margin:6px 0 10px}
+.hero p{color:var(--sub);margin:0 0 14px;max-width:32em}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;font-weight:700;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:3px 10px}
+.drawing{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px}
+.drawing svg{display:block;width:100%;height:auto}
+.drawing figcaption{font-size:13px;color:var(--sub);padding:4px 4px 0}
+
+section{padding-top:40px}
+h2.sec{font-size:clamp(24px,4vw,30px);font-weight:900}
+.lead{color:var(--sub);margin:4px 0 16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+
+/* 規格表 */
+.spec{overflow-x:auto}
+.spec table{border-collapse:collapse;width:100%;min-width:560px;font-size:16px}
+.spec th,.spec td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+.spec th{font-size:14px;color:var(--sub);font-weight:700;background:color-mix(in srgb,var(--acc-soft) 50%,transparent)}
+.spec td.v{font:800 16px var(--mono);color:var(--dim);white-space:nowrap;font-variant-numeric:tabular-nums}
+.axis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.axis div{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.axis b{display:block;font-size:18px}
+.axis small{color:var(--sub);font-size:14px;line-height:1.5;display:block}
+
+/* 名字預覽 */
+.namebox{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:18px;align-items:center}
+.namebox label{font-weight:700;display:block;margin-bottom:4px}
+.namebox input{font:700 22px var(--sans);width:100%;padding:8px 12px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.namebox input:focus{border-color:var(--acc);outline:none}
+.nameout{margin-top:10px;font-size:16px}
+.nameout .big{font:800 26px var(--mono);color:var(--dim)}
+
+/* 步驟 */
+.lesson-h{display:flex;align-items:baseline;gap:12px;margin:34px 0 6px;flex-wrap:wrap}
+.lesson-h .tag{font:800 13px var(--mono);color:#fff;background:var(--acc);border-radius:6px;padding:2px 10px}
+.lesson-h h2{font-size:clamp(22px,3.6vw,28px);font-weight:900}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:16px;margin:16px 0;overflow:hidden;scroll-margin-top:80px}
+.step>header{display:flex;gap:14px;align-items:center;padding:16px 20px 8px}
+.step .sn{flex:none;width:46px;height:46px;border-radius:12px;background:var(--ink);color:var(--paper);font:800 22px/46px var(--mono);text-align:center}
+.step.done .sn{background:var(--ok)}
+.step h3{font-size:21px;font-weight:900}
+.step .meta{font-size:13.5px;color:var(--sub)}
+.step .body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:18px;padding:0 20px 18px}
+.step .body.full{grid-template-columns:minmax(0,1fr)}
+.goal{font-size:15.5px;color:var(--sub);margin:0 0 8px}
+.todo{list-style:none;counter-reset:t;margin:0;padding:0;display:grid;gap:7px}
+.todo li{counter-increment:t;position:relative;padding:7px 10px 7px 44px;background:var(--bg);border-radius:10px;font-size:16px;line-height:1.65}
+.todo li::before{content:counter(t);position:absolute;left:9px;top:8px;width:26px;height:26px;border-radius:50%;background:var(--acc);color:#fff;font:800 13px/26px var(--mono);text-align:center}
+.vals{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}
+.val{border:2px solid var(--dim);border-radius:10px;padding:2px 10px;background:var(--dim-soft);font-size:14px;line-height:1.4}
+.val b{display:block;font:800 19px var(--mono);color:var(--dim)}
+.val small{color:var(--sub);font-size:12.5px}
+.check,.warn,.tip{border-radius:10px;padding:9px 14px;margin-top:10px;font-size:15.5px;line-height:1.65}
+.check{background:var(--ok-soft)}.warn{background:var(--warn-soft)}.tip{background:var(--acc-soft)}
+.check b:first-child,.warn b:first-child,.tip b:first-child{margin-right:4px}
+.fig{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);align-self:start}
+.fig svg{display:block;width:100%;height:auto}
+.fig figcaption{font-size:13.5px;color:var(--sub);padding:6px 10px;border-top:1px solid var(--line);background:var(--paper);line-height:1.55}
+.done-row{display:flex;align-items:center;gap:10px;margin:0 20px 18px;padding:9px 14px;background:var(--bg);border-radius:10px;font-weight:700;cursor:pointer;user-select:none}
+.done-row input{width:22px;height:22px;accent-color:var(--ok);margin:0}
+
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.mis{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.mis b{color:var(--warn)}
+.mis p{margin:4px 0 0;font-size:15.5px}
+.final-check{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.final-check li{display:flex;gap:10px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 14px}
+.final-check input{width:20px;height:20px;margin-top:4px;accent-color:var(--ok);flex:none}
+footer{padding:36px 0 60px;color:var(--sub);font-size:13.5px;text-align:center}
+
+.tcpanel{width:100%;max-width:300px;margin-top:8px;background:#f4f5f7;border:1px solid #d9dde3;border-radius:10px;padding:0 8px 8px;color:#2b3440;font-family:var(--sans)}
+.tch{display:flex;gap:12px;align-items:center;padding:8px 6px;font-size:16px}.tch span{color:#3b4a5c;font-weight:900}
+.tcsh{display:flex;justify-content:space-around;background:#fff;border-radius:10px;padding:12px 6px 8px}
+.tco{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:13px;font-weight:700}.tco .on{color:#4a8fe0}
+.tco i{width:42px;height:42px;border-radius:50%;display:block}.tco i.sol{background:#f5831f}.tco i.hol{background:repeating-linear-gradient(135deg,#b9bdc2 0 6px,#9ea3a9 6px 12px)}
+.tcp{background:#fff;border-radius:10px;margin-top:8px;padding:8px 12px 10px}
+.tcpt{display:flex;justify-content:space-between;font-weight:700;font-size:14px;margin-bottom:4px}
+.tcr{margin:6px 0 10px}.tcl{font-size:13px;color:#4a5563;margin-bottom:6px}
+.tcs{position:relative;height:4px;background:#dfe3e8;border-radius:3px;margin:0 16px 0 14px}.tcs i{position:absolute;left:0;top:0;bottom:0;background:#1a9ad8;border-radius:3px}
+.tcs b{position:absolute;top:50%;transform:translate(-50%,-50%);background:#fff;border:1.5px solid #cfd5dc;border-radius:999px;min-width:30px;padding:1px 7px;font:700 13px var(--mono);text-align:center;color:#c2410c;box-shadow:0 0 0 2px #fde7da}
+.classlinks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:6px 0 14px}
+.classlinks a{display:block;text-align:center;text-decoration:none;font:900 22px var(--mono);color:#fff;background:var(--acc);border-radius:12px;padding:12px 4px}
+.classlinks a small{display:block;font:500 12px var(--mono);opacity:.85}
+.classlinks a:hover{filter:brightness(1.1)}
+@media (max-width:520px){.classlinks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.wrongshot{margin:8px 0 0;border:2px solid var(--warn);border-radius:10px;overflow:hidden;max-width:520px;background:var(--paper)}.wrongshot img{display:block;width:100%;height:auto}.wrongshot figcaption{font-size:14px;color:var(--warn);font-weight:700;padding:6px 10px}
+.why{background:var(--acc-soft);border-radius:10px;padding:10px 12px;margin:2px 0}.why ul{margin:6px 0 0;padding-left:1.2em;list-style:disc}.todo .why li{counter-increment:none;padding:0;background:none;margin:4px 0;font-size:15.5px;line-height:1.65;border-radius:0}.todo .why li::before{content:none}.movefig{display:block;width:100%;max-width:760px;margin:8px 0;background:var(--paper);border:1px solid var(--line);border-radius:8px}
+.see{font-size:14.5px;color:var(--ok);margin-top:4px;line-height:1.55}
+.dotmini{display:block;width:100%;max-width:280px;margin-top:8px;background:var(--paper);border:1px solid var(--line);border-radius:8px}
+.dotname{font-size:14px;margin-top:4px}
+.gloss{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.gloss h3{font-size:19px;font-weight:900;margin-bottom:6px}
+.gloss p,.gloss li{font-size:15.5px}
+.gloss ul{padding-left:1.2em;margin:6px 0}
+.gloss svg{display:block;width:100%;max-width:300px}
+.gloss .dotmini{max-width:300px}
+table.keys{border-collapse:collapse;width:100%;font-size:15px}
+table.keys td{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+table.keys td:first-child{white-space:nowrap}
+@media (max-width:820px){.gloss{grid-template-columns:1fr}}
+@media (max-width:820px){
+  .hero,.namebox{grid-template-columns:1fr}
+  .step .body{grid-template-columns:1fr}
+  .grid2,.axis{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="wrap">
+  <a class="brand" href="#top">🏷️ 我的 3D 名牌</a>
+  <a href="#spec">統一規格</a><a href="#login">登入</a><a href="#basics">先認識</a><a href="#flow">流程</a><a href="#start">關鍵數字</a><a href="#L1">第 1 節</a><a href="#L2">第 2 節</a><a href="#export">匯出</a><a href="#mistakes">常見錯誤</a><a href="#teacher">老師</a>
+</div><div class="prog"><i id="progBar"></i></div></nav>
+
+<main class="wrap" id="top">
+<div class="hero">
+  <div>
+    <div class="eyebrow">TINKERCAD 3D 設計 ・ 五、六年級 ・ 2 節課</div>
+    <h1>做一片自己的<br>雙面 3D 名牌</h1>
+    <p>全班的名牌要一起送去 3D 列印，所以<b>每個人的尺寸都要一模一樣</b>。正面放名字、背面放班級，兩面疊起來剛好 <span class="n">60 × 30 × 4 mm</span>。每個數字都照網頁打，就不會出錯。</p>
+    <div class="chips"><span class="chip">📐 全部用打數字的方式</span><span class="chip">✂️ 做「切角器」切出圓角</span><span class="chip">🔄 兩面文字、翻面合體</span></div>
+  </div>
+  <figure class="drawing"><svg id="heroSvg" viewBox="0 0 600 330" role="img" aria-label="名牌第一面完成圖與尺寸"></svg><figcaption>第一面（上視圖）。紅色數字是尺寸，單位都是 mm（毫米）。</figcaption></figure>
+</div>
+
+<!-- 規格 -->
+<section id="spec">
+  <h2 class="sec">📏 統一規格（全班都一樣）</h2>
+  <p class="lead">做之前先看一次，做完再對一次。</p>
+  <div class="card spec"><table>
+    <thead><tr><th>部分</th><th>尺寸（左右 × 前後 × 高）</th><th>說明</th></tr></thead>
+    <tbody>
+      <tr><td><b>完成的名牌</b></td><td class="v">60 × 30 × 4</td><td>第一面疊在第二面上面</td></tr>
+      <tr><td>每一面（模板）</td><td class="v">60 × 30 × 2</td><td>四個角是半徑 5 的圓角</td></tr>
+      <tr><td>凹槽</td><td class="v">54.96 × 24.9 × 深 1</td><td>底部還有 1 mm 厚；外框寬約 2.5</td></tr>
+      <tr><td>文字（兩面都一樣）</td><td class="v">46 × 19 × 2</td><td>放在凹槽正中間，頂面跟外框一樣高</td></tr>
+      <tr><td>切角器的圓柱（孔）</td><td class="v">10 × 10 × 2</td><td>直徑 10＝半徑 5；性質：側 48、斜切 0、線段 1</td></tr>
+      <tr><td>切角器的方塊</td><td class="v">20 × 20 × 2</td><td>和圓柱群組後整個變成孔</td></tr>
+    </tbody>
+  </table></div>
+  <div class="axis">
+    <div><b>寬＝左右</b><small>面板的「寬度」。角落白點的第 1 個數字。名牌的 <span class="n">60</span>。</small></div>
+    <div><b>長＝前後</b><small>面板的「長度」。角落白點的第 2 個數字。名牌的 <span class="n">30</span>。</small></div>
+    <div><b>高＝上下</b><small>頂端白點的數字。每一面 <span class="n">2</span>，合體後 <span class="n">4</span>。</small></div>
+  </div>
+</section>
+
+<!-- 流程 -->
+<section id="flow">
+  <h2 class="sec">🧭 整個流程</h2>
+  <p class="lead">先做一個「模板」，再複製成兩面、各放文字，最後把第二面翻過來疊在下面。</p>
+  <div class="card"><svg id="flowSvg" viewBox="0 0 900 190" role="img" aria-label="流程圖：切角器、圓角底板、模板、兩面文字、合體"></svg></div>
+  <div class="card namebox" style="margin-top:14px">
+    <div>
+      <label for="nameA">第一面（名字）</label>
+      <input id="nameA" type="text" maxlength="6" value="王小明" autocomplete="off">
+      <label for="nameB" style="margin-top:10px">第二面（例：班級-座號）</label>
+      <input id="nameB" type="text" maxlength="8" value="601-07" autocomplete="off">
+      <div class="nameout">兩面的文字都打 <span class="big" style="font-size:20px">46 × 19 × 2</span><br><span style="color:var(--sub);font-size:14px">寬 46、長 19、高 2</span></div>
+    </div>
+    <figure class="fig" style="margin:0"><svg id="nameSvg" viewBox="0 0 600 640" role="img" aria-label="兩面預覽"></svg><figcaption>上：第一面。下：第二面（翻過來看的樣子）。預覽只是示意，字型以 Tinkercad 為準。</figcaption></figure>
+  </div>
+</section>
+
+
+<!-- 班級連結與登入 -->
+<section id="login">
+  <h2 class="sec">🔑 班級連結與登入</h2>
+  <p class="lead">上課第一件事：從自己班的連結進入 Tinkercad。</p>
+  <div class="card">
+    <h3 style="margin:0 0 4px;font-size:19px">1. 點選自己班級的連結</h3>
+    <div class="classlinks">
+      <a href="https://www.tinkercad.com/joinclass/PKNNQMRHV" target="_blank" rel="noopener">601<small>PKN-NQM-RHV</small></a>
+      <a href="https://www.tinkercad.com/joinclass/UY45RV2EN" target="_blank" rel="noopener">602<small>UY4-5RV-2EN</small></a>
+      <a href="https://www.tinkercad.com/joinclass/DZECM5SIR" target="_blank" rel="noopener">603<small>DZE-CM5-SIR</small></a>
+      <a href="https://www.tinkercad.com/joinclass/AIEBR7P8P" target="_blank" rel="noopener">604<small>AIE-BR7-P8P</small></a>
+    </div>
+    <ol class="todo">
+      <li>點自己班的按鈕，會開新的分頁進入 Tinkercad 班級。<div class="see">👀 按鈕下面的小字是班級代碼，連結打不開時可以手動輸入。</div></li>
+      <li>用<b>「使用學生登入碼加入」</b>登入，登入後確認是<b>自己的名字</b>。</li>
+      <li>在班級選單選擇<b>自己的班級</b>。</li>
+      <li>在<b>「我們的活動」</b>底下按<b>「新設計」</b>。<div class="see">👀 出現藍色格子的工作平面，就可以開始做名牌了。</div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 先認識 -->
+<section id="basics">
+  <h2 class="sec">🔰 開始前，先認識這些</h2>
+  <p class="lead">這 4 樣東西每一步都會用到。先看懂，後面就很簡單。</p>
+  <div class="gloss">
+    <div class="card"><h3>① 白點：打數字改大小</h3><svg id="handleSvg" viewBox="0 0 300 170" role="img" aria-label="白色控制點"></svg>
+      <p>點一下零件，四周會出現<b>白色小方塊</b>（白點）。</p>
+      <ul><li><b>角落的白點</b> → 按 <kbd>Tab</kbd> → 改<b>寬（左右）</b>和<b>長（前後）</b></li><li><b>最上面的白點</b> → 按 <kbd>Tab</kbd> → 改<b>高</b></li><li>數字變<b>藍色</b>才能打，打完按 <kbd>Enter</kbd></li></ul></div>
+    <div class="card"><h3>② 對齊 L：三排黑點</h3>DOTDEMO
+      <p>選兩個零件，按 <kbd>L</kbd>，等 1～2 秒會出現黑點。<b>先點不想動的零件</b>（釘住），再點黑點。</p>
+      <ul><li><b>下排</b>：管左右（左、中、右）</li><li><b>左排</b>：管前後（前、中、後）</li><li><b>右排</b>：管上下，<b>這次都不要點</b></li></ul></div>
+    <div class="card"><h3>③ 實體和孔</h3>
+      <p>右上角面板有兩個圓圈：</p>
+      <ul><li><b>實體</b>（有顏色）：真的會印出來的東西</li><li><b>孔</b>（灰色斜條紋）：群組之後，會把碰到的地方<b>挖掉</b></li></ul>
+      <p>這次只有「挖凹槽」那一步用到孔。</p></div>
+    <div class="card"><h3>④ 常用按鍵</h3>
+      <table class="keys"><tbody>
+        <tr><td><kbd>Ctrl</kbd>＋<kbd>D</kbd></td><td>複製（新的會疊在原本的上面）</td></tr>
+        <tr><td><kbd>Ctrl</kbd>＋<kbd>G</kbd></td><td>群組（黏在一起）</td></tr>
+        <tr><td><kbd>Ctrl</kbd>＋<kbd>A</kbd></td><td>全選</td></tr>
+        <tr><td><kbd>Ctrl</kbd>＋<kbd>Z</kbd></td><td>復原（做錯了就按）</td></tr>
+        <tr><td><kbd>Ctrl</kbd>＋<kbd>↑</kbd></td><td>往上浮 1 mm</td></tr>
+        <tr><td><kbd>Shift</kbd>＋方向鍵</td><td>移動 10 mm</td></tr>
+        <tr><td><kbd>D</kbd></td><td>掉回工作平面</td></tr>
+        <tr><td>🏠 小房子</td><td>回到主視圖（對齊前先按）</td></tr>
+      </tbody></table></div>
+  </div>
+</section>
+
+<!-- 一開始的數字 -->
+<section id="start">
+  <h2 class="sec">📍 一開始最重要的數字</h2>
+  <p class="lead">圓角做得對不對，全看切角器放的位置。先把這張圖看懂再開始做。</p>
+  <div class="card namebox" style="align-items:start">
+    <figure class="fig" style="margin:0"><svg id="cornerSvg" viewBox="0 0 600 420" role="img" aria-label="右後角放大圖"></svg><figcaption>右後角放大圖（1 格＝1 mm）。黃色是底板，灰色是切角器（孔）。</figcaption></figure>
+    <div style="font-size:16px">
+      <p style="margin-top:0"><b>切角器只蓋住底板角落 <span class="n">5 × 5</span> 的小正方形。</b>缺口的四分之一圓（半徑 <span class="n">5</span>）不會被挖掉，所以留下圓角。</p>
+      <ul style="padding-left:1.2em;margin:0 0 10px">
+        <li>切角器大小：<span class="n">20 × 20 × 2</span></li>
+        <li>缺口圓心：底板的角往內 <span class="n">5</span>、往內 <span class="n">5</span></li>
+        <li>切角器要比底板<b>多出去 15</b>：20 − 5 ＝ 15</li>
+      </ul>
+      <p style="margin:0"><b>為什麼移 15？</b>先讓切角器的右邊對齊底板右邊，它整個在底板裡面。再往右移 15，就只剩 5 mm 留在底板上。往後也一樣。</p>
+    </div>
+  </div>
+  <div class="card spec" style="margin-top:14px"><table>
+    <thead><tr><th>切角器</th><th>左右範圍</th><th>前後範圍</th><th>缺口圓心</th><th>怎麼放</th></tr></thead>
+    <tbody>
+      <tr><td><b>① 右後</b></td><td class="v">25 ～ 45</td><td class="v">10 ～ 30</td><td class="v">(25, 10)</td><td>對齊右邊、後面 → 往右 15、往後 15</td></tr>
+      <tr><td><b>② 右前</b></td><td class="v">25 ～ 45</td><td class="v">−30 ～ −10</td><td class="v">(25, −10)</td><td>複製 ① → 前後鏡射 → 往前 40</td></tr>
+      <tr><td><b>③ 左後</b></td><td class="v">−45 ～ −25</td><td class="v">10 ～ 30</td><td class="v">(−25, 10)</td><td>複製 ①② → 左右鏡射 → 往左 70</td></tr>
+      <tr><td><b>④ 左前</b></td><td class="v">−45 ～ −25</td><td class="v">−30 ～ −10</td><td class="v">(−25, −10)</td><td>（和 ③ 一起完成）</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:14px;color:var(--sub);margin:8px 0 0">座標以底板中心為 (0, 0)，單位 mm。底板範圍：左右 −30～30、前後 −15～15。這組數字和同事 Codeblocks 程式的「移動 (25, 10)」「移動 (0, −40)」「移動 (−70, 0)」完全一樣。</p></div>
+</section>
+
+<div id="lessons"></div>
+
+<!-- 匯出 -->
+<section id="export">
+  <h2 class="sec">📤 交件：匯出 STL</h2>
+  <p class="lead">老師要拿 STL 檔去列印。檔名要照規定，老師才找得到你的。</p>
+  <div class="card">
+    <ol class="todo">
+      <li>點空白處取消選取，確認畫面上<b>只有一個名牌</b>（60 × 30 × 4），沒有多餘的零件。</li>
+      <li>按右上角的<b>「匯出」</b>。</li>
+      <li>選<b>「設計中的所有內容」</b>，格式按 <b>.STL</b>，檔案會下載到電腦。</li>
+      <li>把檔名改成 <b>座號_姓名.stl</b>，例如 <span class="n">07_王小明.stl</span>，上傳到老師指定的地方。</li>
+    </ol>
+    <div class="tip"><b>💡</b>STL 檔不記錄單位。老師在切片軟體打開時，要選 <b>毫米（mm）</b>、比例 <b>100%</b>，尺寸才會是 60 × 30 × 4。</div>
+  </div>
+</section>
+
+<section id="final">
+  <h2 class="sec">✅ 交件前最後檢查</h2>
+  <p class="lead">全部打勾才交件。</p>
+  <ul class="final-check" id="finalCheck"></ul>
+</section>
+
+<section id="mistakes">
+  <h2 class="sec">🆘 常見錯誤和救法</h2>
+  <p class="lead">先按 <kbd>Ctrl</kbd>＋<kbd>Z</kbd> 復原，再對照下面。</p>
+  <div class="grid2" id="misBox"></div>
+</section>
+
+<section id="teacher">
+  <h2 class="sec">🧑‍🏫 給老師</h2>
+  <div class="card" style="font-size:16px">
+    <p style="margin-top:0"><b>流程來源：</b>同事的 Codeblocks 專案「copy of Cool Kup-Snaget」（42 個積木）。本頁把每個積木換成一般 3D 設計的操作，數字一一對應：</p>
+    <div class="spec"><table>
+      <thead><tr><th>Codeblocks 積木</th><th>本頁對應步驟</th></tr></thead>
+      <tbody>
+        <tr><td>圓柱（孔）半徑 5 高 2 ＋ 方塊 20×20×2 移動 (10,10)，群組成孔</td><td>步驟 2：切角器</td></tr>
+        <tr><td>切角器移動 (25,10)</td><td>步驟 3：對齊右邊、後面，再移 15、15</td></tr>
+        <tr><td>複製 → 繞 X 軸 180° → 移動 (0,−40)</td><td>步驟 4：複製 → 前後鏡射 → 往前 40</td></tr>
+        <tr><td>全選複製 → 繞 Y 軸 180° → 移動 (−70,0)</td><td>步驟 5：複製兩個 → 左右鏡射 → 往左 70</td></tr>
+        <tr><td>方塊 60×30×2，全選群組</td><td>步驟 3、6：底板與群組</td></tr>
+        <tr><td>複製成孔 → 比例 (0.916, 0.83, 0.5) → 移動 Z 0.5 → 群組</td><td>步驟 7：孔 54.96×24.9×1，抬高 1</td></tr>
+        <tr><td>文字（多國語言，高 2）比例 (0.6, 0.7, 1) ＋ 模板 → 群組 → 移動 Z 2</td><td>步驟 9、12：文字 46×19×2，第一面抬高 2</td></tr>
+        <tr><td>第二面：文字＋模板 → 群組 → 繞 Y 軸 180°</td><td>步驟 10、11：第二面翻面</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>關於文字尺寸：</b>Codeblocks 的文字是用「比例 0.6、0.7」縮小，實際寬度會隨字數改變。我從同事成品的「第一面」量到約 46 × 19 mm，本頁統一用 <b>46 × 19</b>，每個人都一樣大，凹槽四周留約 4.5 mm（左右）、2.9 mm（前後）。</p>
+    <p><b>列印建議：</b>第二面朝下的文字會碰到列印平台，印出來是凹凸的平面字；若要兩面都乾淨，可以在切片軟體把兩面拆開分別列印再黏合，或加支撐。層高 0.2 mm 時，每 1 mm 是 5 層。</p>
+    <p style="margin-bottom:0"><b>和範例 STL 的差別：</b>你給的 namecardsample.stl 是另一個版本（橢圓角、凹槽 56×26、文字 45×20）。本頁以同事目前的程式為準。</p>
+  </div>
+</section>
+
+<footer>我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.8（2026-11-12）｜流程參考同事 Codeblocks 專案｜大橋國小資訊課｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
+</main>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+/* ===== 幾何（mm，原點＝名牌中心） ===== */
+const S=8, OX=300, OY=165;
+const X=x=>OX+x*S, Y=y=>OY-y*S;
+const C=v=>`var(--${v})`, alpha=(v,a)=>`color-mix(in srgb, var(--${v}) ${a}%, transparent)`;
+const R=5, RX=0.916, RY=0.83;
+function outline(sx=1,sy=1,oy=0){ // 圓角矩形（R5），縮放後角變成橢圓
+  const W=30*sx,H=15*sy,a=R*sx,b=R*sy, y=v=>Y(v)+oy;
+  return `M${X(-W+a)} ${y(H)} L${X(W-a)} ${y(H)} A${a*S} ${b*S} 0 0 1 ${X(W)} ${y(H-b)} L${X(W)} ${y(-H+b)} A${a*S} ${b*S} 0 0 1 ${X(W-a)} ${y(-H)} L${X(-W+a)} ${y(-H)} A${a*S} ${b*S} 0 0 1 ${X(-W)} ${y(-H+b)} L${X(-W)} ${y(H-b)} A${a*S} ${b*S} 0 0 1 ${X(-W+a)} ${y(H)} Z`;
+}
+function dimH(x0,x1,y,label,off=-26,oy=0){const yy=Y(y)+oy+off,t=yy+(off<0?-6:16);return `<g stroke="var(--dim)" stroke-width="1.5" fill="none"><line x1="${X(x0)}" y1="${Y(y)+oy}" x2="${X(x0)}" y2="${yy}" stroke-dasharray="3 3"/><line x1="${X(x1)}" y1="${Y(y)+oy}" x2="${X(x1)}" y2="${yy}" stroke-dasharray="3 3"/><line x1="${X(x0)}" y1="${yy}" x2="${X(x1)}" y2="${yy}" marker-start="url(#ar)" marker-end="url(#ar)"/></g><text x="${(X(x0)+X(x1))/2}" y="${t}" text-anchor="middle" class="dl">${label}</text>`}
+function dimV(y0,y1,x,label,off=26){const xx=X(x)+off,t=xx+(off>0?8:-8);return `<g stroke="var(--dim)" stroke-width="1.5" fill="none"><line x1="${X(x)}" y1="${Y(y0)}" x2="${xx}" y2="${Y(y0)}" stroke-dasharray="3 3"/><line x1="${X(x)}" y1="${Y(y1)}" x2="${xx}" y2="${Y(y1)}" stroke-dasharray="3 3"/><line x1="${xx}" y1="${Y(y0)}" x2="${xx}" y2="${Y(y1)}" marker-start="url(#ar)" marker-end="url(#ar)"/></g><text x="${t}" y="${(Y(y0)+Y(y1))/2+5}" text-anchor="${off>0?'start':'end'}" class="dl">${label}</text>`}
+const DEFS=`<defs><marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 Z" fill="var(--dim)"/></marker><style>.dl{font:800 15px 'JetBrains Mono',monospace;fill:var(--dim)}.lb{font:700 13px 'Noto Sans TC',sans-serif;fill:var(--ink)}.lbs{font:500 12px 'Noto Sans TC',sans-serif;fill:var(--sub)}</style></defs>`;
+const plate=(oy=0)=>`<path d="${outline(1,1,oy)}" fill="${alpha('acc',18)}" stroke="var(--acc)" stroke-width="2.5"/>`;
+const recess=(oy=0)=>`<path d="${outline(RX,RY,oy)}" fill="${alpha('hole',22)}" stroke="var(--hole)" stroke-width="2" stroke-dasharray="7 5"/>`;
+const txt=(t,w=46,h=19,oy=0)=>`<text x="${X(0)}" y="${Y(0)+oy+h*S*0.36}" text-anchor="middle" textLength="${w*S}" lengthAdjust="spacingAndGlyphs" style="font:900 ${h*S*0.98}px 'Noto Sans TC',sans-serif;fill:var(--text)">${t}</text>`;
+const rect=(x0,y0,x1,y1,f,s,ex='')=>`<rect x="${X(x0)}" y="${Y(y1)}" width="${(x1-x0)*S}" height="${(y1-y0)*S}" fill="${f}" stroke="${s}" stroke-width="2" ${ex}/>`;
+// 切角器：方塊 x0..x0+20, y0..y0+20，缺口圓心 (nx,ny)
+function cutter(x0,y0,nx,ny,dash){
+  const id='c'+Math.round(Math.random()*1e6);
+  return `<defs><mask id="${id}" maskUnits="userSpaceOnUse" x="-400" y="-400" width="1600" height="1200"><rect x="0" y="0" width="900" height="900" fill="#fff"/><circle cx="${X(nx)}" cy="${Y(ny)}" r="${R*S}" fill="#000"/></mask></defs><rect x="${X(x0)}" y="${Y(y0+20)}" width="${20*S}" height="${20*S}" fill="${alpha('hole',35)}" stroke="var(--hole)" stroke-width="2" ${dash?'stroke-dasharray="6 4"':''} mask="url(#${id})"/><circle cx="${X(nx)}" cy="${Y(ny)}" r="${R*S}" fill="none" stroke="var(--hole)" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+}
+const axes=`<g class="lbs"><text x="12" y="322">↔ 左右（寬）　↕ 前後（長）</text></g>`;
+const W=(inner,vb='0 0 600 330')=>`<svg viewBox="${vb}" role="img">${DEFS}${inner}</svg>`;
+
+const FIG={
+ hero:()=>DEFS+plate()+recess()+txt('王小明')+dimH(-30,30,15,'60')+dimV(-15,15,30,'30')+`<text x="${X(-30)}" y="${Y(-15)+36}" class="lbs">每一面厚 2，兩面疊起來 4</text>`,
+ cut:()=>{ // 放大畫：方塊 20×20，圓柱在左前角
+   const s=11,ox=180,oy=262, P=(x,y)=>[ox+x*s, oy-y*s];
+   const [bx,by]=P(0,20), [cx,cy]=P(0,0);
+   return DEFS+`<defs><mask id="cm"><rect width="600" height="330" fill="#fff"/><circle cx="${cx}" cy="${cy}" r="${5*s}" fill="#000"/></mask></defs>`+
+   `<rect x="${bx}" y="${by}" width="${20*s}" height="${20*s}" fill="${alpha('pB',30)}" stroke="var(--pB)" stroke-width="2" mask="url(#cm)"/>`+
+   `<circle cx="${cx}" cy="${cy}" r="${5*s}" fill="${alpha('hole',30)}" stroke="var(--hole)" stroke-width="2" stroke-dasharray="6 4"/>`+
+   `<text x="${P(10,10)[0]}" y="${P(10,10)[1]+5}" text-anchor="middle" class="lb">方塊 20 × 20</text><text x="${cx}" y="${cy+5}" text-anchor="middle" class="lb">孔</text>`+
+   `<g stroke="var(--dim)" stroke-width="1.5"><line x1="${bx}" y1="${by-18}" x2="${bx+20*s}" y2="${by-18}" marker-start="url(#ar)" marker-end="url(#ar)"/><line x1="${cx-5*s}" y1="${cy+22}" x2="${cx+5*s}" y2="${cy+22}" marker-start="url(#ar)" marker-end="url(#ar)"/></g>`+
+   `<text x="${bx+10*s}" y="${by-24}" text-anchor="middle" class="dl">20</text><text x="${cx}" y="${cy+40}" text-anchor="middle" class="dl">Ø10</text>`+
+   `<text x="430" y="120" class="lbs">圓柱的中心</text><text x="430" y="138" class="lbs">＝方塊的左前角</text><text x="430" y="176" class="lbs">群組後整個改成「孔」</text><line x1="425" y1="125" x2="${cx+6}" y2="${cy-6}" stroke="var(--sub)" stroke-dasharray="3 3"/>`;
+ },
+ place:()=>DEFS+'<g transform="translate(300 165) scale(0.62) translate(-300 -165)">'+rect(-30,-15,30,15,alpha('pA',22),C('pA'))+`<text x="${X(-8)}" y="${Y(0)+5}" text-anchor="middle" class="lb">底板 60 × 30</text>`+cutter(25,10,25,10)+dimH(25,30,10,'5',30)+dimV(10,15,30,'5',40)+dimH(-30,30,-15,'60',36)+'</g>'+`<text x="12" y="22" class="lbs">切角器：右邊、後面先對齊底板，再往右 15、往後 15</text>`+axes,
+ four:()=>DEFS+'<g transform="translate(300 165) scale(0.62) translate(-300 -165)">'+rect(-30,-15,30,15,alpha('pA',22),C('pA'))+cutter(25,10,25,10)+cutter(25,-30,25,-10,true)+cutter(-45,10,-25,10,true)+cutter(-45,-30,-25,-10,true)+`<text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">四個角都有切角器</text></g>`,
+ round:()=>DEFS+plate()+dimH(-30,30,15,'60')+dimV(-15,15,30,'30')+`<circle cx="${X(25)}" cy="${Y(10)}" r="3" fill="var(--dim)"/><text x="${X(18)}" y="${Y(4)}" class="dl" text-anchor="middle">R5</text><line x1="${X(25)}" y1="${Y(10)}" x2="${X(25+R*0.7071)}" y2="${Y(10+R*0.7071)}" stroke="var(--dim)" stroke-width="1.5"/><text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">圓角底板 60 × 30 × 2</text>`,
+ hole:()=>DEFS+plate()+recess()+dimH(-27.48,27.48,12.45,'54.96',-44)+dimV(-12.45,12.45,27.48,'24.9',42)+`<text x="${X(0)}" y="${Y(0)+5}" text-anchor="middle" class="lb">孔 54.96 × 24.9 × 1，抬高 1</text>`,
+ text:()=>DEFS+plate()+recess()+`<rect x="${X(-23)}" y="${Y(9.5)}" width="${46*S}" height="${19*S}" fill="none" stroke="var(--text)" stroke-width="1.5" stroke-dasharray="5 4"/>`+txt('王小明')+dimH(-23,23,9.5,'46',-38)+dimV(-9.5,9.5,23,'19',52),
+ stack:()=>{ // 前視剖面
+   const sx=8,sz=24,ox=60,gz=270, xp=x=>ox+(x+30)*sx, zp=z=>gz-z*sz;
+   const r=(x0,z0,x1,z1,f,s)=>`<rect x="${xp(x0)}" y="${zp(z1)}" width="${(x1-x0)*sx}" height="${(z1-z0)*sz}" fill="${f}" stroke="${s}" stroke-width="2"/>`;
+   const face=(z0,up,col)=>{const fl=up?[z0,z0+1]:[z0+1,z0+2], rm=up?[z0+1,z0+2]:[z0,z0+1];return r(-30,fl[0],30,fl[1],alpha(col,25),C(col))+r(-30,rm[0],-27.48,rm[1],alpha(col,25),C(col))+r(27.48,rm[0],30,rm[1],alpha(col,25),C(col))+r(-23,rm[0],23,rm[1],alpha('text',30),C('text'))};
+   return DEFS+`<line x1="30" y1="${gz}" x2="570" y2="${gz}" stroke="var(--sub)" stroke-width="2"/><text x="566" y="${gz+18}" text-anchor="end" class="lbs">工作平面</text>`+face(0,false,'pB')+face(2,true,'acc')+
+   `<text x="${xp(0)}" y="${zp(3.5)+5}" text-anchor="middle" class="lb">第一面（字朝上）</text><text x="${xp(0)}" y="${zp(0.5)+5}" text-anchor="middle" class="lb">第二面（翻面，字朝下）</text>`+
+   `<g stroke="var(--dim)" stroke-width="1.5"><line x1="${xp(30)+16}" y1="${zp(0)}" x2="${xp(30)+16}" y2="${zp(4)}" marker-start="url(#ar)" marker-end="url(#ar)"/><line x1="${xp(-30)-16}" y1="${zp(2)}" x2="${xp(-30)-16}" y2="${zp(4)}" marker-start="url(#ar)" marker-end="url(#ar)"/><line x1="${xp(-30)-16}" y1="${zp(0)}" x2="${xp(-30)-16}" y2="${zp(2)}" marker-start="url(#ar)" marker-end="url(#ar)"/></g><text x="${xp(30)+24}" y="${zp(2)+5}" class="dl">4</text><text x="${xp(-30)-24}" y="${zp(3)+5}" text-anchor="end" class="dl">2</text><text x="${xp(-30)-24}" y="${zp(1)+5}" text-anchor="end" class="dl">2</text><text x="300" y="40" text-anchor="middle" class="lbs">從前面切開看（高度放大畫）</text>`;
+ }
+};
+$('#heroSvg').innerHTML=FIG.hero();
+
+
+/* 右後角放大圖：x 15..47, y 0..32 mm */
+(function(){
+ const s=11.5, ox=60, oy=395, P=(x,y)=>[ox+(x-15)*s, oy-(y)*s];
+ const sy=s; let g=DEFS;
+ for(let x=15;x<=47;x++){const [a]=P(x,0);g+=`<line x1="${a}" y1="${P(0,0)[1]}" x2="${a}" y2="${P(0,32)[1]}" stroke="var(--line)" stroke-width="${x%5?0.6:1.2}"/>`}
+ for(let y=0;y<=32;y++){const [,b]=P(15,y);g+=`<line x1="${P(15,0)[0]}" y1="${b}" x2="${P(47,0)[0]}" y2="${b}" stroke="var(--line)" stroke-width="${y%5?0.6:1.2}"/>`}
+ // 底板（到 x30,y15）
+ const [px0,py1]=P(15,15),[px1,py0]=P(30,0);
+ g+=`<rect x="${px0}" y="${py1}" width="${px1-px0}" height="${py0-py1}" fill="${alpha('pB',35)}" stroke="var(--pB)" stroke-width="2.5"/>`;
+ // 切角器 x25..45 y10..30，缺口圓心 (25,10) r5
+ const [cx0,cy1]=P(25,30),[cx1,cy0]=P(45,10),[nx,ny]=P(25,10);
+ g+=`<defs><mask id="cmk"><rect width="600" height="420" fill="#fff"/><ellipse cx="${nx}" cy="${ny}" rx="${5*s}" ry="${5*sy}" fill="#000"/></mask></defs><rect x="${cx0}" y="${cy1}" width="${cx1-cx0}" height="${cy0-cy1}" fill="${alpha('hole',45)}" stroke="var(--hole)" stroke-width="2" mask="url(#cmk)"/><ellipse cx="${nx}" cy="${ny}" rx="${5*s}" ry="${5*sy}" fill="none" stroke="var(--dim)" stroke-width="2" stroke-dasharray="4 3"/>`;
+ // 被切掉的 5×5 區（底板內、圓外）
+ const [ox0,oy1]=P(25,15),[ox1,oy0]=P(30,10);
+ g+=`<rect x="${ox0}" y="${oy1}" width="${ox1-ox0}" height="${oy0-oy1}" fill="none" stroke="var(--warn)" stroke-width="2.5"/>`;
+ g+=`<circle cx="${nx}" cy="${ny}" r="4" fill="var(--dim)"/><text x="${nx-8}" y="${ny+20}" text-anchor="end" class="dl">圓心 (25, 10)</text><line x1="${nx}" y1="${ny}" x2="${nx+5*s*0.707}" y2="${ny-5*sy*0.707}" stroke="var(--dim)" stroke-width="2"/><text x="${nx+18}" y="${ny-16}" class="dl">R5</text>`;
+ // 標尺
+ const lab=(x,y,t,a='middle')=>`<text x="${x}" y="${y}" text-anchor="${a}" class="dl">${t}</text>`;
+ g+=lab(P(30,0)[0],P(0,0)[1]+18,'30')+lab(P(25,0)[0],P(0,0)[1]+18,'25')+lab(P(45,0)[0],P(0,0)[1]+18,'45')+lab(P(15,10)[0]-6,P(0,10)[1]+5,'10','end')+lab(P(15,15)[0]-6,P(0,15)[1]+5,'15','end')+lab(P(15,30)[0]-6,P(0,30)[1]+5,'30','end');
+ g+=`<text x="${P(20,0)[0]}" y="${P(0,7)[1]}" text-anchor="middle" class="lb">底板</text><text x="${P(37,0)[0]}" y="${P(0,22)[1]}" text-anchor="middle" class="lb">切角器（孔）</text><text x="${P(37,0)[0]}" y="${P(0,22)[1]+18}" text-anchor="middle" class="lbs">20 × 20</text>`;
+ g+=`<text x="${ox1+8}" y="${oy1+8}" class="lbs" style="fill:var(--warn)">紅框 5 × 5：圓外的部分被切掉</text>`;
+ $('#cornerSvg').innerHTML=g;
+})();
+
+/* 流程圖 */
+(function(){
+ const items=[['切角器','Ø10 孔＋20×20'],['圓角底板','60×30×2'],['模板','挖凹槽 1 mm'],['兩面文字','46×19×2'],['翻面合體','60×30×4']];
+ let s=DEFS; items.forEach((it,i)=>{const x=20+i*176; s+=`<rect x="${x}" y="50" width="150" height="90" rx="12" fill="${alpha('acc',12)}" stroke="var(--acc)" stroke-width="2"/><text x="${x+75}" y="40" text-anchor="middle" class="dl">${i+1}</text><text x="${x+75}" y="88" text-anchor="middle" style="font:900 19px 'Noto Sans TC',sans-serif;fill:var(--ink)">${it[0]}</text><text x="${x+75}" y="116" text-anchor="middle" style="font:800 14px 'JetBrains Mono',monospace;fill:var(--dim)">${it[1]}</text>`; if(i<4) s+=`<path d="M${x+152} 95 L${x+172} 95" stroke="var(--sub)" stroke-width="2" marker-end="url(#ar)"/>`});
+ s+=`<text x="450" y="176" text-anchor="middle" class="lbs">第 1 節做到「模板」，第 2 節做兩面文字並合體</text>`;
+ $('#flowSvg').innerHTML=s;
+})();
+
+/* ===== 步驟 ===== */
+const V=(l,v,n='')=>`<div class="val">${l}<b>${v}</b>${n?`<small>${n}</small>`:''}</div>`;
+const LESSONS=[{id:'L1',tag:'第 1 節',title:'做「模板」：切角器切出圓角＋挖凹槽',steps:['s1','s2','s3','s4','s5','s6','s7']},{id:'L2',tag:'第 2 節',title:'兩面文字、翻面合體',steps:['s8','s9','s10','s11','s12']}];
+
+/* 對齊黑點小圖：targets 例 ['x1','y1'] */
+const DOTPOS={x0:[62,132],x1:[122,132],x2:[182,132],y0:[40,112],y1:[52,82],y2:[64,52],z0:[226,112],z1:[226,82],z2:[226,52]};
+const DOTNAME={x0:'下排・左',x1:'下排・中間',x2:'下排・右',y0:'左排・最前面',y1:'左排・中間',y2:'左排・最後面'};
+function dotSvg(t=[],labels=true,base=''){
+  let g=`<svg class="dotmini" viewBox="0 0 300 160" role="img" aria-label="對齊黑點：${t.map(k=>DOTNAME[k]).join('、')}">`;
+  g+=`<path d="M62 112 L182 112 L206 52 L86 52 Z" fill="${alpha('acc',14)}" stroke="var(--acc)" stroke-width="1.5"/>`;
+  g+=`<g stroke="var(--sub)" stroke-width="1" fill="none"><line x1="62" y1="132" x2="182" y2="132"/><line x1="40" y1="112" x2="64" y2="52"/><line x1="226" y1="112" x2="226" y2="52"/></g>`;
+  Object.entries(DOTPOS).forEach(([k,[x,y]])=>{const z=k[0]==='z';g+=`<circle cx="${x}" cy="${y}" r="5.5" fill="${z?'var(--hole)':'var(--ink)'}"/>`;});
+  g+=`<text x="226" y="36" text-anchor="middle" class="lbs">不要點</text><path d="M219 30 l14 0" stroke="var(--warn)" stroke-width="0"/>`;
+  t.forEach((k,i)=>{const [x,y]=DOTPOS[k];g+=`<circle cx="${x}" cy="${y}" r="12" fill="none" stroke="var(--warn)" stroke-width="3"/>`+(t.length>1?`<circle cx="${x+15}" cy="${y-13}" r="9" fill="var(--warn)"/><text x="${x+15}" y="${y-9}" text-anchor="middle" style="font:800 11px 'JetBrains Mono',monospace;fill:#fff">${i+1}</text>`:'');});
+  if(labels) g+=`<text x="122" y="153" text-anchor="middle" class="lbs">下排：管左右</text><text x="6" y="30" class="lbs">左排：管前後</text><text x="250" y="86" class="lbs">右排</text><text x="250" y="100" class="lbs">上下</text>`;
+  g+=`<text x="134" y="88" text-anchor="middle" class="lbs">${base?'釘住：'+base:'釘住的零件'}</text></svg>`;
+  return g+(t.length?`<div class="dotname">要點：${t.map((k,i)=>(t.length>1?'①②'[i]+' ':'')+'<b>'+DOTNAME[k]+'</b>').join('　')}</div>`:'');
+}
+
+/* Tinkercad 性質面板（示意，數值＝標準答案） */
+function PANEL(name,hole,rows){
+  const ring='box-shadow:0 0 0 3px #8db8ea';
+  return `<div class="tcpanel" role="img" aria-label="${name}的性質面板：${hole?'孔':'實體'}，${rows.map(r=>r[0]+' '+r[1]).join('、')}">
+   <div class="tch"><span>⌃</span><b>${name}</b></div>
+   <div class="tcsh"><div class="tco"><i class="sol" style="background:${name==='方塊'?'#e91d2d':'#f5831f'};${hole?'':ring}"></i><span ${hole?'':'class="on"'}>實體</span></div><div class="tco"><i class="hol" style="${hole?ring:''}"></i><span ${hole?'class="on"':''}>孔</span></div></div>
+   <div class="tcp"><div class="tcpt">性質 <span>⌃</span></div>${rows.map(([l,v,m])=>{const pc=Math.max(2,Math.min(100,v/m*100));return `<div class="tcr"><div class="tcl">${l}</div><div class="tcs"><i style="width:${v===0?0:pc}%"></i><b style="left:${v===0?0:pc}%">${v}</b></div></div>`}).join('')}</div></div>`;
+}
+
+/* 切角器移動原理：三格俯視圖（1 mm = 3.2 px） */
+function MOVEFIG(){
+  const k=3.2;
+  function frame(ox,cx,cy,title,sub,dims){
+    // 底板中心 (ox,95)，底板 x -30..30, y -15..15；切角器 x cx..cx+20, y cy..cy+20，缺口在左前角
+    const X=x=>ox+x*k, Y=y=>145-y*k;
+    let g=`<text x="${ox+24}" y="20" text-anchor="middle" style="font:900 21px 'Noto Sans TC',sans-serif;fill:var(--ink)">${title}</text><text x="${ox+24}" y="42" text-anchor="middle" style="font:500 16px 'Noto Sans TC',sans-serif;fill:var(--sub)">${sub}</text>`;
+    g+=`<rect x="${X(-30)}" y="${Y(15)}" width="${60*k}" height="${30*k}" fill="${alpha('pB',30)}" stroke="var(--pB)" stroke-width="1.5"/>`;
+    const r=5;
+    g+=`<path d="M${X(cx+r)} ${Y(cy)} L${X(cx+20)} ${Y(cy)} L${X(cx+20)} ${Y(cy+20)} L${X(cx)} ${Y(cy+20)} L${X(cx)} ${Y(cy+r)} A${r*k} ${r*k} 0 0 0 ${X(cx+r)} ${Y(cy)} Z" fill="${alpha('hole',45)}" stroke="var(--ink)" stroke-width="1.5" stroke-dasharray="4 3"/>`;
+    g+=dims(X,Y);
+    return g;
+  }
+  const arrH=(X,Y,x0,x1,y,t)=>`<line x1="${X(x0)}" y1="${Y(y)}" x2="${X(x1)}" y2="${Y(y)}" stroke="var(--dim)" stroke-width="1.6" marker-start="url(#ar)" marker-end="url(#ar)"/><text x="${(X(x0)+X(x1))/2}" y="${Y(y)-5}" text-anchor="middle" style="font:800 16px 'JetBrains Mono',monospace;fill:var(--dim)">${t}</text>`;
+  const arrV=(X,Y,y0,y1,x,t)=>`<line x1="${X(x)}" y1="${Y(y0)}" x2="${X(x)}" y2="${Y(y1)}" stroke="var(--dim)" stroke-width="1.6" marker-start="url(#ar)" marker-end="url(#ar)"/><text x="${X(x)+5}" y="${(Y(y0)+Y(y1))/2+5}" style="font:800 16px 'JetBrains Mono',monospace;fill:var(--dim)">${t}</text>`;
+  const ok=(X,Y)=>`<rect x="${X(25)}" y="${Y(15)}" width="${5*k}" height="${5*k}" fill="none" stroke="var(--warn)" stroke-width="2"/>`;
+  let g=DEFS;
+  g+=frame(110,10,-5,'① 對齊後','整個在底板裡面',(X,Y)=>arrH(X,Y,10,30,-9,'20 mm'));
+  g+=frame(410,25,-5,'② 往右 15 mm','左右只剩 5 mm 疊在底板上',(X,Y)=>arrH(X,Y,10,25,-11,'15')+arrH(X,Y,25,30,-19,'5'));
+  g+=frame(710,25,10,'③ 往後 15 mm','只剩 5 × 5 蓋在角上',(X,Y)=>ok(X,Y)+arrV(X,Y,-5,10,47,'15'));
+  g+=`<path d="M262 145 L304 145" stroke="var(--sub)" stroke-width="2.5" marker-end="url(#ar)"/><path d="M562 145 L604 145" stroke="var(--sub)" stroke-width="2.5" marker-end="url(#ar)"/>`;
+  return `<svg class="movefig" viewBox="0 0 900 250" role="img" aria-label="切角器移動原理：對齊後往右 15 mm、往後 15 mm，只剩 5×5 蓋在底板角上">${g}</svg>`;
+}
+/* 每個動作：{d:做什麼, see:你會看到, dot:[要點的黑點], base:'先點誰'} */
+const K=(k)=>`<kbd>${k}</kbd>`, N=(v)=>`<span class="n">${v}</span>`;
+const WRONG_IMG='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';
+const SIZE=(w,l,h,what)=>[
+  {d:`點${what}<b>角落的白色小方塊</b>（白點），按 ${K('Tab')}。`,see:'白點旁邊出現兩個數字，第一個變成藍色，可以打字了。'},
+  {d:`打 ${N(w)}，再按 ${K('Tab')}，打 ${N(l)}，按 ${K('Enter')}。`,see:`滑鼠移到白點上，看到 ${w} 和 ${l}。`},
+  {d:`點${what}<b>最上面的白點</b>，按 ${K('Tab')}，打 ${N(h)}，按 ${K('Enter')}。`,see:`${what}變成 ${h} mm 高。`}
+];
+const ALIGN=(a,b,dots,see)=>[
+  {d:`點 <b>${a}</b>，按住 ${K('Shift')} 再點 <b>${b}</b>。`,see:'右上角出現 Shapes(2)，兩個都選到了。'},
+  {d:`按 ${K('L')}，<b>數 1、2</b>，等黑點出現。`,see:'零件四周出現很多黑點。'},
+  {d:`<b>先點 ${a}</b>。`,see:`黑點縮到 ${a} 的旁邊，${a} 被「釘住」，等一下不會動。`},
+  {d:`點下面圖上<b>紅圈</b>的黑點${dots.length>1?'（照 ①② 的順序）':''}。`,dot:dots,base:a,see}
+];
+const STEPS={
+ s1:{t:'開新設計、設定格線',min:4,goal:'先把工作環境準備好，後面打的數字才會準。',
+  todo:[
+   {d:'照上面「班級連結與登入」進入自己的班級，在<b>「我們的活動」</b>底下按<b>「新設計」</b>。',see:'出現藍色格子的工作平面。'},
+   {d:'點左上角的設計名稱（一串英文），改成 <b>座號-姓名-名牌</b>，例如 07-王小明-名牌。',see:'左上角變成你的名字。'},
+   {d:`看右下角的 <b>「鎖點格線」</b>，確定是 ${N('1.0 mm')}。`,see:'如果不是 1.0，點它改成 1.0 mm。'},
+   {d:'點左邊的 <b>小房子</b>（主視圖）。',see:'工作平面回到正前方斜斜往下看的角度。之後要對齊時，都先回到這個角度，黑點的位置才會跟網頁的圖一樣。'}
+  ],check:'右下角鎖點格線顯示 1.0 mm。'},
+
+ s2:{t:'做「切角器」',min:12,fig:'cut',cap:'圓柱的中心在方塊的左前角。群組後，方塊的角被挖掉四分之一圓。',
+  goal:'名牌的四個圓角是「切」出來的。先做一個切角器：一個方塊，左前角被挖掉四分之一個圓，最後整個變成「孔」。',
+  vals:V('圓柱','10 × 10 × 2','改成「孔」、側 48')+V('方塊','20 × 20 × 2')+V('方塊移動','往右 10、往後 10'),
+  todo:[
+   {d:'拖一個橘色 <b>圓柱</b> 到工作平面上。'},
+   ...SIZE(10,10,2,'圓柱'),
+   {d:`看右上角的「性質」：<b>側</b> ${N('48')}、<b>斜切</b> ${N('0')}、<b>線段</b> ${N('1')}。這是預設值，通常不用改。如果不一樣，點拉桿上的<b>數字圓圈</b>，刪掉，打正確的數字，按 ${K('Enter')}。`},
+   {d:'確定圓柱是<b>直直站著</b>的（從上面看是圓形）。如果倒下了，按 Delete 刪掉，重新拖一個。'},
+   {d:'在右上角面板按 <b>「孔」</b>。',see:'圓柱變成灰色斜條紋。'},
+   {d:'<b>對照：</b>圓柱的面板要長得跟下面一模一樣。'+PANEL('圓柱',true,[['側',48,64],['斜切',0,10],['線段',1,10]])},
+   {d:'拖一個紅色 <b>方塊</b> 出來，放在圓柱旁邊。'},
+   ...SIZE(20,20,2,'方塊'),
+   {d:'<b>對照：</b>方塊的面板要長得跟下面一模一樣。（也可以直接在面板的<b>長度、寬度、高度</b>點數字圓圈打 20、20、2。）'+PANEL('方塊',false,[['半徑',0,10],['步驟',10,20],['長度',20,1000],['寬度',20,1000],['高度',2,1000]])},
+   {d:'<b>讓圓柱和方塊的中心對在一起：</b>'},
+   ...ALIGN('方塊','圓柱',['x1','y1'],'圓柱跑到方塊的正中間，兩個中心重疊。'),
+   {d:'點空白的地方，取消選取。'},
+   {d:`只點 <b>方塊</b>，按住 ${K('Shift')} 再按 ${K('→')} <b>1 下</b>。`,see:'方塊往右移 10 mm。'},
+   {d:`再按住 ${K('Shift')} 再按 ${K('↑')} <b>1 下</b>。`,see:'方塊往後移 10 mm。現在圓柱的<b>中心</b>剛好在方塊的<b>左前角</b>：圓柱只有<b>四分之一</b>疊在方塊上，另外四分之三露在外面。<b>這樣是對的！</b>群組後方塊只會被挖掉左前角四分之一個圓。'},
+   {d:`按 ${K('Ctrl')}＋${K('A')} 選圓柱和方塊，按 ${K('Ctrl')}＋${K('G')} 群組。`,see:'方塊的左前角被挖掉一個四分之一圓。'},
+   {d:'群組還選著，在右上角面板按 <b>「孔」</b>。',see:'整個切角器變成灰色斜條紋。'}
+  ],
+  check:'切角器是 20 × 20 × 2 的孔，左前角缺了一個四分之一圓。',
+  tip:'這一步跟同事的程式一樣：圓柱不動，<b>方塊往右 10、往後 10</b>。因為方塊寬 20，一半是 10，移 10 之後方塊的角就剛好在圓柱中心。'},
+
+ s3:{t:'放底板，把切角器移到右後角',min:12,fig:'place',cap:'切角器只蓋住底板右後角 5 × 5，缺口的圓弧留下來變成圓角。',
+  goal:'底板是 60 × 30 × 2。切角器先對齊底板的右邊和後面，再往外移 15，就只剩 5 mm 蓋在底板角上。',
+  vals:V('底板','60 × 30 × 2')+V('往右','15 mm','1.5 公分：Shift+→ 1 下＋→ 5 下')+V('往後','15 mm','1.5 公分：Shift+↑ 1 下＋↑ 5 下'),
+  todo:[
+   {d:'拖一個 <b>方塊</b> 出來當 <b>底板</b>，放在切角器旁邊。'},
+   {d:`點底板，看右上角的<b>「性質」</b>面板。點每一格的<b>數字圓圈</b>，刪掉，打數字，按 ${K('Enter')}：<b>長度</b> ${N('30')}、<b>寬度</b> ${N('60')}、<b>高度</b> ${N('2')}。`+PANEL('方塊',false,[['半徑',0,10],['步驟',10,20],['長度',30,1000],['寬度',60,1000],['高度',2,1000]]),see:'底板變成<b>橫的</b>長方形：左右 60、前後 30。'},
+   {d:`<b>⚠️ 長度和寬度不要打反！</b>在 Tinkercad 的面板裡，<b>寬度＝左右</b>、<b>長度＝前後</b>。下面是打反的樣子（長度 60、寬度 30），底板變成<b>直的</b>：<figure class="wrongshot"><img src="data:image/jpeg;base64,${WRONG_IMG}" alt="打反的例子：長度 60、寬度 30，底板變成直的"><figcaption>❌ 錯誤：長度 60、寬度 30 → 底板直的。要改成 長度 30、寬度 60。</figcaption></figure>`},
+   {d:'先確認切角器是<b>灰色斜條紋（孔）</b>。如果還是紅色，點它，按右上角的「孔」。'},
+   ...ALIGN('底板','切角器',['x2','y2'],'切角器移到底板的右後角，整個在底板裡面。'),
+   {d:'點空白的地方，取消選取。'},
+   {d:`<div class="why"><b>📐 為什麼要移 15 mm（1.5 公分）？</b>${MOVEFIG()}<ul>
+     <li>Tinkercad 的單位是 <b>mm（公釐）</b>：<b>10 mm ＝ 1 公分</b>，5 mm ＝ 0.5 公分。</li>
+     <li>切角器寬 <b>20 mm（2 公分）</b>。剛對齊完，它整個躲在底板裡面（圖 ①）。</li>
+     <li>我們只要它蓋住底板角落 <b>5 mm × 5 mm（0.5 × 0.5 公分）</b> 的小方格，所以要把它往外推：<b>20 − 5 ＝ 15 mm（1.5 公分）</b>。</li>
+     <li>往右推 15 mm，左右只剩 5 mm 疊在底板上（圖 ②）；再往後推 15 mm，前後也只剩 5 mm（圖 ③ 紅框）。</li>
+     <li>切角器的缺口是半徑 <b>5 mm</b> 的四分之一圓，剛好塞在這個 5 × 5 小方格裡。群組後，孔把<b>圓外面</b>那一點點挖掉，底板的角就變圓了。</li>
+   </ul></div>`},
+   {d:`<div class="why"><b>⌨️ 15 mm 怎麼按？</b>（鎖點格線要是 1.0 mm）<table class="keys"><tbody>
+     <tr><td>${K('→')} 按 1 下</td><td>移動 <b>1 mm</b>（0.1 公分）</td></tr>
+     <tr><td>${K('Shift')}＋${K('→')} 按 1 下</td><td>移動 <b>10 mm</b>（1 公分）</td></tr>
+     <tr><td><b>15 mm</b></td><td>＝ ${K('Shift')}＋${K('→')} <b>1 下</b>（10）＋ ${K('→')} <b>5 下</b>（5）</td></tr>
+   </tbody></table></div>`},
+   {d:`<b>往右 15 mm：第 1 步</b>　只點 <b>切角器</b>，按住 ${K('Shift')} 再按 ${K('→')} <b>1 下</b>，然後放開 ${K('Shift')}。`,see:'切角器往右移了 <b>10 mm（1 公分）</b>。'},
+   {d:`<b>往右 15 mm：第 2 步</b>　不要按 ${K('Shift')}，只按 ${K('→')} <b>5 下</b>。`,see:'又往右 <b>5 mm（0.5 公分）</b>，合起來 15 mm：左右只剩 5 mm 疊在底板上（像圖 ②）。'},
+   {d:`<b>往後 15 mm：第 1 步</b>　按住 ${K('Shift')} 再按 ${K('↑')} <b>1 下</b>，然後放開 ${K('Shift')}。`,see:'切角器往後移了 <b>10 mm（1 公分）</b>。'},
+   {d:`<b>往後 15 mm：第 2 步</b>　不要按 ${K('Shift')}，只按 ${K('↑')} <b>5 下</b>。`,see:'又往後 <b>5 mm（0.5 公分）</b>，合起來 15 mm：只剩 <b>5 × 5 mm</b> 蓋在底板右後角，缺口的圓弧在角上（像圖 ③）。'}
+  ],
+  check:'切角器只蓋住底板右後角 <span class="n">5 × 5</span>，缺口的圓弧在底板角上（對照上面「關鍵數字」的放大圖）。',
+  warn:'方向鍵要在<b>主視圖</b>按（先點小房子），不然方向會跑掉。'},
+
+ s4:{t:'複製到右前角',min:5,fig:'four',cap:'四個切角器的位置。虛線是複製出來的。',
+  goal:'複製一個切角器，翻一下方向，再往前移 40。',
+  vals:V('往前','40','Shift+↓ 4 下'),
+  todo:[
+   {d:`點切角器，按 ${K('Ctrl')}＋${K('D')} 複製。`,see:'新的疊在原本的上面。'},
+   {d:`按 ${K('M')}（鏡射）。`,see:'切角器旁邊出現幾個雙箭頭。'},
+   {d:'點 <b>「前後」方向</b> 的雙箭頭。',see:'缺口從前面翻到後面。'},
+   {d:`按住 ${K('Shift')} 再按 ${K('↓')} <b>4 下</b>。`,see:'切角器往前移 40 mm，到了底板的右前角，缺口朝向底板的角。'}
+  ],
+  check:'右前角也有切角器，缺口對著底板的角。'},
+
+ s5:{t:'複製到左邊兩個角',min:6,fig:'four',cap:'左邊兩個是右邊兩個複製、左右鏡射、往左 70。',
+  goal:'右邊兩個一起複製、一起翻、往左移 70。',
+  vals:V('往左','70','Shift+← 7 下'),
+  todo:[
+   {d:`點右後的切角器，按住 ${K('Shift')} 再點右前的切角器。`,see:'兩個都選起來。'},
+   {d:`按 ${K('Ctrl')}＋${K('D')} 複製。`},
+   {d:`按 ${K('M')}，點 <b>「左右」方向</b> 的雙箭頭。`,see:'兩個缺口一起從左邊翻到右邊。'},
+   {d:`按住 ${K('Shift')} 再按 ${K('←')} <b>7 下</b>。`,see:'兩個切角器往左移 70 mm，到了底板的左後角和左前角。'}
+  ],
+  check:'四個角都有切角器，缺口都對著底板的角。'},
+
+ s6:{t:'群組，切出圓角底板',min:4,fig:'round',cap:'四個角被切成半徑 5 的圓角。',
+  goal:'底板和 4 個切角器群組，孔就會把四個角切圓。',
+  todo:[
+   {d:`按 ${K('Ctrl')}＋${K('A')} 全選。`,see:'右上角顯示 <b>Shapes(5)</b>（底板＋4 個切角器）。'},
+   {d:`按 ${K('Ctrl')}＋${K('G')} 群組。`,see:'切角器不見了，底板的四個角變成圓的。'},
+   {d:'滑鼠移到角落白點和頂端白點，看尺寸。'}
+  ],
+  vals:V('寬','60.00')+V('長','30.00')+V('高','2.00'),
+  check:`四個角都是圓角，尺寸 ${N('60 × 30 × 2')}。如果尺寸變大，代表有切角器不是「孔」，按 ${K('Ctrl')}＋${K('Z')} 檢查。`},
+ s7:{t:'挖凹槽，完成「模板」',min:10,fig:'hole',cap:'孔比底板小一圈，抬高 1 之後只會挖掉上面 1 mm。',
+  goal:'做一個比底板小一圈的「孔」，把底板上面挖下去 1 mm，邊邊留一圈外框。做好的這塊叫做<b>「模板」</b>。',
+  vals:V('寬','54.96')+V('長','24.9')+V('高','1')+V('抬高','1','Ctrl+↑ 按 1 下'),
+  todo:[
+   {d:`點底板，按 ${K('Ctrl')}＋${K('D')} 複製。`,see:'新的底板疊在原本的上面。'},
+   {d:'在右上角面板按 <b>「孔」</b>。',see:'新的那塊變成灰色斜條紋（透明的）。'},
+   ...SIZE('54.96','24.9',1,'孔'),
+   {d:`孔還選著，按住 ${K('Ctrl')} 再按 ${K('↑')} <b>1 下</b>。`,see:'孔往上浮起來 1 mm。'},
+   ...ALIGN('底板','孔',['x1','y1'],'孔跑到底板的正中間，四周露出一樣寬的外框。'),
+   {d:`選底板＋孔（${K('Ctrl')}＋${K('A')}），按 ${K('Ctrl')}＋${K('G')} 群組。`,see:'中間凹下去了！這就是「模板」。'}
+  ],
+  check:`模板是 ${N('60 × 30 × 2')}，中間凹下去 1 mm。`,
+  tip:'小數點要打完整：<b>54.96</b>、<b>24.9</b>。第 1 節做到這裡。',
+  warn:'點底板的時候要點在<b>外框</b>上，不要點到中間的孔。右邊直立那排黑點不要點，孔會掉到地上把底板挖穿。'},
+
+ s8:{t:'複製一個模板給第二面',min:3,goal:'名牌有兩面，兩面都要用模板。先複製一個放在前面。',
+  vals:V('往前','40','Shift+↓ 按 4 下'),
+  todo:[
+   {d:`點模板，按 ${K('Ctrl')}＋${K('D')} 複製。`},
+   {d:`按住 ${K('Shift')} 再按 ${K('↓')} <b>4 下</b>。（${K('Shift')}＋方向鍵一次移動 10 mm，4 下＝40 mm）`,see:'新的模板移到原本那個的前面，兩個不會重疊。'},
+   {d:'<b>後面那個</b>做第一面（名字），<b>前面那個</b>做第二面（班級座號）。'}
+  ],
+  check:'畫面上有兩個一樣的模板，一前一後。'},
+
+ s9:{t:'第一面：放上名字',min:12,fig:'text',cap:'名字放在凹槽正中間。文字高 2，頂面剛好跟外框一樣高。',
+  goal:'把名字放進後面那個模板的凹槽裡。',
+  vals:V('寬','46')+V('長','19')+V('高','2'),
+  todo:[
+   {d:'從「基本造型」拖出 <b>「文字」</b>（紅色的 TEXT），放在後面模板的旁邊。'},
+   {d:'在右上角面板的 <b>文字</b> 欄位，把 TEXT 刪掉，打上<b>你的名字</b>。',see:'工作平面上的字變成你的名字。'},
+   {d:'<b>字型</b> 選 <b>「多國語言」</b>。',see:'中文正常顯示，不是方框。'},
+   ...SIZE(46,19,2,'文字'),
+   ...ALIGN('模板','文字',['x1','y1'],'名字跑到凹槽正中間。'),
+   {d:`選模板＋文字，按 ${K('Ctrl')}＋${K('G')} 群組。`,see:'名字和模板黏在一起，這是「第一面」。'}
+  ],
+  check:'名字在凹槽正中間；第一面還是 60 × 30 × 2。',warn:'點模板時要點在<b>外框</b>上，不要點到文字。'},
+
+ s10:{t:'第二面：放上班級座號',min:8,goal:'用一樣的方法，在前面那個模板放第二面的字。',
+  vals:V('寬','46')+V('長','19')+V('高','2'),
+  todo:[
+   {d:'再拖一個 <b>「文字」</b>，打上第二面的內容，例如 <b>601-07</b>（或老師指定的字）。'},
+   {d:'<b>字型</b> 選 <b>「多國語言」</b>。'},
+   ...SIZE(46,19,2,'文字'),
+   ...ALIGN('前面的模板','文字',['x1','y1'],'字跑到前面模板的凹槽正中間。'),
+   {d:`選前面的模板＋文字，按 ${K('Ctrl')}＋${K('G')} 群組。`,see:'這是「第二面」。'}
+  ],
+  check:'兩面都做好了，各自都是 60 × 30 × 2。'},
+
+ s11:{t:'把第二面翻過來',min:8,goal:'第二面要翻過來、字朝下，等一下疊在第一面的下面。要用<b>「旋轉」</b>，不能用鏡射（鏡射字會變成反的）。',
+  vals:V('旋轉','180°'),
+  todo:[
+   {d:'點左上角視角方塊上的 <b>「前」</b>。',see:'變成從正前方看名牌。'},
+   {d:'點第二面。',see:'名牌旁邊出現幾個彎彎的箭頭。'},
+   {d:'找到在名牌<b>正面</b>、會讓名牌像<b>方向盤</b>一樣左右轉的那個彎箭頭。'},
+   {d:'按住彎箭頭拖曳。滑鼠靠近<b>裡面那一圈</b>時，每次跳 22.5°，拖到顯示 <span class="n">180</span> 再放開。',see:'名牌整個倒過來，字朝下。'},
+   {d:`按 ${K('D')}。`,see:'第二面落回工作平面上。'},
+   {d:'點左邊的小房子，回到主視圖。'}
+  ],
+  check:'從上面看第二面是平平的底；轉到下面看，字是正的。',warn:'字變成鏡子裡的反字，就是用了 M 鏡射。按 Ctrl＋Z 復原，改用旋轉。'},
+
+ s12:{t:'兩面合體',min:8,fig:'stack',figVB:'0 0 600 320',cap:'第二面在下面（字朝下），第一面在上面（字朝上），總共 4 mm 厚。',
+  goal:'把第一面抬高 2，放到第二面的正上方，再黏在一起。',
+  vals:V('第一面抬高','2','Ctrl+↑ 按 2 下')+V('完成','60 × 30 × 4'),
+  todo:[
+   {d:`點第一面，按住 ${K('Ctrl')} 再按 ${K('↑')} <b>2 下</b>。`,see:'第一面浮起來 2 mm。'},
+   ...ALIGN('第二面','第一面',['x1','y1'],'第一面移到第二面的正上方，疊成一塊。'),
+   {d:`按 ${K('Ctrl')}＋${K('A')} 全選，再按 ${K('Ctrl')}＋${K('G')} 群組。`},
+   {d:'滑鼠移到白點上，看尺寸。'}
+  ],
+  check:`完成！尺寸是 ${N('60 × 30 × 4')}。上面是名字，翻過來是班級座號。`}
+};
+
+/* ===== 先認識：圖 ===== */
+document.querySelector('#basics .gloss .card:nth-child(2)').innerHTML=document.querySelector('#basics .gloss .card:nth-child(2)').innerHTML.replace('DOTDEMO',dotSvg([],true));
+(function(){let g=DEFS+`<path d="M70 120 L210 120 L240 60 L100 60 Z" fill="${alpha('pB',30)}" stroke="var(--pB)" stroke-width="2"/>`;
+ [[70,120],[210,120],[240,60],[100,60]].forEach(([x,y])=>g+=`<rect x="${x-6}" y="${y-6}" width="12" height="12" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/>`);
+ g+=`<rect x="149" y="76" width="12" height="12" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/><text x="155" y="46" text-anchor="middle" class="lbs">頂端白點 → 高</text><line x1="155" y1="50" x2="155" y2="75" stroke="var(--sub)" stroke-dasharray="2 2"/><text x="210" y="144" text-anchor="middle" class="lbs">角落白點 → 寬、長</text><path d="M210 132 L210 128" stroke="var(--sub)"/>`;
+ document.getElementById('handleSvg').innerHTML=g;})();
+
+/* ===== 進度 ===== */
+const KEY='namecard.v2';
+let state={}; try{state=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){state={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}};
+const ORDER=LESSONS.flatMap(L=>L.steps);
+const prog=()=>{$('#progBar').style.width=(ORDER.filter(id=>state[id]).length/ORDER.length*100)+'%'};
+let num=0;
+$('#lessons').innerHTML=LESSONS.map(L=>`<section id="${L.id}"><div class="lesson-h"><span class="tag">${L.tag}</span><h2>${L.title}</h2><span style="color:var(--sub);font-size:14px">約 ${L.steps.reduce((a,id)=>a+STEPS[id].min,0)} 分鐘</span></div>`+
+ L.steps.map(id=>{const s=STEPS[id];num++;const f=!!s.fig;
+  return `<article class="step${state[id]?' done':''}" id="${id}"><header><div class="sn">${num}</div><div><h3>${s.t}</h3><div class="meta">約 ${s.min} 分鐘</div></div></header>
+  <div class="body${f?'':' full'}"><div><p class="goal">${s.goal}</p>${s.vals?`<div class="vals">${s.vals}</div>`:''}
+  <ol class="todo" style="margin-top:10px">${s.todo.map(t=>typeof t==='string'?`<li>${t}</li>`:`<li>${t.d}${t.dot?dotSvg(t.dot,true,t.base||''):''}${t.see?`<div class="see">👀 ${t.see}</div>`:''}</li>`).join('')}</ol>
+  ${s.check?`<div class="check"><b>✅ 檢查</b>${s.check}</div>`:''}${s.tip?`<div class="tip"><b>💡</b>${s.tip}</div>`:''}${s.warn?`<div class="warn"><b>⚠️</b>${s.warn}</div>`:''}</div>
+  ${f?`<figure class="fig"><svg viewBox="${s.figVB||'0 0 600 330'}" role="img" aria-label="${s.cap}">${FIG[s.fig]()}</svg><figcaption>${s.cap}</figcaption></figure>`:''}</div>
+  <label class="done-row"><input type="checkbox" data-step="${id}" ${state[id]?'checked':''}> 我完成這一步了</label></article>`}).join('')+'</section>').join('');
+document.querySelectorAll('[data-step]').forEach(cb=>cb.addEventListener('change',e=>{const id=e.target.dataset.step;state[id]=e.target.checked;save();document.getElementById(id).classList.toggle('done',e.target.checked);prog()}));
+prog();
+
+/* ===== 兩面預覽 ===== */
+const esc=t=>t.replace(/[<>&"]/g,'');
+function renderNames(){
+ const a=esc($('#nameA').value.trim()||'王小明'), b=esc($('#nameB').value.trim()||'601-07');
+ $('#nameSvg').innerHTML=DEFS+plate(-10)+recess(-10)+txt(a,46,19,-10)+`<text x="20" y="40" class="lb">第一面</text>`+plate(300)+recess(300)+txt(b,46,19,300)+`<text x="20" y="350" class="lb">第二面</text>`;
+}
+['#nameA','#nameB'].forEach(s=>$(s).addEventListener('input',renderNames)); renderNames();
+
+/* ===== 最後檢查 ===== */
+const FINAL=['完成的名牌是 60 × 30 × 4（滑鼠移到白點上看）','四個角都是圓角','第一面的字在凹槽正中間，沒有錯字、沒有方框','第二面翻過來看，字是正的（不是鏡子裡的反字）','畫面上只有名牌，沒有多的零件','檔名是「座號_姓名.stl」'];
+$('#finalCheck').innerHTML=FINAL.map((f,i)=>`<li><input type="checkbox" id="fc${i}" ${state['fc'+i]?'checked':''}><label for="fc${i}">${f}</label></li>`).join('');
+document.querySelectorAll('#finalCheck input').forEach(cb=>cb.addEventListener('change',e=>{state[e.target.id]=e.target.checked;save()}));
+
+/* ===== 常見錯誤 ===== */
+const MIS=[
+ ['底板變成直的（30 × 60）','寬和長打反了：<b>第 1 個數字是左右 60</b>。'],
+ ['數字打不進去','點白點後要按 <kbd>Tab</kbd>，數字變藍才能打，打完按 <kbd>Enter</kbd>。'],
+ ['群組後角沒有變圓，反而多出方塊','切角器沒有改成「孔」。拆開群組，選切角器按「孔」。'],
+ ['圓角缺口在錯的位置','鏡射方向選錯，或方向鍵不是在主視圖按的。<kbd>Ctrl</kbd>＋<kbd>Z</kbd> 重做那一步。'],
+ ['方向鍵移動的方向怪怪的','先點左邊小房子回到主視圖再按。'],
+ ['對齊後底板跑掉','沒有「先點基準」。<kbd>Ctrl</kbd>＋<kbd>Z</kbd>，重新按 <kbd>L</kbd>，第一下點底板（或模板）。'],
+ ['底板被挖穿','凹槽的孔沒有抬高 1，或點到右排黑點。'],
+ ['中文變成方框','字型要選「多國語言」。'],
+ ['第二面的字是反的','用了鏡射。要用旋轉 180°。'],
+ ['合體後不是 60 × 30 × 4','第一面沒有抬高 2，或兩面沒有對齊置中。']
+];
+$('#misBox').innerHTML=MIS.map(m=>`<div class="mis"><b>❌ ${m[0]}</b><p>✅ ${m[1]}</p></div>`).join('');
+})();
+</script>
+</body>
+</html>
