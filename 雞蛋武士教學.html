@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- 雞蛋武士組裝教學 v1.6 2026-10-08（由 build.py 打包，含 Tinkercad 實機截圖） -->
+<!-- 雞蛋武士組裝教學 v1.7 2026-11-19（由 build.py 打包，含 Tinkercad 實機截圖） -->
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
@@ -120,6 +120,26 @@ figure.fig figcaption{padding:9px 13px;font-size:15px;line-height:1.6;border-top
 .faq details{background:#fff;border:1px solid var(--line);border-radius:10px;margin:8px 0;padding:10px 14px}
 .faq summary{font-weight:700;cursor:pointer}
 .faq details p{margin:8px 0 2px}
+.ex-hero{background:linear-gradient(135deg,#fff7e6,#ffeccc);border:2px solid #f0a54a;border-radius:16px;padding:16px 20px;font-size:18px;line-height:1.8}
+.ex-hero b{color:#c2410c}
+.ex-flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.ex-flow span{background:#fff;border:2px solid #f0a54a;border-radius:10px;padding:4px 12px;font-weight:700;font-size:16px}
+.ex-flow i{font-style:normal;color:#c2410c;font-weight:900}
+.ex-table{overflow-x:auto}
+.ex-table table{border-collapse:collapse;width:100%;min-width:560px;font-size:15.5px;background:#fff}
+.ex-table th,.ex-table td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.ex-table th{background:#fff4e5;font-size:14px}
+.ex-groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:10px 0}
+.ex-groups div{background:#fff;border:2px solid var(--line);border-radius:12px;padding:10px 12px;font-size:15px}
+.ex-groups b{display:block;font-size:17px;margin-bottom:2px}
+.ex-steps{counter-reset:ex;list-style:none;padding:0;margin:8px 0;display:grid;gap:8px}
+.ex-steps li{counter-increment:ex;position:relative;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 12px 8px 46px;font-size:16px}
+.ex-steps li::before{content:counter(ex);position:absolute;left:10px;top:8px;width:26px;height:26px;border-radius:50%;background:#e08a1e;color:#fff;font-weight:900;text-align:center;line-height:26px;font-size:14px}
+.ex-steps ul li{counter-increment:none;background:none;border:0;padding:2px 0;font-size:15.5px;list-style:disc}.ex-steps ul li::before{content:none}
+.ex-table td:nth-child(-n+3){white-space:nowrap}
+.ex-note{background:#fdecea;border-radius:10px;padding:9px 14px;margin:10px 0;font-size:15.5px}
+.ex-tip{background:#eef6ff;border-radius:10px;padding:9px 14px;margin:10px 0;font-size:15.5px}
+.ex-go{display:inline-block;background:#e08a1e;color:#fff;font-weight:900;text-decoration:none;border-radius:12px;padding:10px 18px;margin-top:6px}
 .chal{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
 .chal div{background:#fff;border:2px dashed var(--l3);border-radius:14px;padding:12px 14px}
 .chal b{font-size:18px}
@@ -214,7 +234,7 @@ footer{padding:30px 0 60px;color:var(--sub);font-size:14px;text-align:center}
     <span class="brand">🥚 雞蛋武士</span>
     <a href="#prep">課前準備</a><a href="#tech">三大關鍵技巧</a><a href="#align" style="color:#c62828">🎯對齊攻略</a>
     <a href="#L1" style="color:var(--l1)">第1節</a><a href="#L2" style="color:var(--l2)">第2節</a><a href="#L3" style="color:var(--l3)">第3節</a>
-    <a href="#chal">挑戰</a><a href="#faq">問題</a>
+    <a href="#chal">挑戰</a><a href="#export" style="color:#c2410c">📤匯出玩遊戲</a><a href="#faq">問題</a>
   </div>
   <div class="prog"><i id="progBar"></i></div>
 </nav>
@@ -364,13 +384,104 @@ footer{padding:30px 0 60px;color:var(--sub);font-size:14px;text-align:center}
   <div id="extraPlayers"></div>
 </section>
 
+<section id="export">
+  <h2 class="sec">📤 匯出角色，帶去玩美食冒險家</h2>
+  <p class="lead">做好的雞蛋武士可以變成遊戲角色！上傳 3D 角色後，可以玩美食冒險家全部 5 關（用火柴人或自己畫的角色只能玩第 1、2 關）。</p>
+
+  <div class="ex-hero">
+    <div><b>一句話：</b>Tinkercad 右上角「匯出」→ 選 <b>.OBJ</b> → 下載到一個 zip → <b>不要解壓縮</b>，整個 zip 拖進美食冒險家的「⬆ 上傳 3D（進階）」。</div>
+    <div class="ex-flow"><span>匯出</span><i>→</i><span>.OBJ</span><i>→</i><span>zip（不要解開）</span><i>→</i><span>⬆ 上傳 3D（進階）</span></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">① 要用哪種格式？</h3>
+    <div class="ex-table"><table>
+      <thead><tr><th>格式</th><th>推薦</th><th>有顏色</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr><td><b>.OBJ</b></td><td>⭐ 首選</td><td>✅</td><td>下載的是 zip（裡面有 <code>tinker.obj</code> 和 <code>obj.mtl</code>）。顏色存在 .mtl 裡，所以<b>整個 zip 直接上傳，不要解開</b>。每個零件會分開，遊戲才認得手和腳。</td></tr>
+        <tr><td>.GLB</td><td>可以</td><td>✅</td><td>單一檔案、有顏色。OBJ 有問題時再改用它。</td></tr>
+        <tr><td>.STL</td><td>❌ 不建議</td><td>❌</td><td>沒有顏色，角色會變成一整隻橘色。</td></tr>
+        <tr><td>.SVG</td><td>❌ 不能用</td><td>—</td><td>這是給雷射切割用的平面圖。</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin:8px 0 0;font-size:14px;color:var(--sub)">遊戲也接受 .obj＋.mtl 兩個檔一起選，但整個 zip 最不容易出錯。</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">② 匯出前檢查：手、腳、帽子要分開</h3>
+    <p style="margin:0 0 6px">美食冒險家會看「零件的位置」自動決定誰負責什麼動作：</p>
+    <div class="ex-groups">
+      <div><b>🥚 身體</b>中間最大的那塊（蛋）</div>
+      <div><b>✋ 手</b>身體左右兩側，會擺手、揮武器。拿武器、比較長的那隻手負責攻擊。</div>
+      <div><b>🦶 腳</b>身體下方，會走路。</div>
+      <div><b>⛑️ 頭頂配件</b>帽子、皇冠這類在頭頂的零件。</div>
+    </div>
+    <div class="ex-note">⚠️ 「群組」會把零件融成一塊。如果整隻武士群組成一個，手和腳就黏在身體上，<b>動不起來</b>。</div>
+    <ol class="ex-steps">
+      <li>選整隻武士，按 <kbd>Ctrl</kbd>＋<kbd>Shift</kbd>＋<kbd>G</kbd> 取消群組。</li>
+      <li>重新分成<b>幾個小群組</b>（每組選好後按 <kbd>Ctrl</kbd>＋<kbd>G</kbd>）：
+        <ul style="margin:4px 0 0;padding-left:1.2em">
+          <li><b>身體組</b>：蛋、眼睛、鬍子等臉部裝飾</li>
+          <li><b>右手組</b>：右手＋握著的劍</li>
+          <li><b>左手組</b>：左手＋握著的劍</li>
+          <li><b>左腳、右腳</b>：各自一個，<b>不要</b>和身體群組</li>
+          <li><b>帽子</b>：自己一個</li>
+        </ul></li>
+      <li>每一組都要開<b>「多色」</b>，不然顏色會變成一樣。</li>
+      <li>角色<b>正面朝「前」</b>（視角方塊上寫「前」的那一面），站在工作平面上，不要躺著。</li>
+      <li>轉一圈檢查：手、腳不要整塊埋進身體裡。輕輕碰到可以，最好留一點點縫。</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">③ 匯出步驟</h3>
+    <ol class="ex-steps">
+      <li>點空白處，<b>不要選任何零件</b>。</li>
+      <li>按右上角<b>「匯出」</b>。</li>
+      <li>「包含」選<b>設計中的所有物件</b>（英文：Everything in the design）。不要選「選取的形狀」，以免少了零件。</li>
+      <li>在「用於 3D 列印」那一排點 <b>.OBJ</b>。</li>
+      <li>瀏覽器會下載一個 zip，檔名通常是設計名稱。</li>
+      <li>檔案在「下載」資料夾，<b>不要解壓縮</b>。</li>
+    </ol>
+    <div class="ex-tip">💡 繁中介面的按鈕字樣可能和這裡略有不同，以畫面為準。英文介面是 Export → Everything in the design → For 3D Print：.OBJ。</div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">④ 上傳到美食冒險家</h3>
+    <ol class="ex-steps">
+      <li>打開美食冒險家：<a href="https://cona0815.github.io/eggeat/" target="_blank" rel="noopener">cona0815.github.io/eggeat</a></li>
+      <li>右邊「我的角色」→ 點 <b>⬆ 上傳 3D（進階）</b>。</li>
+      <li>把 zip 拖進黃色框，或點黃色框選檔案。</li>
+      <li>出現 ✔ 和「手 ×2、腳 ×2」之類的辨識結果，就成功了。</li>
+      <li>按「走路／跳躍／攻擊／揮手／跳舞」預覽動作。</li>
+      <li>方向不對時：<b>轉向</b>（每按一次轉 90°，轉到臉朝前）；<b>扶正</b>（角色躺著或倒立時按）。</li>
+      <li>角色會記在這台電腦的瀏覽器裡，下次打開還在。<b>換電腦要重新上傳。</b></li>
+    </ol>
+    <a class="ex-go" href="https://cona0815.github.io/eggeat/" target="_blank" rel="noopener">🎮 打開美食冒險家</a>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">⑤ 常見問題</h3>
+    <div class="ex-table"><table>
+      <thead><tr><th>狀況</th><th>原因</th><th>解法</th></tr></thead>
+      <tbody>
+        <tr><td>手腳不會動，整隻一起晃</td><td>整隻群組成一塊</td><td>照 ② 拆成小群組再匯出</td></tr>
+        <tr><td>角色全身同一個顏色</td><td>用了 STL，或解壓縮後只上傳 .obj</td><td>改用 OBJ 的 zip 整包上傳</td></tr>
+        <tr><td>角色躺著、背對</td><td>匯出時方向不對</td><td>按「扶正」「轉向」，或回 Tinkercad 讓正面朝「前」</td></tr>
+        <tr><td>找不到模型檔</td><td>上傳了別的檔，例如 SVG 或截圖</td><td>重新匯出 .OBJ</td></tr>
+        <tr><td>劍在錯的那隻手攻擊</td><td>遊戲以比較長的那隻手當武器手</td><td>把要攻擊的那把武器做長一點</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
 <section id="faq" class="faq">
   <h2 class="sec">🆘 卡住了怎麼辦</h2>
   <p class="lead">先按 <kbd>Ctrl</kbd>＋<kbd>Z</kbd> 復原，切到「上」「前」視角看看，還是不行再舉手問老師。</p>
   <div id="faqBox"></div>
 </section>
 
-<footer>雞蛋武士組裝教學 v1.6（2026-10-08）｜畫面為 Tinkercad 真實操作截圖（部分步驟以圓球示範，操作方式相同）｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
+<footer>雞蛋武士組裝教學 v1.7（2026-11-19）｜畫面為 Tinkercad 真實操作截圖（部分步驟以圓球示範，操作方式相同）｜Tinkercad 為 Autodesk 產品，介面可能隨版本更新</footer>
 </main>
 
 <div id="lb"></div>
@@ -1087,7 +1198,7 @@ footer{padding:30px 0 60px;color:var(--sub);font-size:14px;text-align:center}
       todo: [
         '選武士，按 <kbd>Ctrl</kbd>＋<kbd>Shift</kbd>＋<kbd>G</kbd> 拆開。',
         '點想換顏色的零件（例如劍），點色塊換顏色。',
-        '全選 → <kbd>Ctrl</kbd>＋<kbd>G</kbd> → 需要時開「多色」。'
+        '改完顏色後重新群組：要帶去玩遊戲的話，<b>不要整隻群組</b>——身體一組、左右手各一組（含武器）、腳和帽子分開，每組都開「多色」。只要列印或展示的話，才全選 → <kbd>Ctrl</kbd>＋<kbd>G</kbd>。'
       ],
       check: '至少有一個零件換成你自己選的顏色。',
       warn: '「取消群組」是灰色的？代表選到的是單一零件，不能再拆。'
@@ -1105,7 +1216,8 @@ footer{padding:30px 0 60px;color:var(--sub);font-size:14px;text-align:center}
         '選一個挑戰任務卡（下面），讓你的武士與眾不同。',
         '轉一圈檢查：沒有零件懸空、武器都握在手裡。',
         '兩人一組互看：「我最喜歡你的 ___，因為 ___」。',
-        '上台發表：一個設計想法＋一個解決過的難題。'
+        '上台發表：一個設計想法＋一個解決過的難題。',
+        '把作品匯出成 <b>.OBJ</b>，上傳到美食冒險家（看下面「<a href="#export">📤 匯出角色</a>」）。'
       ],
       check: '完成學習單〈我的改造設計〉與〈組裝檢核〉。'
     }
@@ -1129,7 +1241,9 @@ footer{padding:30px 0 60px;color:var(--sub);font-size:14px;text-align:center}
     ['眉毛方向不對？', '選那隻眼睛 → <kbd>M</kbd> → 左右箭頭，翻一次就好。'],
     ['群組後顏色變一樣？', '點色塊 →「多色」開啟。'],
     ['零件掉到地板下面？', '選它按 <kbd>D</kbd>（置放到工作平面），再用 <kbd>Ctrl</kbd>＋<kbd>↑</kbd> 抬高。'],
-    ['弄壞了？', '<kbd>Ctrl</kbd>＋<kbd>Z</kbd> 一直按，一步一步回去。']
+    ['弄壞了？', '<kbd>Ctrl</kbd>＋<kbd>Z</kbd> 一直按，一步一步回去。'],
+    ['匯出要選哪個格式？', '選 <b>.OBJ</b>，會下載一個 zip，<b>整個 zip 不要解壓縮</b>，直接上傳到美食冒險家。'],
+    ['上傳後手腳不會動？', '整隻被群組成一塊了。拆開，改成身體、左右手（含武器）、腳、帽子各自一組，再匯出 .OBJ。']
   ];
 
   Object.assign(window.EGG.PLAYERS, PLAYERS);
