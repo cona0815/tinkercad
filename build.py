@@ -1,4 +1,4 @@
-# build.py v1.8 2026-11-19：圖片名稱支援大寫；可內嵌 align-guide.js；新增匯出角色區塊（含示意圖）
+# build.py v1.9 2026-11-19：圖片名稱支援大寫；可內嵌 align-guide.js；新增匯出角色區塊（含示意圖）
 """把 index.html + anim-data.js + lesson-data.js + img/*.webp 打包成單一 html（到哪裡開都看得到）
 用法：python build.py   → 產出 雞蛋武士教學.html
 """
