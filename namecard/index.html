@@ -1,5 +1,6 @@
 <!doctype html>
-<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.9 2026-11-23
+<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v4.0 2026-11-23
+     v4.0：接續上課改用「分享設計連結→複製並修改」，學生拿到的是完整可編輯的物件（底板＋4 個切角器），不是一整塊。
      v3.9：新增「快速版：匯入模板」— 老師匯出模板 STL，學生匯入後從步驟 8 開始，規格完全一致。
      依同事 Codeblocks 專案「copy of Cool Kup-Snaget」的流程改寫成一般 3D 設計操作：
      切角器（Ø10 圓柱孔，側 48＋20×20 方塊，方塊移動 10,10）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
@@ -167,7 +168,7 @@ table.keys td:first-child{white-space:nowrap}
 
 <nav class="top"><div class="wrap">
   <a class="brand" href="#top">🏷️ 我的 3D 名牌</a>
-  <a href="#spec">統一規格</a><a href="#login">登入</a><a href="#basics">先認識</a><a href="#flow">流程</a><a href="#start">關鍵數字</a><a href="#tpl" style="color:#c2410c">⚡匯入模板</a><a href="#L1">第 1 節</a><a href="#L2">第 2 節</a><a href="#export">匯出</a><a href="#mistakes">常見錯誤</a><a href="#teacher">老師</a>
+  <a href="#spec">統一規格</a><a href="#login">登入</a><a href="#basics">先認識</a><a href="#flow">流程</a><a href="#start">關鍵數字</a><a href="#tpl" style="color:#c2410c">⚡接續上課</a><a href="#L1">第 1 節</a><a href="#L2">第 2 節</a><a href="#export">匯出</a><a href="#mistakes">常見錯誤</a><a href="#teacher">老師</a>
 </div><div class="prog"><i id="progBar"></i></div></nav>
 
 <main class="wrap" id="top">
@@ -300,44 +301,44 @@ table.keys td:first-child{white-space:nowrap}
 </section>
 
 
-<!-- 快速版：匯入模板 v3.9 -->
+<!-- 接續上課：老師分享進度設計 v4.0 -->
 <section id="tpl">
-  <h2 class="sec">⚡ 快速版：匯入老師的模板</h2>
-  <p class="lead">時間不夠、或要每個人的外框<b>完全一樣</b>，就用這個方法：老師先做好一個「模板」匯出成檔案，學生匯入後<b>跳過第 1 節，直接從步驟 8 開始</b>放文字。</p>
-  <div class="grid2">
+  <h2 class="sec">⚡ 接續上課：拿到老師的「進度檔」</h2>
+  <p class="lead">學生上次沒做完、或做錯了，可以直接拿老師做到同一步的設計，<b>裡面每個物件都分開、孔還是孔</b>（例如底板＋4 個切角器），接著做下一步。</p>
+  <div class="warn"><b>⚠️ 不要用匯出 STL 再匯入！</b>STL 會把所有東西變成<b>一整塊</b>，孔不見、也不能再對齊或群組，學生沒辦法繼續做。</div>
+  <div class="grid2" style="margin-top:14px">
     <div class="card">
-      <h3 style="margin-top:0">🧑‍🏫 老師：匯出模板（只做一次）</h3>
+      <h3 style="margin-top:0">🧑‍🏫 老師：做一個「進度檔」並分享</h3>
       <ol class="todo">
-        <li>做到<b>步驟 7 結束</b>：只有一個模板（60 × 30 × 2，中間凹 1 mm），<b>還沒放文字</b>。</li>
-        <li>點模板，確認右上角顯示的是<b>一個群組</b>，大小 60 × 30 × 2。</li>
-        <li>按右上角 <b>「匯出」</b>。</li>
-        <li>「包含」選 <b>「僅選取的 1 個造型」</b>（不要選設計中的所有物件）。</li>
-        <li>格式按 <b>.STL</b>，檔案會下載到電腦。</li>
-        <li>把檔案放到班級網站或雲端硬碟，學生下載。</li>
+        <li>在自己的帳號做到要接續的那一步就停（例如<b>步驟 5 做完、還沒群組</b>：底板＋4 個切角器）。</li>
+        <li>回到「我的設計」，滑鼠移到這個設計上 → 按 <b>⚙ 齒輪</b> → <b>「複製」</b>，留一份不會被動到的。把複製出來的改名，例如 <span class="n">名牌進度_步驟5</span>。</li>
+        <li>點這份設計的預覽圖 → 右上角 <b>⚙（設計屬性）</b> → 「隱私」改成 <b>「公開」</b> → <b>儲存</b>。</li>
+        <li>複製網址列的設計網址（<span class="n">tinkercad.com/things/……</span>），貼到班級網站，標明「步驟 5 進度檔」。</li>
       </ol>
-      <div class="tip"><b>💡</b>來不及做的話，可以直接用這個已經照本頁規格做好的檔案：<br><a class="btn" href="namecard-template_60x30x2_v1.0_2026-11-23.stl" download style="display:inline-block;margin-top:6px;padding:8px 14px;border-radius:10px;background:#c2410c;color:#fff;text-decoration:none;font-weight:700">⬇ 下載模板 STL（60×30×2，R5 圓角，凹槽 54.96×24.9×1）</a></div>
+      <div class="tip"><b>💡</b>每一節的起點都可以做一份：步驟 5、步驟 7（模板完成）、步驟 11（兩面文字完成）。</div>
     </div>
     <div class="card">
-      <h3 style="margin-top:0">🧒 學生：匯入模板</h3>
+      <h3 style="margin-top:0">🧒 學生：複製老師的進度檔</h3>
       <ol class="todo">
-        <li>先把老師給的 <b>.stl</b> 檔下載到電腦。</li>
-        <li>在 Tinkercad 開一個<b>新的 3D 設計</b>。</li>
-        <li>按右上角的 <b>「匯入」</b>，選剛剛下載的檔案。</li>
-        <li>匯入視窗檢查：單位 <b>毫米（mm）</b>、縮放 <b>100%</b>，再按 <b>「匯入」</b>。</li>
-        <li>點模板，看右上角尺寸是不是 <span class="n">60 × 30 × 2</span>。不對就 <kbd>Ctrl</kbd>＋<kbd>Z</kbd>，重新匯入並檢查單位。</li>
-        <li>直接跳到 <a href="#s8"><b>步驟 8：複製一個模板給第二面</b></a>，照著做到最後。</li>
+        <li>先登入自己的 Tinkercad（從班級連結進去）。</li>
+        <li>打開老師給的設計網址。</li>
+        <li>按 <b>「複製並修改」</b>（英文畫面是 <b>Copy and Tinker</b>）。</li>
+        <li>會打開一份<b>你自己的</b>設計，裡面的物件跟老師的一模一樣、都是分開的。</li>
+        <li>左上角把名稱改成 <span class="n">座號-姓名</span>，例如 <span class="n">60430-王小明</span>。</li>
+        <li>從下一步接著做（步驟 5 進度檔 → 從 <a href="#s6"><b>步驟 6</b></a> 開始）。</li>
       </ol>
-      <div class="warn" style="margin-top:8px"><b>⚠️</b>匯入的模板是「一整塊」，<b>不能改大小</b>，也不要按「解散群組」。只在它上面放文字就好。</div>
     </div>
   </div>
-  <div class="card spec" style="margin-top:14px"><table>
-    <thead><tr><th></th><th>自己做模板（第 1 節）</th><th>匯入老師模板（快速版）</th></tr></thead>
-    <tbody>
-      <tr><td><b>花的時間</b></td><td>約 1 節課</td><td>約 3 分鐘</td></tr>
-      <tr><td><b>學到什麼</b></td><td>對齊、孔、群組、切角器原理</td><td>匯入檔案、放文字、翻面合體</td></tr>
-      <tr><td><b>尺寸會不會跑掉</b></td><td>做錯一步就會</td><td>不會，大家完全一樣</td></tr>
-    </tbody>
-  </table></div>
+  <div class="card" style="margin-top:14px;font-size:16px">
+    <h3 style="margin-top:0">📋 要放在「班級作業（活動）」裡面，用貼上的方法</h3>
+    <p style="margin-top:0">「複製並修改」做出來的設計，可能不會出現在老師的班級活動清單裡。要讓老師在活動裡看得到，請這樣做：</p>
+    <ol class="todo">
+      <li>打開老師的進度檔（不用按複製並修改），按 <kbd>Ctrl</kbd>＋<kbd>A</kbd> 全選，再按 <kbd>Ctrl</kbd>＋<kbd>C</kbd> 複製。</li>
+      <li>回到班級活動，打開<b>自己的</b>設計，按 <kbd>Ctrl</kbd>＋<kbd>V</kbd> 貼上。</li>
+      <li>物件會分開貼進來，孔還是孔。確認數量對了（步驟 5 是 5 個：1 個底板＋4 個切角器）。</li>
+    </ol>
+    <p style="margin:0;color:var(--sub);font-size:14px">建議老師上課前先用一個學生帳號試一次，確認兩種方法在學校電腦上都可以用。</p>
+  </div>
 </section>
 
 <div id="lessons"></div>
