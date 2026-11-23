@@ -1,5 +1,6 @@
 <!doctype html>
-<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.8 2026-11-12
+<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v3.9 2026-11-23
+     v3.9：新增「快速版：匯入模板」— 老師匯出模板 STL，學生匯入後從步驟 8 開始，規格完全一致。
      依同事 Codeblocks 專案「copy of Cool Kup-Snaget」的流程改寫成一般 3D 設計操作：
      切角器（Ø10 圓柱孔，側 48＋20×20 方塊，方塊移動 10,10）→ 四角 R5 圓角底板 60×30×2 → 凹槽 54.96×24.9×1（比例 0.916、0.83、0.5）→ 模板
      → 第一面、第二面文字 46×19×2 → 第二面翻面 180° → 疊成 60×30×4 雙面名牌。 -->
@@ -166,7 +167,7 @@ table.keys td:first-child{white-space:nowrap}
 
 <nav class="top"><div class="wrap">
   <a class="brand" href="#top">🏷️ 我的 3D 名牌</a>
-  <a href="#spec">統一規格</a><a href="#login">登入</a><a href="#basics">先認識</a><a href="#flow">流程</a><a href="#start">關鍵數字</a><a href="#L1">第 1 節</a><a href="#L2">第 2 節</a><a href="#export">匯出</a><a href="#mistakes">常見錯誤</a><a href="#teacher">老師</a>
+  <a href="#spec">統一規格</a><a href="#login">登入</a><a href="#basics">先認識</a><a href="#flow">流程</a><a href="#start">關鍵數字</a><a href="#tpl" style="color:#c2410c">⚡匯入模板</a><a href="#L1">第 1 節</a><a href="#L2">第 2 節</a><a href="#export">匯出</a><a href="#mistakes">常見錯誤</a><a href="#teacher">老師</a>
 </div><div class="prog"><i id="progBar"></i></div></nav>
 
 <main class="wrap" id="top">
@@ -296,6 +297,47 @@ table.keys td:first-child{white-space:nowrap}
     </tbody>
   </table>
   <p style="font-size:14px;color:var(--sub);margin:8px 0 0">座標以底板中心為 (0, 0)，單位 mm。底板範圍：左右 −30～30、前後 −15～15。這組數字和同事 Codeblocks 程式的「移動 (25, 10)」「移動 (0, −40)」「移動 (−70, 0)」完全一樣。</p></div>
+</section>
+
+
+<!-- 快速版：匯入模板 v3.9 -->
+<section id="tpl">
+  <h2 class="sec">⚡ 快速版：匯入老師的模板</h2>
+  <p class="lead">時間不夠、或要每個人的外框<b>完全一樣</b>，就用這個方法：老師先做好一個「模板」匯出成檔案，學生匯入後<b>跳過第 1 節，直接從步驟 8 開始</b>放文字。</p>
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">🧑‍🏫 老師：匯出模板（只做一次）</h3>
+      <ol class="todo">
+        <li>做到<b>步驟 7 結束</b>：只有一個模板（60 × 30 × 2，中間凹 1 mm），<b>還沒放文字</b>。</li>
+        <li>點模板，確認右上角顯示的是<b>一個群組</b>，大小 60 × 30 × 2。</li>
+        <li>按右上角 <b>「匯出」</b>。</li>
+        <li>「包含」選 <b>「僅選取的 1 個造型」</b>（不要選設計中的所有物件）。</li>
+        <li>格式按 <b>.STL</b>，檔案會下載到電腦。</li>
+        <li>把檔案放到班級網站或雲端硬碟，學生下載。</li>
+      </ol>
+      <div class="tip"><b>💡</b>來不及做的話，可以直接用這個已經照本頁規格做好的檔案：<br><a class="btn" href="namecard-template_60x30x2_v1.0_2026-11-23.stl" download style="display:inline-block;margin-top:6px;padding:8px 14px;border-radius:10px;background:#c2410c;color:#fff;text-decoration:none;font-weight:700">⬇ 下載模板 STL（60×30×2，R5 圓角，凹槽 54.96×24.9×1）</a></div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">🧒 學生：匯入模板</h3>
+      <ol class="todo">
+        <li>先把老師給的 <b>.stl</b> 檔下載到電腦。</li>
+        <li>在 Tinkercad 開一個<b>新的 3D 設計</b>。</li>
+        <li>按右上角的 <b>「匯入」</b>，選剛剛下載的檔案。</li>
+        <li>匯入視窗檢查：單位 <b>毫米（mm）</b>、縮放 <b>100%</b>，再按 <b>「匯入」</b>。</li>
+        <li>點模板，看右上角尺寸是不是 <span class="n">60 × 30 × 2</span>。不對就 <kbd>Ctrl</kbd>＋<kbd>Z</kbd>，重新匯入並檢查單位。</li>
+        <li>直接跳到 <a href="#s8"><b>步驟 8：複製一個模板給第二面</b></a>，照著做到最後。</li>
+      </ol>
+      <div class="warn" style="margin-top:8px"><b>⚠️</b>匯入的模板是「一整塊」，<b>不能改大小</b>，也不要按「解散群組」。只在它上面放文字就好。</div>
+    </div>
+  </div>
+  <div class="card spec" style="margin-top:14px"><table>
+    <thead><tr><th></th><th>自己做模板（第 1 節）</th><th>匯入老師模板（快速版）</th></tr></thead>
+    <tbody>
+      <tr><td><b>花的時間</b></td><td>約 1 節課</td><td>約 3 分鐘</td></tr>
+      <tr><td><b>學到什麼</b></td><td>對齊、孔、群組、切角器原理</td><td>匯入檔案、放文字、翻面合體</td></tr>
+      <tr><td><b>尺寸會不會跑掉</b></td><td>做錯一步就會</td><td>不會，大家完全一樣</td></tr>
+    </tbody>
+  </table></div>
 </section>
 
 <div id="lessons"></div>
