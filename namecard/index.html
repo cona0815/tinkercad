@@ -1,5 +1,6 @@
 <!doctype html>
-<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v4.0 2026-11-23
+<!-- 我的 3D 名牌｜Tinkercad 雙面名牌教學 v4.1 2026-11-23
+     v4.1：第 1 節結尾加老師進度檔分享連結（顏色分級：綠＝自己作品、橘＝老師進度檔、紅＝不要匯入 STL）。
      v4.0：接續上課改用「分享設計連結→複製並修改」，學生拿到的是完整可編輯的物件（底板＋4 個切角器），不是一整塊。
      v3.9：新增「快速版：匯入模板」— 老師匯出模板 STL，學生匯入後從步驟 8 開始，規格完全一致。
      依同事 Codeblocks 專案「copy of Cool Kup-Snaget」的流程改寫成一般 3D 設計操作：
@@ -108,6 +109,15 @@ h2.sec{font-size:clamp(24px,4vw,30px);font-weight:900}
 .val{border:2px solid var(--dim);border-radius:10px;padding:2px 10px;background:var(--dim-soft);font-size:14px;line-height:1.4}
 .val b{display:block;font:800 19px var(--mono);color:var(--dim)}
 .val small{color:var(--sub);font-size:12.5px}
+.l1end{margin:18px 0 8px;padding:16px 18px;border-radius:16px;background:#fff;border:3px solid #f97316;box-shadow:0 4px 14px rgba(249,115,22,.15)}
+.l1end h3{margin:0 0 10px;color:#c2410c}
+.l1row{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:12px;margin-top:8px;font-size:16px;line-height:1.7;border-left:8px solid}
+.l1row.g{background:#dcfce7;border-color:#16a34a}.l1row.o{background:#ffedd5;border-color:#f97316}.l1row.r{background:#fee2e2;border-color:#dc2626}
+.l1tag{flex:0 0 auto;font-weight:800;white-space:nowrap}.l1row.g .l1tag{color:#15803d}.l1row.o .l1tag{color:#c2410c}.l1row.r .l1tag{color:#b91c1c}
+.l1btn{display:table;margin-top:8px;padding:9px 16px;border-radius:10px;background:#f97316;color:#fff!important;text-decoration:none;font-weight:800}
+.l1btn:hover{background:#ea580c}
+@media(max-width:600px){.l1row{flex-direction:column;gap:2px}}
+@media(prefers-color-scheme:dark){.l1end{background:transparent}.l1row{color:#1f2937}}
 .check,.warn,.tip{border-radius:10px;padding:9px 14px;margin-top:10px;font-size:15.5px;line-height:1.65}
 .check{background:var(--ok-soft)}.warn{background:var(--warn-soft)}.tip{background:var(--acc-soft)}
 .check b:first-child,.warn b:first-child,.tip b:first-child{margin-right:4px}
@@ -487,7 +497,14 @@ $('#heroSvg').innerHTML=FIG.hero();
 
 /* ===== 步驟 ===== */
 const V=(l,v,n='')=>`<div class="val">${l}<b>${v}</b>${n?`<small>${n}</small>`:''}</div>`;
-const LESSONS=[{id:'L1',tag:'第 1 節',title:'做「模板」：切角器切出圓角＋挖凹槽',steps:['s1','s2','s3','s4','s5','s6','s7']},{id:'L2',tag:'第 2 節',title:'兩面文字、翻面合體',steps:['s8','s9','s10','s11','s12']}];
+const L1END=`<div class="l1end" id="L1share">
+  <h3>🔗 第 1 節結束：下次上課怎麼接著做？</h3>
+  <div class="l1row g"><span class="l1tag">🟢 先這樣做</span><div><b>打開自己的作品繼續做。</b>從班級連結登入 →「我的設計」→ 點自己的名牌（例如 60430-王小明）→「修改」。物件都還分開，跟上次一樣。</div></div>
+  <div class="l1row o"><span class="l1tag">🟠 沒有作品或做錯</span><div><b>用老師的進度檔。</b>按下面的按鈕 →「複製並修改」（Copy and Tinker）→ 左上角改名成「座號-姓名」→ 對照畫面，從還沒做的那一步接著做。
+    <a class="l1btn" href="https://www.tinkercad.com/things/7acD2pkYLlK-copy-of-60430-?sharecode=1NBw1B5BmQIL9vs60eg1Ar5n_tRQDinIKjLE3qvSjCk" target="_blank" rel="noopener">📂 打開老師的進度檔</a></div></div>
+  <div class="l1row r"><span class="l1tag">🔴 不要這樣做</span><div>不要匯出 STL 再匯入。匯入後會變成<b>一整塊</b>，孔不見，沒辦法繼續做。</div></div>
+</div>`;
+const LESSONS=[{id:'L1',tag:'第 1 節',title:'做「模板」：切角器切出圓角＋挖凹槽',steps:['s1','s2','s3','s4','s5','s6','s7'],end:L1END},{id:'L2',tag:'第 2 節',title:'兩面文字、翻面合體',steps:['s8','s9','s10','s11','s12']}];
 
 /* 對齊黑點小圖：targets 例 ['x1','y1'] */
 const DOTPOS={x0:[62,132],x1:[122,132],x2:[182,132],y0:[40,112],y1:[52,82],y2:[64,52],z0:[226,112],z1:[226,82],z2:[226,52]};
@@ -737,7 +754,7 @@ $('#lessons').innerHTML=LESSONS.map(L=>`<section id="${L.id}"><div class="lesson
   <ol class="todo" style="margin-top:10px">${s.todo.map(t=>typeof t==='string'?`<li>${t}</li>`:`<li>${t.d}${t.dot?dotSvg(t.dot,true,t.base||''):''}${t.see?`<div class="see">👀 ${t.see}</div>`:''}</li>`).join('')}</ol>
   ${s.check?`<div class="check"><b>✅ 檢查</b>${s.check}</div>`:''}${s.tip?`<div class="tip"><b>💡</b>${s.tip}</div>`:''}${s.warn?`<div class="warn"><b>⚠️</b>${s.warn}</div>`:''}</div>
   ${f?`<figure class="fig"><svg viewBox="${s.figVB||'0 0 600 330'}" role="img" aria-label="${s.cap}">${FIG[s.fig]()}</svg><figcaption>${s.cap}</figcaption></figure>`:''}</div>
-  <label class="done-row"><input type="checkbox" data-step="${id}" ${state[id]?'checked':''}> 我完成這一步了</label></article>`}).join('')+'</section>').join('');
+  <label class="done-row"><input type="checkbox" data-step="${id}" ${state[id]?'checked':''}> 我完成這一步了</label></article>`}).join('')+(L.end||'')+'</section>').join('');
 document.querySelectorAll('[data-step]').forEach(cb=>cb.addEventListener('change',e=>{const id=e.target.dataset.step;state[id]=e.target.checked;save();document.getElementById(id).classList.toggle('done',e.target.checked);prog()}));
 prog();
 
